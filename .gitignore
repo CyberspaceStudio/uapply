@@ -1,0 +1,22 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+target/classes/com/volunteer/uapply/annotation/MinisterLogin.class
+target/classes/com/volunteer/uapply/annotation/UserLogin.class
+target/classes/com/volunteer/uapply/pojo/SearchInterviewPojo.class
+target/classes/com/volunteer/uapply/utils/response/ResponseException.class
+target/generated-sources/
+target/generated-test-sources/
+target/classes/ExcelTemp/
+target/classes/com/volunteer/uapply/utils/ExcelUtil.class
+target/classes/com/volunteer/uapply/utils/Object2Map.class
+target/classes/com/volunteer/uapply/utils/enums/InterviewStatusEnum.class
+target/maven-archiver/
+target/uapply-0.0.1-SNAPSHOT.jar
+target/uapply-0.0.1-SNAPSHOT.jar.original
