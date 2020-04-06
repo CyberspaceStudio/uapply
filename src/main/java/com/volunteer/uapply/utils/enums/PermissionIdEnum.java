@@ -10,10 +10,10 @@ package com.volunteer.uapply.utils.enums;
 public enum PermissionIdEnum {
 
     SUP_MANGER(0, "超级管理员"),
-    CAPTAIN(1, "队长"),
-    MINISTER(2, "部长"),
-    DEPUTY_MINISTER(3, "副部长"),
-    STAFF(4, "部员");
+    MINISTER(1, "部长"),
+    DEPUTY_MINISTER(2, "副部长"),
+    STAFF(3, "部员"),
+    NORMAL_USER(4, "普通用户");
 
     /**
      * 权限id

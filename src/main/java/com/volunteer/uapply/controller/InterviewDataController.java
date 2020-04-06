@@ -1,18 +1,12 @@
 package com.volunteer.uapply.controller;
 
 
-import com.github.pagehelper.PageInfo;
-import com.volunteer.uapply.annotation.MinisterLogin;
-import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.Resume;
-import com.volunteer.uapply.pojo.User;
-import com.volunteer.uapply.pojo.dto.EnrollMembersDTO;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -107,7 +101,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 整个组织一面以及没有一面的人数\
+     * 整个组织一面以及没有一面的人数
      *
      * @param organizationId
      * @param departmentName

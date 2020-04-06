@@ -6,12 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 需要部门登录
+ *
  * @author 郭树耸
  * @version 1.0
  * @date 2020/2/9 20:14
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MinisterLogin {
+public @interface DepartmentLogin {
     boolean required() default true;
 }

@@ -1,15 +1,16 @@
 package com.volunteer.uapply.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.volunteer.uapply.annotation.MinisterLogin;
 import com.volunteer.uapply.annotation.PassToken;
 import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.*;
 import com.volunteer.uapply.pojo.info.TokenPO;
-import com.volunteer.uapply.pojo.dto.EnrollMembersDTO;
+import com.volunteer.uapply.sevice.DepartmentService;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -23,6 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/department")
 public class DepartmentController {
 
+
+    @Resource
+    @Qualifier("departmentServiceImpl")
+    private DepartmentService departmentService;
+
     /**
      * 部门PC端登录
      *
@@ -33,7 +39,7 @@ public class DepartmentController {
     @PassToken
     @PostMapping("/login")
     public UniversalResponseBody<TokenPO<Department>> departmentLogin(String departmentAccount, String departmentPwd) {
-        return null;
+        return departmentService.departmentLogin(departmentAccount, departmentPwd);
     }
 
     /**
@@ -43,19 +49,18 @@ public class DepartmentController {
      * @return
      */
     @PostMapping("/register")
-    public UniversalResponseBody<TokenPO<Department>> departmentRegister(Department department) {
-        return null;
+    public UniversalResponseBody<Department> departmentRegister(Department department) {
+        return departmentService.departmentRegister(department);
     }
 
     /**
-     * 更改部门信息
-     *
+     * 增加部门面试信息
      * @param department
      * @return
      */
     @PostMapping("/detail")
     public UniversalResponseBody<Department> changeDepartmentDetail(Department department) {
-        return null;
+        return departmentService.departmentInterviewDetail(department);
     }
 
     /**
@@ -88,7 +93,7 @@ public class DepartmentController {
 
 
     /**
-     * * 导出该部门所有部员详细信息
+     * 导出该部门所有部员详细信息
      *
      * @param departmentId
      * @param response
