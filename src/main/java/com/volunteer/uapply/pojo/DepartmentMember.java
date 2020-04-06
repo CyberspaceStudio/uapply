@@ -24,6 +24,8 @@ public class DepartmentMember {
 
     /**
      * 用户id
+     *
+     * @ignore
      */
     private Integer userId;
 

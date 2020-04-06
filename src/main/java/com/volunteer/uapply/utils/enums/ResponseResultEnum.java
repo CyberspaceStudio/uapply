@@ -21,11 +21,12 @@ public enum ResponseResultEnum {
     /**
      * 用户错误 2000-2999
      */
-    USER_LOGIN_SECCESS(2000, "登录成功"),
+    USER_LOGIN_SUCCESS(2000, "登录成功"),
     USER_LOGIN_ERROR(2002, "账号不存在或密码错误"),
     USER_NO_TOKEN(2001, "用户token为空"),
     USER_HAVE_EXIST(2000, "用户登录成功,非首次登录"),
     USER_NO_PERMISSION(2003, "用户权限不足"),
+    NORMAL_USER(2004, "普通用户"),
     /**
      * 面试状态 3000-3999
      */

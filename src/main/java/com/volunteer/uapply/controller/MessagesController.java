@@ -1,13 +1,11 @@
 package com.volunteer.uapply.controller;
 
 import com.aliyuncs.exceptions.ClientException;
-import com.volunteer.uapply.annotation.MinisterLogin;
 import com.volunteer.uapply.pojo.info.AliyunEnrollParam;
 import com.volunteer.uapply.pojo.info.AliyunFisrtInterviewParam;
 import com.volunteer.uapply.pojo.info.AliyunSecondInterviewParam;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +28,6 @@ public class MessagesController {
      * @return
      * @throws ClientException
      */
-    @MinisterLogin
     @PostMapping("/interview/first")
     public UniversalResponseBody SendFirstInterviewMessage(AliyunFisrtInterviewParam aliyunInterviewParamInfo) throws ClientException {
         return null;
@@ -42,7 +39,6 @@ public class MessagesController {
      * @param aliyunSecondMsgParamInfo
      * @return
      */
-    @MinisterLogin
     @PostMapping("/interview/second")
     public UniversalResponseBody SendSecondInterviewMessage(AliyunSecondInterviewParam aliyunSecondMsgParamInfo) throws ClientException {
         return null;
@@ -55,7 +51,6 @@ public class MessagesController {
      * @return
      * @throws ClientException
      */
-    @MinisterLogin
     @PostMapping("/enroll")
     public UniversalResponseBody SendFirstInterviewMessage(AliyunEnrollParam aliyunEnrollParamInfo) throws ClientException {
         return null;
