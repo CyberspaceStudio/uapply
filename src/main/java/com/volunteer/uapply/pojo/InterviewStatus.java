@@ -56,4 +56,12 @@ public class InterviewStatus {
      * 复试状态
      */
     private String retestStatus;
+
+    public InterviewStatus(Integer userId, Integer organizationId, String organizationName, String firstChoice, String secondChoice) {
+        this.userId = userId;
+        this.organizationId = organizationId;
+        this.organizationName = organizationName;
+        this.firstChoice = firstChoice;
+        this.secondChoice = secondChoice;
+    }
 }

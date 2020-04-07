@@ -7,7 +7,7 @@
 	<title>API Reference</title>
 	<link rel="stylesheet"
 		  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
-	<link rel="stylesheet" href="AllInOne.css?v=1586160508077"/>
+	<link rel="stylesheet" href="AllInOne.css?v=1586245897350"/>
 	<script src="https://cdn.bootcss.com/jquery/1.12.2/jquery.js"></script>
 </head>
 <body class="book toc2 toc-left">
@@ -19,10 +19,10 @@
 				<ul class="sectlevel2" style="display: block">
 					<li><a href="#_1_1_部门PC端登录">1.1.&nbsp;部门PC端登录</a></li>
 					<li><a href="#_1_2_部门激活">1.2.&nbsp;部门激活</a></li>
-					<li><a href="#_1_3_更改部门信息">1.3.&nbsp;更改部门信息</a></li>
+					<li><a href="#_1_3_增加部门面试信息">1.3.&nbsp;增加部门面试信息</a></li>
 					<li><a href="#_1_4_添加面试官">1.4.&nbsp;添加面试官</a></li>
 					<li><a href="#_1_5_分页查询部员数据">1.5.&nbsp;分页查询部员数据</a></li>
-					<li><a href="#_1_6_* 导出该部门所有部员详细信息">1.6.&nbsp;* 导出该部门所有部员详细信息</a></li>
+					<li><a href="#_1_6_导出该部门所有部员详细信息">1.6.&nbsp;导出该部门所有部员详细信息</a></li>
 				</ul>
 			</li>
 			<li><a class="dd" href="#_面试数据">2.&nbsp;面试数据</a>
@@ -34,7 +34,7 @@
 					<li><a href="#_2_5_部门淘汰名单">2.5.&nbsp;部门淘汰名单</a></li>
 					<li><a href="#_2_6_部门报名人数以及男女人数">2.6.&nbsp;部门报名人数以及男女人数</a></li>
 					<li><a href="#_2_7_整个组织的报名人数">2.7.&nbsp;整个组织的报名人数</a></li>
-					<li><a href="#_2_8_整个组织一面以及没有一面的人数\">2.8.&nbsp;整个组织一面以及没有一面的人数\</a></li>
+					<li><a href="#_2_8_整个组织一面以及没有一面的人数">2.8.&nbsp;整个组织一面以及没有一面的人数</a></li>
 				</ul>
 			</li>
 			<li><a class="dd" href="#_面试状态">3.&nbsp;面试状态</a>
@@ -157,7 +157,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/department/login  --data 'departmentAccount=9kjp8y&departmentPwd=dvfq12'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/department/login  --data 'departmentAccount=4ba593&departmentPwd=65psx6'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -282,22 +282,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":623,
-	"msg":"34fazg",
+	"code":54,
+	"msg":"hql4g8",
 	"data":{
 		"t":{
-			"departmentId":746,
-			"departmentName":"旭尧.侯",
-			"departmentAccount":"wqtxaj",
-			"departmentPwd":"a7izof",
-			"interviewRounds":982,
-			"parma1Name":"旭尧.侯",
-			"parma2Name":"旭尧.侯",
-			"parma3Name":"旭尧.侯",
-			"parma4Name":"旭尧.侯",
-			"parma5Name":"旭尧.侯"
+			"departmentId":910,
+			"departmentName":"果.叶",
+			"departmentAccount":"by6yog",
+			"departmentPwd":"d9rb96",
+			"interviewRounds":610,
+			"parma1Name":"果.叶",
+			"parma2Name":"果.叶",
+			"parma3Name":"果.叶",
+			"parma4Name":"果.叶",
+			"parma5Name":"果.叶"
 		},
-		"token":"bkjqaw"
+		"token":"fygc5d"
 	}
 }</pre>
 					</div>
@@ -436,7 +436,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/department/register  --data 'departmentId=886&departmentName=旭尧.侯&departmentAccount=7yigwl&departmentPwd=tm1su5&interviewRounds=985&parma1Name=旭尧.侯&parma2Name=旭尧.侯&parma3Name=旭尧.侯&parma4Name=旭尧.侯&parma5Name=旭尧.侯'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/department/register  --data 'departmentId=183&departmentName=果.叶&departmentAccount=m66mt8&departmentPwd=ddbb6a&interviewRounds=901&parma1Name=果.叶&parma2Name=果.叶&parma3Name=果.叶&parma4Name=果.叶&parma5Name=果.叶'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -475,85 +475,63 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─t</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-					</tr>
-					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─departmentId</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─departmentId</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">部门id</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─departmentName</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─departmentName</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">部门名称</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─departmentAccount</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─departmentAccount</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">部门PC登录账号</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─departmentPwd</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─departmentPwd</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">部门PC端登录密码</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─interviewRounds</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─interviewRounds</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试轮次</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─parma1Name</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─parma1Name</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试评价参数1的名称</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─parma2Name</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─parma2Name</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试评价参数2</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─parma3Name</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─parma3Name</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试评价参数3</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─parma4Name</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─parma4Name</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试评价参数4</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─parma5Name</p>
-						</td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─parma5Name</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">面试评价参数5</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-					</tr>
-					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─token</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -561,29 +539,26 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":273,
-	"msg":"8pyqym",
+	"code":343,
+	"msg":"v7tch5",
 	"data":{
-		"t":{
-			"departmentId":200,
-			"departmentName":"旭尧.侯",
-			"departmentAccount":"p8o4rl",
-			"departmentPwd":"4q63xt",
-			"interviewRounds":837,
-			"parma1Name":"旭尧.侯",
-			"parma2Name":"旭尧.侯",
-			"parma3Name":"旭尧.侯",
-			"parma4Name":"旭尧.侯",
-			"parma5Name":"旭尧.侯"
-		},
-		"token":"19a8v7"
+		"departmentId":604,
+		"departmentName":"果.叶",
+		"departmentAccount":"t297z1",
+		"departmentPwd":"wi99gz",
+		"interviewRounds":435,
+		"parma1Name":"果.叶",
+		"parma2Name":"果.叶",
+		"parma3Name":"果.叶",
+		"parma4Name":"果.叶",
+		"parma5Name":"果.叶"
 	}
 }</pre>
 					</div>
 				</div>
 			</div>
-			<div class="sect2"><h3 id="_1_3_更改部门信息"><a class="anchor" href="#_1_3_更改部门信息"></a><a class="link"
-																								 href="#_1_3_更改部门信息">1.3.&nbsp;更改部门信息</a>
+			<div class="sect2"><h3 id="_1_3_增加部门面试信息"><a class="anchor" href="#_1_3_增加部门面试信息"></a><a class="link"
+																									 href="#_1_3_增加部门面试信息">1.3.&nbsp;增加部门面试信息</a>
 			</h3>
 				<div class="paragraph"><p><strong>URL:</strong><a href="https://xdvolunteer.xyz/department/detail"
 																  class="bare">&nbsp;https://xdvolunteer.xyz/department/detail</a>
@@ -591,7 +566,7 @@
 				<div class="paragraph"><p><strong>Type:</strong>&nbsp;POST</p></div>
 				<div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;application/x-www-form-urlencoded;charset=utf-8
 				</p></div>
-				<div class="paragraph"><p><strong>Description:</strong>&nbsp;更改部门信息</p></div>
+				<div class="paragraph"><p><strong>Description:</strong>&nbsp;增加部门面试信息</p></div>
 				<div class="paragraph"><p><strong>Request-headers:</strong></p></div>
 				<table class="tableblock frame-all grid-all spread">
 					<colgroup>
@@ -715,7 +690,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/department/detail  --data 'departmentId=437&departmentName=旭尧.侯&departmentAccount=kj6d9t&departmentPwd=xny8bn&interviewRounds=302&parma1Name=旭尧.侯&parma2Name=旭尧.侯&parma3Name=旭尧.侯&parma4Name=旭尧.侯&parma5Name=旭尧.侯'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/department/detail  --data 'departmentId=243&departmentName=果.叶&departmentAccount=ruyp9n&departmentPwd=5hi04v&interviewRounds=239&parma1Name=果.叶&parma2Name=果.叶&parma3Name=果.叶&parma4Name=果.叶&parma5Name=果.叶'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -818,19 +793,19 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":883,
-	"msg":"pkctjs",
+	"code":341,
+	"msg":"kzpa1z",
 	"data":{
-		"departmentId":214,
-		"departmentName":"旭尧.侯",
-		"departmentAccount":"bsk9wu",
-		"departmentPwd":"zire0q",
-		"interviewRounds":915,
-		"parma1Name":"旭尧.侯",
-		"parma2Name":"旭尧.侯",
-		"parma3Name":"旭尧.侯",
-		"parma4Name":"旭尧.侯",
-		"parma5Name":"旭尧.侯"
+		"departmentId":985,
+		"departmentName":"果.叶",
+		"departmentAccount":"wwlh21",
+		"departmentPwd":"5mnqfu",
+		"interviewRounds":613,
+		"parma1Name":"果.叶",
+		"parma2Name":"果.叶",
+		"parma3Name":"果.叶",
+		"parma4Name":"果.叶",
+		"parma5Name":"果.叶"
 	}
 }</pre>
 					</div>
@@ -920,7 +895,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/department/interviewer  --data 'departmentId=858&departmentName=旭尧.侯&userId[]=vsmwrk'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/department/interviewer  --data 'departmentId=771&departmentName=果.叶&userId[]=3qia11'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -963,8 +938,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":308,
-	"msg":"l962b6",
+	"code":119,
+	"msg":"9wpqzn",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -1056,7 +1031,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/department/members  --data 'departmentId=270&pageNum=233&pageSize=10'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/department/members  --data 'departmentId=919&pageNum=662&pageSize=10'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -1146,13 +1121,6 @@
 						</td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-					</tr>
-					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─userProfession</p>
-						</td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
@@ -1256,36 +1224,35 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":782,
-	"msg":"j1c4at",
+	"code":185,
+	"msg":"avj63n",
 	"data":{
-		"total":163,
+		"total":599,
 		"list":[
 			{
-				"userId":33,
-				"openid":"185",
-				"userName":"旭尧.侯",
-				"userSex":"akl3sa",
-				"userTel":"6z0tte",
-				"userQQNum":"jb7xix",
-				"userProfession":"q5hdc9"
+				"userId":5,
+				"openid":"171",
+				"userName":"果.叶",
+				"userSex":"00f16k",
+				"userTel":"33hu65",
+				"userQQNum":"bnrjbq"
 			}
 		],
-		"pageNum":865,
+		"pageNum":549,
 		"pageSize":10,
 		"size":10,
-		"startRow":763,
-		"endRow":960,
-		"pages":322,
+		"startRow":153,
+		"endRow":948,
+		"pages":527,
 		"prePage":1,
 		"nextPage":1,
 		"isFirstPage":true,
 		"isLastPage":true,
 		"hasPreviousPage":true,
 		"hasNextPage":true,
-		"navigatePages":888,
+		"navigatePages":990,
 		"navigatepageNums":[
-			173
+			713
 		],
 		"navigateFirstPage":1,
 		"navigateLastPage":1
@@ -1294,15 +1261,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="sect2"><h3 id="_1_6_* 导出该部门所有部员详细信息"><a class="anchor" href="#_1_6_* 导出该部门所有部员详细信息"></a><a
-					class="link" href="#_1_6_* 导出该部门所有部员详细信息">1.6.&nbsp;* 导出该部门所有部员详细信息</a></h3>
+			<div class="sect2"><h3 id="_1_6_导出该部门所有部员详细信息"><a class="anchor" href="#_1_6_导出该部门所有部员详细信息"></a><a
+					class="link" href="#_1_6_导出该部门所有部员详细信息">1.6.&nbsp;导出该部门所有部员详细信息</a></h3>
 				<div class="paragraph"><p><strong>URL:</strong><a
 						href="https://xdvolunteer.xyz/department/export/{departmentId}" class="bare">&nbsp;https://xdvolunteer.xyz/department/export/{departmentId}</a>
 				</p></div>
 				<div class="paragraph"><p><strong>Type:</strong>&nbsp;GET</p></div>
 				<div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;application/x-www-form-urlencoded;charset=utf-8
 				</p></div>
-				<div class="paragraph"><p><strong>Description:</strong>&nbsp;* 导出该部门所有部员详细信息</p></div>
+				<div class="paragraph"><p><strong>Description:</strong>&nbsp;导出该部门所有部员详细信息</p></div>
 				<div class="paragraph"><p><strong>Request-headers:</strong></p></div>
 				<table class="tableblock frame-all grid-all spread">
 					<colgroup>
@@ -1363,7 +1330,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/department/export/434</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/department/export/714</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
@@ -1448,7 +1415,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/unfisrt?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/unfisrt?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -1523,7 +1490,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -1535,15 +1502,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -1551,20 +1530,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":517,
-	"msg":"3hhjf9",
+	"code":968,
+	"msg":"w4uiox",
 	"data":[
 		{
-			"userId":879,
-			"organizationId":896,
-			"organizationName":"旭尧.侯",
-			"userSex":"lmmvko",
-			"userName":"旭尧.侯",
-			"userStuNum":"jndven",
-			"userQq":"576c58",
-			"userTel":"t3s5r7",
-			"profession":"7vmk5e",
-			"college":"nehzbr"
+			"userId":426,
+			"organizationId":816,
+			"organizationName":"果.叶",
+			"userSex":"qim30y",
+			"userName":"果.叶",
+			"userStuNum":"8423rr",
+			"userQQNum":"uqw94h",
+			"userTel":"0p6eif",
+			"userProfession":"gb72si",
+			"userCollege":"km4cj4",
+			"userHobby":"8l52bk",
+			"userIntroduction":"c76q4p"
 		}
 	]
 }</pre>
@@ -1641,7 +1622,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/fisrted?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/fisrted?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -1716,7 +1697,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -1728,15 +1709,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -1744,20 +1737,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":310,
-	"msg":"1j2ge6",
+	"code":178,
+	"msg":"kcgy2a",
 	"data":[
 		{
-			"userId":483,
-			"organizationId":528,
-			"organizationName":"旭尧.侯",
-			"userSex":"58m5a4",
-			"userName":"旭尧.侯",
-			"userStuNum":"2g9oem",
-			"userQq":"5psqir",
-			"userTel":"i9qeug",
-			"profession":"l63ffd",
-			"college":"rg7r6a"
+			"userId":360,
+			"organizationId":708,
+			"organizationName":"果.叶",
+			"userSex":"mhuwaw",
+			"userName":"果.叶",
+			"userStuNum":"ztsj3c",
+			"userQQNum":"g6kc7u",
+			"userTel":"if79eo",
+			"userProfession":"im0z1h",
+			"userCollege":"k36h4z",
+			"userHobby":"ib2a1x",
+			"userIntroduction":"gw3pql"
 		}
 	]
 }</pre>
@@ -1834,7 +1829,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/unsecond?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/unsecond?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -1909,7 +1904,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -1921,15 +1916,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -1937,20 +1944,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":581,
-	"msg":"1m6b2a",
+	"code":543,
+	"msg":"m7wpkx",
 	"data":[
 		{
-			"userId":233,
-			"organizationId":841,
-			"organizationName":"旭尧.侯",
-			"userSex":"2mykdg",
-			"userName":"旭尧.侯",
-			"userStuNum":"9eg9xx",
-			"userQq":"45fmph",
-			"userTel":"76hx9u",
-			"profession":"usi6ps",
-			"college":"bwxh54"
+			"userId":4,
+			"organizationId":466,
+			"organizationName":"果.叶",
+			"userSex":"rby2sh",
+			"userName":"果.叶",
+			"userStuNum":"9buikk",
+			"userQQNum":"rttsj3",
+			"userTel":"z3s5ai",
+			"userProfession":"8gyput",
+			"userCollege":"pdf63t",
+			"userHobby":"9jywua",
+			"userIntroduction":"8qnolh"
 		}
 	]
 }</pre>
@@ -2027,7 +2036,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/seconded?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/seconded?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -2102,7 +2111,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -2114,15 +2123,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -2130,20 +2151,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":243,
-	"msg":"qkzpud",
+	"code":95,
+	"msg":"sre51v",
 	"data":[
 		{
-			"userId":754,
-			"organizationId":924,
-			"organizationName":"旭尧.侯",
-			"userSex":"qc7wco",
-			"userName":"旭尧.侯",
-			"userStuNum":"5wfdl7",
-			"userQq":"nsiafp",
-			"userTel":"xegnjb",
-			"profession":"4iohvy",
-			"college":"3f7hqz"
+			"userId":311,
+			"organizationId":93,
+			"organizationName":"果.叶",
+			"userSex":"jlml7d",
+			"userName":"果.叶",
+			"userStuNum":"mhumy2",
+			"userQQNum":"0e2dy3",
+			"userTel":"rfdnng",
+			"userProfession":"a2mm5p",
+			"userCollege":"j8lx4a",
+			"userHobby":"yr3mhz",
+			"userIntroduction":"d9ov5w"
 		}
 	]
 }</pre>
@@ -2220,7 +2243,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/eliminationList?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/eliminationList?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -2295,7 +2318,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -2307,15 +2330,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -2323,20 +2358,22 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":941,
-	"msg":"lcrfve",
+	"code":157,
+	"msg":"cvbz5b",
 	"data":[
 		{
-			"userId":24,
-			"organizationId":936,
-			"organizationName":"旭尧.侯",
-			"userSex":"ockda7",
-			"userName":"旭尧.侯",
-			"userStuNum":"8wck4n",
-			"userQq":"wuvzqp",
-			"userTel":"7nmvuq",
-			"profession":"78zzrv",
-			"college":"pn2rbv"
+			"userId":617,
+			"organizationId":277,
+			"organizationName":"果.叶",
+			"userSex":"pmpxr8",
+			"userName":"果.叶",
+			"userStuNum":"ub1bmq",
+			"userQQNum":"dfd497",
+			"userTel":"k2j9b5",
+			"userProfession":"w2bfe5",
+			"userCollege":"b1ract",
+			"userHobby":"qfy3ib",
+			"userIntroduction":"fgujnr"
 		}
 	]
 }</pre>
@@ -2412,7 +2449,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/applyCount?departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/applyCount?departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -2497,16 +2534,16 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":128,
-	"msg":"0se54b",
+	"code":183,
+	"msg":"e2mxpd",
 	"data":{
-		"departmentId":5,
-		"departmentName":188,
-		"manCounts":564,
-		"womanCounts":562,
-		"crossCounts":216,
-		"applyCounts":317,
-		"interviewCounts":784
+		"departmentId":818,
+		"departmentName":594,
+		"manCounts":898,
+		"womanCounts":169,
+		"crossCounts":93,
+		"applyCounts":84,
+		"interviewCounts":966
 	}
 }</pre>
 					</div>
@@ -2589,7 +2626,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/applyCounts?organizationId=60&departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/applyCounts?organizationId=502&departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -2674,32 +2711,32 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":46,
-	"msg":"whktu5",
+	"code":992,
+	"msg":"med2dd",
 	"data":[
 		{
-			"departmentId":297,
-			"departmentName":122,
-			"manCounts":541,
-			"womanCounts":476,
-			"crossCounts":603,
-			"applyCounts":812,
-			"interviewCounts":504
+			"departmentId":369,
+			"departmentName":752,
+			"manCounts":746,
+			"womanCounts":322,
+			"crossCounts":577,
+			"applyCounts":217,
+			"interviewCounts":825
 		}
 	]
 }</pre>
 					</div>
 				</div>
 			</div>
-			<div class="sect2"><h3 id="_2_8_整个组织一面以及没有一面的人数\"><a class="anchor" href="#_2_8_整个组织一面以及没有一面的人数\"></a><a
-					class="link" href="#_2_8_整个组织一面以及没有一面的人数\">2.8.&nbsp;整个组织一面以及没有一面的人数\</a></h3>
+			<div class="sect2"><h3 id="_2_8_整个组织一面以及没有一面的人数"><a class="anchor" href="#_2_8_整个组织一面以及没有一面的人数"></a><a
+					class="link" href="#_2_8_整个组织一面以及没有一面的人数">2.8.&nbsp;整个组织一面以及没有一面的人数</a></h3>
 				<div class="paragraph"><p><strong>URL:</strong><a
 						href="https://xdvolunteer.xyz/interview/data/firstInterviewData" class="bare">&nbsp;https://xdvolunteer.xyz/interview/data/firstInterviewData</a>
 				</p></div>
 				<div class="paragraph"><p><strong>Type:</strong>&nbsp;GET</p></div>
 				<div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;application/x-www-form-urlencoded;charset=utf-8
 				</p></div>
-				<div class="paragraph"><p><strong>Description:</strong>&nbsp;整个组织一面以及没有一面的人数\</p></div>
+				<div class="paragraph"><p><strong>Description:</strong>&nbsp;整个组织一面以及没有一面的人数</p></div>
 				<div class="paragraph"><p><strong>Request-headers:</strong></p></div>
 				<table class="tableblock frame-all grid-all spread">
 					<colgroup>
@@ -2767,7 +2804,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/firstInterviewData?organizationId=794&departmentName=旭尧.侯</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/data/firstInterviewData?organizationId=113&departmentName=果.叶</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -2852,17 +2889,17 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":514,
-	"msg":"5v1qzo",
+	"code":153,
+	"msg":"l7o6hp",
 	"data":[
 		{
-			"departmentId":952,
-			"departmentName":523,
-			"manCounts":162,
-			"womanCounts":765,
-			"crossCounts":960,
-			"applyCounts":174,
-			"interviewCounts":354
+			"departmentId":31,
+			"departmentName":312,
+			"manCounts":230,
+			"womanCounts":828,
+			"crossCounts":700,
+			"applyCounts":457,
+			"interviewCounts":873
 		}
 	]
 }</pre>
@@ -2944,7 +2981,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/status/getstatus?userId=149</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/interview/status/getstatus?userId=727</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3041,19 +3078,19 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":361,
-	"msg":"4n7qf0",
+	"code":951,
+	"msg":"xs8rbk",
 	"data":[
 		{
-			"userId":996,
-			"organizationId":507,
-			"organizationName":"旭尧.侯",
-			"firstChoice":"nteku5",
-			"firstStatus":"4u1yk6",
-			"secondChoice":"i2iuhh",
-			"secondStatus":"43za8b",
-			"retestChoice":"e7mwxb",
-			"retestStatus":"4izo25"
+			"userId":866,
+			"organizationId":79,
+			"organizationName":"果.叶",
+			"firstChoice":"afrz0k",
+			"firstStatus":"a2mom4",
+			"secondChoice":"q6gjvd",
+			"secondStatus":"2ujy4g",
+			"retestChoice":"7cez96",
+			"retestStatus":"3ga0jz"
 		}
 	]
 }</pre>
@@ -3144,7 +3181,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/first/pass  --data 'userId=770&departmentName=旭尧.侯&organizationId=916'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/first/pass  --data 'userId=210&departmentName=果.叶&organizationId=156'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3187,8 +3224,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":394,
-	"msg":"1kv373",
+	"code":664,
+	"msg":"9rj4ux",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3280,7 +3317,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/first/eliminate  --data 'userId=401&departmentName=旭尧.侯&organizationId=345'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/first/eliminate  --data 'userId=43&departmentName=果.叶&organizationId=775'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3323,8 +3360,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":839,
-	"msg":"ur0tle",
+	"code":979,
+	"msg":"graazs",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3416,7 +3453,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/retest/pass  --data 'userId=903&departmentName=旭尧.侯&organizationId=701'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/retest/pass  --data 'userId=288&departmentName=果.叶&organizationId=802'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3459,8 +3496,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":554,
-	"msg":"iu967a",
+	"code":199,
+	"msg":"m0opsq",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3552,7 +3589,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/retest/eliminate  --data 'userId=374&departmentName=旭尧.侯&organizationId=30'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/retest/eliminate  --data 'userId=776&departmentName=果.叶&organizationId=466'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3595,8 +3632,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":787,
-	"msg":"f9ezyi",
+	"code":338,
+	"msg":"zjau3w",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3688,7 +3725,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/enroll  --data 'userId=451&departmentName=旭尧.侯&organizationId=653'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/interview/status/enroll  --data 'userId=933&departmentName=果.叶&organizationId=527'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3731,8 +3768,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":622,
-	"msg":"0ri8mn",
+	"code":865,
+	"msg":"fnrkcs",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3842,7 +3879,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/message/interview/first  --data 'userId.[]=pgwlyt&departmentId=271&timeSlot=o96jwq&place=9ikeq4&telNo=hqf063'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/message/interview/first  --data 'userId.[]=q8d3mo&departmentId=356&timeSlot=7qp56m&place=ej4b85&telNo=pyte6k'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -3885,8 +3922,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":730,
-	"msg":"1srvmp",
+	"code":126,
+	"msg":"5bsyvg",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -3992,7 +4029,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/message/interview/second  --data 'userId.[]=dn4ste&departmentId=342&timeSlot=crfjii&place=ugi9vm&telNo=92tohb'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/message/interview/second  --data 'userId.[]=xhz4r4&departmentId=204&timeSlot=b4ra4q&place=uyls6p&telNo=3thwvu'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4035,8 +4072,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":233,
-	"msg":"ty2po6",
+	"code":501,
+	"msg":"67axrv",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -4129,7 +4166,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/message/enroll  --data 'userId.[]=s2pqfn&departmentId=876&secret=7yoaf2'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/message/enroll  --data 'userId.[]=al0cvo&departmentId=741&secret=688byh'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4172,8 +4209,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":13,
-	"msg":"jjytf6",
+	"code":573,
+	"msg":"834t9n",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -4285,7 +4322,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
@@ -4299,16 +4336,30 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
@@ -4331,7 +4382,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/resume/apply  --data 'userId=537&organizationId=143&organizationName=旭尧.侯&userSex=dxqc67&userName=旭尧.侯&userStuNum=sf8xxo&userQq=nvo8r5&userTel=3mqse5&profession=q5r028&college=hjvf9v&firstChoice=rx8fvn&secondChoice=ea5mdt'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/resume/apply  --data 'userId=538&organizationId=372&organizationName=果.叶&userSex=ea03wy&userName=果.叶&userStuNum=cj4ujz&userQQNum=lg782r&userTel=yt4ytn&userProfession=ob4x28&userCollege=t9foni&userHobby=1o3490&userIntroduction=5l84qy&firstChoice=37pier&secondChoice=xof1a1'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4374,8 +4425,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":517,
-	"msg":"vtkr9f",
+	"code":127,
+	"msg":"c48clt",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -4467,7 +4518,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/resume/view?organizationId=711&departmentName=旭尧.侯&userTel=mvylxy</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/resume/view?organizationId=68&departmentName=果.叶&userTel=splmr2</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4542,7 +4593,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQq</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userQQNum</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">QQ</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -4554,15 +4605,27 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─profession</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userProfession</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─college</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userCollege</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">学院</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userHobby</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">爱好</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+					</tr>
+					<tr>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─userIntroduction</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">自我介绍</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					</tbody>
@@ -4570,19 +4633,21 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":247,
-	"msg":"0vh0an",
+	"code":758,
+	"msg":"9rthk5",
 	"data":{
-		"userId":136,
-		"organizationId":279,
-		"organizationName":"旭尧.侯",
-		"userSex":"7x2czd",
-		"userName":"旭尧.侯",
-		"userStuNum":"4whvrp",
-		"userQq":"nbdv1u",
-		"userTel":"57c2x1",
-		"profession":"yo1fmr",
-		"college":"8q1s0i"
+		"userId":823,
+		"organizationId":693,
+		"organizationName":"果.叶",
+		"userSex":"mnx66h",
+		"userName":"果.叶",
+		"userStuNum":"cna5aw",
+		"userQQNum":"hgw3cd",
+		"userTel":"52z5zx",
+		"userProfession":"s99j5t",
+		"userCollege":"7iatc3",
+		"userHobby":"b21z4u",
+		"userIntroduction":"mpcdh4"
 	}
 }</pre>
 					</div>
@@ -4721,7 +4786,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/resume/score  --data 'userId=510&departmentName=旭尧.侯&param1Score=hxnavw&param2Score=br554r&param3Score=asf4z5&param4Score=3ivvpp&param5Score=v30rig&detail=9pul5n&overview=avejdy&userName=旭尧.侯'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/resume/score  --data 'userId=429&departmentName=果.叶&param1Score=t8o2pc&param2Score=aueplp&param3Score=29si70&param4Score=0llvyi&param5Score=ckovhe&detail=e56eag&overview=lx7u6y&userName=果.叶'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4764,8 +4829,8 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":614,
-	"msg":"13ri6i",
+	"code":792,
+	"msg":"d60bu9",
 	"data":{
 		"waring":"You may have used non-display generics."
 	}
@@ -4848,7 +4913,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X POST -i https://xdvolunteer.xyz/user/login/wx  --data 'code=38345'</pre>
+						<pre>curl -X POST -i https://xdvolunteer.xyz/user/login/wx  --data 'code=62877'</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -4935,13 +5000,6 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─userProfession</p>
-						</td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">专业</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-					</tr>
-					<tr>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">└─token</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
@@ -4952,19 +5010,18 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":256,
-	"msg":"uxjtev",
+	"code":907,
+	"msg":"irfega",
 	"data":{
 		"t":{
-			"userId":134,
-			"openid":"185",
-			"userName":"旭尧.侯",
-			"userSex":"t8r3f9",
-			"userTel":"p4gu4o",
-			"userQQNum":"yzf2xh",
-			"userProfession":"t8u094"
+			"userId":773,
+			"openid":"171",
+			"userName":"果.叶",
+			"userSex":"80g8wg",
+			"userTel":"8qbtfd",
+			"userQQNum":"oqqtya"
 		},
-		"token":"r2h4d4"
+		"token":"orn0af"
 	}
 }</pre>
 					</div>
@@ -5040,7 +5097,7 @@
 				<div class="paragraph"><p><strong>Request-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content">
-						<pre>curl -X GET -i https://xdvolunteer.xyz/user/profession?userId=981</pre>
+						<pre>curl -X GET -i https://xdvolunteer.xyz/user/profession?userId=801</pre>
 					</div>
 				</div>
 				<div class="paragraph"><p><strong>Response-fields:</strong></p></div>
@@ -5097,7 +5154,7 @@
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">└─permissionId</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">└─authorityId</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">权限id</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -5107,14 +5164,14 @@
 				<div class="paragraph"><p><strong>Response-example:</strong></p></div>
 				<div class="listingblock">
 					<div class="content"><pre>{
-	"code":126,
-	"msg":"kmz2cx",
+	"code":859,
+	"msg":"dr01iw",
 	"data":[
 		{
-			"departmentId":134,
-			"departmentName":"旭尧.侯",
-			"userId":658,
-			"permissionId":879
+			"departmentId":679,
+			"departmentName":"果.叶",
+			"userId":204,
+			"authorityId":68
 		}
 	]
 }</pre>
@@ -5191,22 +5248,6 @@
 					<td class="tableblock halign-left valign-top"><p class="tableblock">2004</p></td>
 					<td class="tableblock halign-left valign-top"><p class="tableblock">普通用户</p></td>
 				</tr>
-				<tr>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">3000</p></td>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">还未报名</p></td>
-				</tr>
-				<tr>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">3001</p></td>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">已经报名成功</p></td>
-				</tr>
-				<tr>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">3002</p></td>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">完成一面</p></td>
-				</tr>
-				<tr>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">3003</p></td>
-					<td class="tableblock halign-left valign-top"><p class="tableblock">完成二面</p></td>
-				</tr>
 				</tbody>
 			</table>
 		</div>
@@ -5244,15 +5285,10 @@
 					<tr>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">副部长</p></td>
-					</tr>
-					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">部员</p></td>
 					</tr>
 					<tr>
-						<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+						<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 						<td class="tableblock halign-left valign-top"><p class="tableblock">普通用户</p></td>
 					</tr>
@@ -5301,7 +5337,7 @@
 			</div>
 		</div>
 	</div>
-	<footer class="page-footer"><span class="copyright">Generated by smart-doc at 2020-04-06 16:08:28</span><span
+	<footer class="page-footer"><span class="copyright">Generated by smart-doc at 2020-04-07 15:51:37</span><span
 			class="footer-modification">Suggestions,contact,support and error reporting on<a
 			href="https://gitee.com/sunyurepository/smart-doc" target="_blank">&nbsp;Gitee</a>&nbsp;or<a
 			href="https://github.com/shalousun/smart-doc" target="_blank">&nbsp;Github</a></span></footer>

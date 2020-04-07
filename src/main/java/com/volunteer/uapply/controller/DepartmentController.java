@@ -29,6 +29,7 @@ public class DepartmentController {
     @Qualifier("departmentServiceImpl")
     private DepartmentService departmentService;
 
+
     /**
      * 部门PC端登录
      *
@@ -65,7 +66,6 @@ public class DepartmentController {
 
     /**
      * 添加面试官
-     *
      * @param departmentName
      * @param departmentId
      * @param userId
@@ -73,7 +73,7 @@ public class DepartmentController {
      */
     @PostMapping("/interviewer")
     public UniversalResponseBody insertInterviewer(Integer departmentId, String departmentName, Integer[] userId) {
-        return null;
+        return departmentService.insertInterviewer(departmentId, departmentName, userId);
     }
 
 

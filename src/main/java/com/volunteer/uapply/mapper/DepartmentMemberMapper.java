@@ -20,4 +20,16 @@ public interface DepartmentMemberMapper {
      * @return
      */
     List<DepartmentMember> getUserPermission(Integer userId);
+
+
+    /**
+     * 批量插入部门成员
+     *
+     * @param departmentId   部门ID
+     * @param departmentName 部门名称
+     * @param userId         用户ID的集合
+     * @param authorityId    权限ID
+     * @return
+     */
+    int insertDepartmentMember(Integer departmentId, String departmentName, Integer userId, Integer authorityId);
 }

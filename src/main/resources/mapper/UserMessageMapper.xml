@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.volunteer.uapply.mapper.UserMessageMapper">
+
+    <resultMap id="user" type="com.volunteer.uapply.pojo.User">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
+        <result column="userQQ_num" property="userQQNum" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO  user_message(openid) VALUES (#{openid,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateUserMessage">
     UPDATE user_message
-    SET user_name = #{userName,jdbcType =VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=VARCHAR}
+    SET user_name = #{userName,jdbcType =VARCHAR},user_sex=#{userSex,jdbcType=VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
     </update>
 
 
     <select id="getUserByOpenid" resultType="com.volunteer.uapply.pojo.User">
-        SELECT  user_id,openid,user_name,_user_tel,userQQ_num
+        SELECT  user_id,openid,user_name,user_tel,userQQ_num.user_sex
         FROM user_message
         where openid = #{openid,jdbcType=VARCHAR}
     </select>
     <select id="getUserByUserId" resultType="com.volunteer.uapply.pojo.User">
-         SELECT  user_id,openid,user_name,_user_tel,userQQ_num
+         SELECT  user_id,openid,user_name,user_tel,userQQ_num
         FROM user_message
-        where user_id = #{userId,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
 </mapper>
