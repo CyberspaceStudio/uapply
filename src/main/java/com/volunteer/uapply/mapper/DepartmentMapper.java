@@ -33,4 +33,5 @@ public interface DepartmentMapper {
      * @return
      */
     int insertDepartmentInterviewDetail(Department department);
+
 }

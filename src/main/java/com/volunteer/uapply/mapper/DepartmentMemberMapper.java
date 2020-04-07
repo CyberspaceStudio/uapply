@@ -32,4 +32,13 @@ public interface DepartmentMemberMapper {
      * @return
      */
     int insertDepartmentMember(Integer departmentId, String departmentName, Integer userId, Integer authorityId);
+
+    /**
+     * 查询部门相应权限的所有成员
+     *
+     * @param departmentId
+     * @param authorityId
+     * @return
+     */
+    List<DepartmentMember> getDepartmentMember(Integer departmentId, Integer authorityId);
 }

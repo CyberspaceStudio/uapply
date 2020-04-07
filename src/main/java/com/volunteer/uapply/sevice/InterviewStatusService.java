@@ -22,4 +22,16 @@ public interface InterviewStatusService {
      * @return
      */
     UniversalResponseBody<List<InterviewStatus>> getInterviewStatus(Integer userId);
+
+
+    /**
+     * 录取部员
+     *
+     * @param userId
+     * @param departmentId
+     * @param departmentName
+     * @param organizationId
+     * @return
+     */
+    UniversalResponseBody enrollMembers(Integer[] userId, Integer departmentId, String departmentName, Integer organizationId);
 }

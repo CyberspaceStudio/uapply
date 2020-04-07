@@ -67,8 +67,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody insertInterviewer(Integer departmentId, String departmentName, Integer[] userId) {
-        log.info(departmentId.toString());
-        log.info(departmentName);
         for (Integer temp :
                 userId) {
             departmentMemberMapper.insertDepartmentMember(departmentId, departmentName, temp, AuthorityIdEnum.MINISTER.getAuthorityId());
