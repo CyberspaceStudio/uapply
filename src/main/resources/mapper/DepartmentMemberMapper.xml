@@ -4,7 +4,7 @@
 
 
     <select id="getUserPermission" resultType="com.volunteer.uapply.pojo.DepartmentMember">
-        SELECT department_id,department_name,user_id,permission_id
+        SELECT department_id,department_name,user_id,authority_id
         FROM department_member
         WHERE user_id =#{userId,jdbcType=INTEGER}
     </select>

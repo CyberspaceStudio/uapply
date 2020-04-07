@@ -28,10 +28,10 @@ public interface UserMessageMapper {
     /**
      * 插入用户
      *
-     * @param openid
+     * @param user
      * @return
      */
-    int insertUser(String openid);
+    int insertUser(User user);
 
     /**
      * 更新用户信息

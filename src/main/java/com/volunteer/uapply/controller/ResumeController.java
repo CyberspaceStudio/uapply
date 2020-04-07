@@ -2,8 +2,12 @@ package com.volunteer.uapply.controller;
 
 import com.volunteer.uapply.pojo.Resume;
 import com.volunteer.uapply.pojo.ResumeScorePO;
+import com.volunteer.uapply.sevice.ResumeService;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -17,6 +21,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/resume")
 public class ResumeController {
 
+    @Resource
+    @Qualifier("resumeServiceImpl")
+    private ResumeService resumeService;
+
     /**
      * 报名
      *
@@ -27,7 +35,7 @@ public class ResumeController {
      */
     @PostMapping("/apply")
     public UniversalResponseBody apply(Resume resume, String firstChoice, String secondChoice) {
-        return null;
+        return resumeService.apply(resume, firstChoice, secondChoice);
     }
 
 

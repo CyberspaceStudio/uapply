@@ -56,8 +56,7 @@ public class UserServiceImpl implements UserService {
         } else {
             //插入用户
             user = new User(wxResponseInfo.getOpenid());
-            userMapper.insertUser(wxResponseInfo.getOpenid());
-
+            userMapper.insertUser(user);
             //根据userId生成token
             token = tokenutil.TokenByUserId(user.getUserId());
             tokenPO = new TokenPO(user, token);

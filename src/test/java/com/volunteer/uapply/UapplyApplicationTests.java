@@ -10,7 +10,7 @@ import com.power.doc.model.ApiDataDictionary;
 import com.power.doc.model.ApiErrorCodeDictionary;
 import com.power.doc.model.ApiReqHeader;
 import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
-import com.volunteer.uapply.utils.enums.PermissionIdEnum;
+import com.volunteer.uapply.utils.enums.AuthorityIdEnum;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -77,7 +77,7 @@ class UapplyApplicationTests {
         );
 
         config.setDataDictionaries(
-                ApiDataDictionary.dict().setTitle("用户权限").setEnumClass(PermissionIdEnum.class)
+                ApiDataDictionary.dict().setTitle("用户权限").setEnumClass(AuthorityIdEnum.class)
                         .setCodeField("permissionId") //字典码值字段名
                         .setDescField("permissionName"),//字段码
                 ApiDataDictionary.dict().setTitle("面试状态").setEnumClass(InterviewStatusEnum.class)

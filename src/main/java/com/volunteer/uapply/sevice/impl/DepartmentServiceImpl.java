@@ -30,9 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (department == null) {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
         } else if (department.getDepartmentAccount().equals(departmentAccount) && department.getDepartmentPwd().equals(departmentPwd)) {
-            TokenPO<Department> tokenPO = new TokenPO<Department>();
-            tokenPO.setT(department);
-            tokenPO.setToken(tokenutil.tokenByDepartmentId(department.getDepartmentId()));
+            TokenPO<Department> tokenPO = new TokenPO<Department>(department, tokenutil.tokenByDepartmentId(department.getDepartmentId()));
             return new UniversalResponseBody<TokenPO<Department>>(ResponseResultEnum.USER_LOGIN_SUCCESS.getCode(), ResponseResultEnum.USER_LOGIN_SUCCESS.getMsg(), tokenPO);
         } else {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());

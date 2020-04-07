@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.volunteer.uapply.mapper.ResumeMapper">
+
+    <insert id="InsertResume">
+        INSERT INTO resume(user_id,user_name,organization_id,organization_name,user_sex,userStu_num,user_college,user_profession,user_tel,userQQ_num,user_hobby,user_introduction)
+        VALUES
+        (#{userId,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{organizationId,jdbcType=VARCHAR},#{orgaanizationName,jdbcType=VARCAHR},
+        #{userSex,jdbcType=VARCHAR},#{userStuNum,jdbcType=VARHCAR},#{userCollege,jdbcType=VARCHAR},#{userProfession,jdbcType=VARCHAR},
+        #{userTel,jdbcType=VARCHAR},#{userQQNum,jdbcType=VARCHAR},#{userHobby,jdbcType=VARCHAR},#{userIntroduction,jdbcType=VARCHAR})
+    </insert>
+</mapper>

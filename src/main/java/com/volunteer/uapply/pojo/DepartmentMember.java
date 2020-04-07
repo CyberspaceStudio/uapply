@@ -32,5 +32,5 @@ public class DepartmentMember {
     /**
      * 权限id
      */
-    private Integer permissionId;
+    private Integer authorityId;
 }

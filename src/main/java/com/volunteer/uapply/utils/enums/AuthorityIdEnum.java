@@ -7,7 +7,7 @@ package com.volunteer.uapply.utils.enums;
  * @version 1.0
  * @date 2020/2/2 13:42
  */
-public enum PermissionIdEnum {
+public enum AuthorityIdEnum {
 
     SUP_MANGER(0, "超级管理员"),
     MINISTER(1, "部长"),
@@ -25,7 +25,7 @@ public enum PermissionIdEnum {
      */
     private String permissionName;
 
-    PermissionIdEnum(Integer permissionId, String permissionName) {
+    AuthorityIdEnum(Integer permissionId, String permissionName) {
         this.permissionId = permissionId;
         this.permissionName = permissionName;
     }

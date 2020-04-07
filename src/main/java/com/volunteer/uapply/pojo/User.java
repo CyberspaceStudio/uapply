@@ -54,13 +54,6 @@ public class User {
     @Excel(name = "QQ", orderNum = "4")
     private String userQQNum;
 
-
-    /**
-     * 专业
-     */
-    @Excel(name = "专业", orderNum = "5")
-    private String userProfession;
-
     public User(Integer userId) {
         this.userId = userId;
     }
