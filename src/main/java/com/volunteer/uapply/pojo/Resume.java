@@ -45,7 +45,7 @@ public class Resume {
     /**
      * QQ
      */
-    private String userQq;
+    private String userQQNum;
 
     /**
      * 手机号
@@ -55,10 +55,20 @@ public class Resume {
     /**
      * 专业
      */
-    private String profession;
+    private String userProfession;
 
     /**
      * 学院
      */
-    private String college;
+    private String userCollege;
+
+    /**
+     * 爱好
+     */
+    private String userHobby;
+
+    /**
+     * 自我介绍
+     */
+    private String userIntroduction;
 }

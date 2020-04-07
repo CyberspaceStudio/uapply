@@ -2,6 +2,8 @@ package com.volunteer.uapply.mapper;
 
 import com.volunteer.uapply.pojo.InterviewStatus;
 
+import java.util.List;
+
 /**
  * @author 郭树耸
  * @version 1.0
@@ -15,5 +17,13 @@ public interface InterviewStatusMapper {
      * @param interviewStatus
      * @return
      */
-    int InsertInterviewStatus(InterviewStatus interviewStatus);
+    int insertInterviewStatus(InterviewStatus interviewStatus);
+
+    /**
+     * 根据userId查找用户状态
+     *
+     * @param userId
+     * @return
+     */
+    List<InterviewStatus> getInterviewStatusByUserId(Integer userId);
 }

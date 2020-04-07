@@ -17,18 +17,18 @@
 
     <update id="updateUserMessage">
     UPDATE user_message
-    SET user_name = #{userName,jdbcType =VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR}
+    SET user_name = #{userName,jdbcType =VARCHAR},user_sex=#{userSex,jdbcType=VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
     </update>
 
 
     <select id="getUserByOpenid" resultType="com.volunteer.uapply.pojo.User">
-        SELECT  user_id,openid,user_name,user_tel,userQQ_num
+        SELECT  user_id,openid,user_name,user_tel,userQQ_num.user_sex
         FROM user_message
         where openid = #{openid,jdbcType=VARCHAR}
     </select>
     <select id="getUserByUserId" resultType="com.volunteer.uapply.pojo.User">
-         SELECT  user_id,openid,user_name,_user_tel,userQQ_num
+         SELECT  user_id,openid,user_name,user_tel,userQQ_num
         FROM user_message
         where user_id = #{userId,jdbcType=INTEGER}
     </select>

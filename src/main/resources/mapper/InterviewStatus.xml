@@ -3,9 +3,15 @@
 <mapper namespace="com.volunteer.uapply.mapper.InterviewStatusMapper">
 
 
-    <insert id="InsertInterviewStatus">
+    <insert id="insertInterviewStatus">
         INSERT INTO interview_status(user_id,organization_id,organization_name,first_choice,second_choice)
         VALUES
-        (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{organizationName,jdbcType=VARCAHR},#{firstChoice,jdbcType=VARCHAR},#{secondChoice,jdbcType=VARCAHR})
+        (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{organizationName,jdbcType=VARCHAR},#{firstChoice,jdbcType=VARCHAR},#{secondChoice,jdbcType=VARCHAR})
     </insert>
+
+    <select id="getInterviewStatusByUserId" resultType="com.volunteer.uapply.pojo.InterviewStatus">
+       SELECT user_id,organization_id,organization_name,first_choice,first_status,second_choice,second_status,retest_choice,retest_status
+       FROM interview_status
+       WHERE user_id = #{userId,jdbcType=INTEGER}
+    </select>
 </mapper>

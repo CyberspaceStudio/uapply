@@ -36,4 +36,15 @@ public interface DepartmentService {
      * @return
      */
     UniversalResponseBody<Department> departmentInterviewDetail(Department department);
+
+
+    /**
+     * 增加面试官
+     *
+     * @param departmentId
+     * @param departmentName
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody insertInterviewer(Integer departmentId, String departmentName, Integer[] userId);
 }

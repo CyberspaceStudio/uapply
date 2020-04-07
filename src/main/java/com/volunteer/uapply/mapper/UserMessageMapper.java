@@ -42,5 +42,5 @@ public interface UserMessageMapper {
      * @param userQQNum
      * @return
      */
-    int updateUserMessage(Integer userId, String userName, String userTel, String userQQNum);
+    int updateUserMessage(Integer userId, String userSex, String userName, String userTel, String userQQNum);
 }

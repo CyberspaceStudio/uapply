@@ -11,38 +11,37 @@ public enum AuthorityIdEnum {
 
     SUP_MANGER(0, "超级管理员"),
     MINISTER(1, "部长"),
-    DEPUTY_MINISTER(2, "副部长"),
-    STAFF(3, "部员"),
-    NORMAL_USER(4, "普通用户");
+    STAFF(2, "部员"),
+    NORMAL_USER(3, "普通用户");
 
     /**
      * 权限id
      */
-    private Integer permissionId;
+    private Integer authorityId;
 
     /**
      * 权限
      */
-    private String permissionName;
+    private String authorityName;
 
-    AuthorityIdEnum(Integer permissionId, String permissionName) {
-        this.permissionId = permissionId;
-        this.permissionName = permissionName;
+    AuthorityIdEnum(Integer authorityId, String authorityName) {
+        this.authorityId = authorityId;
+        this.authorityName = authorityName;
     }
 
-    public Integer getPermissionId() {
-        return permissionId;
+    public Integer getAuthorityId() {
+        return authorityId;
     }
 
-    public void setPermissionId(Integer permissionId) {
-        this.permissionId = permissionId;
+    public void setAuthorityId(Integer authorityId) {
+        this.authorityId = authorityId;
     }
 
-    public String getPermissionName() {
-        return permissionName;
+    public String getAuthorityName() {
+        return authorityName;
     }
 
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
+    public void setAuthorityName(String authorityName) {
+        this.authorityName = authorityName;
     }
 }

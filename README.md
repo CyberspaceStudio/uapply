@@ -16,7 +16,7 @@
 
 * userQQ_num
 
-* user_profession
+* user_sex
 
 ### department(部门详细信息表)
 
@@ -52,7 +52,7 @@
 
 * user_id(用户id)
 
-* permession_id(权限id)
+* authority_id(权限id)
 
 ### resume(报名信息表)
 
