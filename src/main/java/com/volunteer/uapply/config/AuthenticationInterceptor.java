@@ -54,7 +54,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             if (userLogin.required()) {
                 // 执行认证
                 if (token == null) {
-                    throw new ResponseException("登陆失败", ResponseResultEnum.USER_NO_TOKEN.getCode(), ResponseResultEnum.USER_NO_TOKEN.getMsg());
+                    throw new ResponseException("token为空", ResponseResultEnum.USER_NO_TOKEN.getCode(), ResponseResultEnum.USER_NO_TOKEN.getMsg());
                 }
                 // 获取 token 中的userId
                 Integer userId = null;

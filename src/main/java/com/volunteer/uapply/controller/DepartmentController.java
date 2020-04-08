@@ -2,7 +2,6 @@ package com.volunteer.uapply.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.annotation.PassToken;
-import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.*;
 import com.volunteer.uapply.pojo.info.TokenPO;
 import com.volunteer.uapply.sevice.DepartmentService;
@@ -66,40 +65,38 @@ public class DepartmentController {
 
     /**
      * 添加面试官
-     * @param departmentName
+     *
      * @param departmentId
      * @param userId
      * @return
      */
     @PostMapping("/interviewer")
-    public UniversalResponseBody insertInterviewer(Integer departmentId, String departmentName, Integer[] userId) {
-        return departmentService.insertInterviewer(departmentId, departmentName, userId);
+    public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
+        return departmentService.insertInterviewer(departmentId, userId);
     }
 
 
     /**
      * 分页查询部员数据
-     *
      * @param departmentId
      * @param pageNum
      * @param pageSize
      * @return
      */
-    @UserLogin
-    @PostMapping("/members")
+    @GetMapping("/members")
     public UniversalResponseBody<PageInfo<User>> FindMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
-        return null;
+        return departmentService.getMembers(departmentId, pageNum, pageSize);
     }
 
 
     /**
-     * 导出该部门所有部员详细信息
+     * 导出该部门所有部员详细信息为Excel形式
      *
      * @param departmentId
      * @param response
      */
-    @GetMapping("/export/{departmentId}")
-    public void exportMessages(@PathVariable("departmentId") Integer departmentId, HttpServletResponse response) {
-        return;
+    @GetMapping("/export")
+    public void exportMessages(Integer departmentId, HttpServletResponse response) {
+        departmentService.getAllMembersToExcel(departmentId, response);
     }
 }

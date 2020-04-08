@@ -78,8 +78,8 @@ class UapplyApplicationTests {
 
         config.setDataDictionaries(
                 ApiDataDictionary.dict().setTitle("用户权限").setEnumClass(AuthorityIdEnum.class)
-                        .setCodeField("permissionId") //字典码值字段名
-                        .setDescField("permissionName"),//字段码
+                        .setCodeField("authorityId") //字典码值字段名
+                        .setDescField("authorityName"),//字段码
                 ApiDataDictionary.dict().setTitle("面试状态").setEnumClass(InterviewStatusEnum.class)
                         .setCodeField("InterviewStatusId") //字典码值字段名
                         .setDescField("InterviewStatus")

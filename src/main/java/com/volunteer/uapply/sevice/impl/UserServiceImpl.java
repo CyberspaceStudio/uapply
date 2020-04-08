@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UniversalResponseBody<List<DepartmentMember>> getUserPermission(Integer userId) {
         //查部门成员数据库中
-        List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserPermission(userId);
+        List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(userId);
         if (departmentMemberList == null) {
             return new UniversalResponseBody<List<DepartmentMember>>(ResponseResultEnum.NORMAL_USER.getCode(), ResponseResultEnum.NORMAL_USER.getMsg());
         } else {

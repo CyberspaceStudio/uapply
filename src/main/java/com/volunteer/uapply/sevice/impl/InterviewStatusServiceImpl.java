@@ -45,7 +45,7 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
                 userId) {
             //将复试状态改为通过
             interviewStatusMapper.updateRetestStatus(temp, organizationId, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
-            //将此成员插入部门成员表中
+            //将此成员插入部门成员表中,其次在录取为部员之前，部门成员数据库中不应该存在该成员
             departmentMemberMapper.insertDepartmentMember(departmentId, departmentName, temp, AuthorityIdEnum.STAFF.getAuthorityId());
         }
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());

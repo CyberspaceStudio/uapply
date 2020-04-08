@@ -97,6 +97,7 @@ public class InterviewStatusController {
      *
      * @param userId
      * @param departmentName
+     * @param departmentId
      * @param organizationId
      * @return
      */
