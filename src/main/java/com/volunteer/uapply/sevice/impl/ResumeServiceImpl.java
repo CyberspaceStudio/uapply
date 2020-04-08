@@ -1,17 +1,22 @@
 package com.volunteer.uapply.sevice.impl;
 
+import com.volunteer.uapply.mapper.InterviewScoreMapper;
 import com.volunteer.uapply.mapper.InterviewStatusMapper;
 import com.volunteer.uapply.mapper.ResumeMapper;
 import com.volunteer.uapply.mapper.UserMessageMapper;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.pojo.Resume;
+import com.volunteer.uapply.pojo.InterviewScorePO;
 import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.sevice.ResumeService;
+import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author 郭树耸
@@ -19,6 +24,7 @@ import javax.annotation.Resource;
  * @date 2020/4/7 10:37
  */
 @Service
+@Slf4j
 public class ResumeServiceImpl implements ResumeService {
 
     @Resource
@@ -27,9 +33,16 @@ public class ResumeServiceImpl implements ResumeService {
     private InterviewStatusMapper interviewStatusMapper;
     @Resource
     private UserMessageMapper userMessageMapper;
+    @Resource
+    private InterviewScoreMapper interviewScoreMapper;
 
     @Override
     public UniversalResponseBody apply(Resume resume, String firstChoice, String secondChoice) {
+        Resume resume1 = resumeMapper.getResumeByUserTel(resume.getOrganizationId(), resume.getUserTel());
+        if (resume1 != null) {
+            return new UniversalResponseBody(ResponseResultEnum.USER_HAVE_APPLY.getCode(), ResponseResultEnum.USER_HAVE_APPLY.getMsg());
+        }
+
         //简历插入失败
         if (resumeMapper.InsertResume(resume) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
@@ -48,5 +61,42 @@ public class ResumeServiceImpl implements ResumeService {
             }
         }
         return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<Resume> viewResume(Integer organizationId, String userTel) {
+        //获取用户简历
+        Resume resume = resumeMapper.getResumeByUserTel(organizationId, userTel);
+        //用户简历为空
+        if (resume == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
+        return new UniversalResponseBody<Resume>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), resume);
+    }
+
+    @Override
+    public UniversalResponseBody scoreResume(InterviewScorePO interviewScorePO) {
+        if (interviewScoreMapper.insertInterviewScore(interviewScorePO) < 0) {
+            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+        }
+        InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId());
+        //如果是一面部门
+        if (interviewStatus.getFirstChoice().equals(interviewScorePO.getDepartmentName())) {
+            interviewStatusMapper.updateFirstInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
+        } else if (interviewStatus.getSecondChoice().equals(interviewScorePO.getDepartmentName())) {
+            interviewStatusMapper.updateSecondInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
+        } else {
+            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+        }
+        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<InterviewScorePO>> getAllResumeScores(Integer userId, Integer organizationId) {
+        List<InterviewScorePO> interviewStatusList = interviewScoreMapper.getAllScoreById(userId, organizationId);
+        if (interviewStatusList.isEmpty()) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
+        return new UniversalResponseBody<List<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewStatusList);
     }
 }

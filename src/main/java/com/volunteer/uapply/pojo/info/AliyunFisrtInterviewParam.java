@@ -21,9 +21,9 @@ public class AliyunFisrtInterviewParam {
     private Integer[] userId;
 
     /**
-     * 部门，后面将部门id改为字符
+     * 部门名称
      */
-    private Integer departmentId;
+    private String departmentName;
 
     /**
      * 时间

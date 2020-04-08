@@ -12,9 +12,18 @@ import lombok.Data;
 @Data
 public class AliyunResponseInfo {
 
+    /**
+     * 结果信息
+     */
     private String Message;
 
+    /**
+     * 请求Id
+     */
     private String RequestId;
 
+    /**
+     * 结果代码
+     */
     private String Code;
 }

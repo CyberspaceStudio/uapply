@@ -11,7 +11,6 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\annotation\Pass
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\config\AuthenticationInterceptor.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\annotation\UserLogin.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\UserMessageMapper.java
-C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\AliyunMessageUtil.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\Object2Map.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\controller\DepartmentController.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\WeChatUtil.java
@@ -37,11 +36,12 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\info\Aliyu
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\InterviewData.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\DepartmentMemberMapper.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\impl\DepartmentServiceImpl.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\MessageService.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\impl\MessageServiceImpl.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\InterviewStatusService.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\Resume.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\Department.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\ResumeMapper.java
-C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\InterviewParam.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\info\WxResponseInfo.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\dto\EnrollMembersDTO.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\controller\InterviewDataController.java

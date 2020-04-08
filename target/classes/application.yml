@@ -10,7 +10,7 @@ wx:
 aliyun:
   firstInterviewTemplateCode: SMS_174022636
   secondInterviewTemplateCode: SMS_183245782
-  enrollTemplateCode: SMS_183265591
+  enrollTemplateCode: SMS_187570347
   SignName: U报名
   accessKeySecret:
   accessKeyId:

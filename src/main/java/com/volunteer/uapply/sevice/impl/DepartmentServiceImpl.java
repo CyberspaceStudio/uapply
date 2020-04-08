@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpResponse;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -80,9 +81,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
+        //根据departmentId查找相应部门信息
         Department department = departmentMapper.getDepartmentByDepartmentId(departmentId);
+        //departmentId无效
+        if (department == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
         for (Integer temp :
                 userId) {
+            //查询此部门中是否已有此不远
             List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(temp);
             Integer flag = 0;
             for (DepartmentMember departmentMember :
@@ -137,6 +144,18 @@ public class DepartmentServiceImpl implements DepartmentService {
         List<Map<String, Object>> memberList = Object2Map.object2MapList(userMessageMapper.getUsersByUserId(userId));
         ExcelUtil.templateExportExcel("/a-uapply" + "/MemberMessageTemp.xls", memberList, department.getDepartmentName() + "部员详细信息.xls", response);
         return;
+    }
+
+
+    @Override
+    public UniversalResponseBody<List<Integer>> getAllInterviewers(Integer departmentId) {
+        List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.MINISTER.getAuthorityId());
+        List<Integer> userId = new LinkedList<Integer>();
+        for (DepartmentMember departmentMember :
+                departmentMemberList) {
+            userId.add(departmentMember.getUserId());
+        }
+        return new UniversalResponseBody<List<Integer>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), userId);
     }
 }
 

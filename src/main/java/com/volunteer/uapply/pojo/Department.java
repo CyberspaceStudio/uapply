@@ -22,6 +22,16 @@ public class Department {
      */
     private String departmentName;
 
+
+    /**
+     * 组织id
+     */
+    private Integer organizationId;
+
+    /**
+     * 组织名称
+     */
+    private String organizationName;
     /**
      * 部门PC登录账号
      */
@@ -40,21 +50,21 @@ public class Department {
     /**
      * 面试评价参数1的名称
      */
-    private String parma1Name;
+    private String param1Name;
     /**
      * 面试评价参数2
      */
-    private String parma2Name;
+    private String param2Name;
     /**
      * 面试评价参数3
      */
-    private String parma3Name;
+    private String param3Name;
     /**
      * 面试评价参数4
      */
-    private String parma4Name;
+    private String param4Name;
     /**
      * 面试评价参数5
      */
-    private String parma5Name;
+    private String param5Name;
 }

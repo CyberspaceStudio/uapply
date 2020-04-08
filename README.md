@@ -37,15 +37,15 @@
 
 * interview_rounds(面试轮次)
 
-* parma1_name
+* param1_name
 
-* parma2_name
+* param2_name
 
-* parma3_name
+* param3_name
 
-* parma4_name
+* param4_name
 
-* parma5_name
+* param5_name
 
 ### department_member(部门成员表)
 
@@ -113,15 +113,15 @@
 
 * departmentName
 
-* parma1_name
+* param1_score
 
-* parma2_name
+* param2_score
 
-* parma3_name
+* param3_score
 
-* parma4_name
+* param4_score
 
-* parma5_name
+* param5_score
 
 * detail(备注)
 
