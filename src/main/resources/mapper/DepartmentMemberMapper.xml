@@ -6,11 +6,23 @@
         VALUES
         (#{departmentId,jdbcType=VARCHAR},#{departmentName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},#{authorityId,jdbcType=VARCHAR})
     </insert>
+    <update id="updateUserAuthority">
+        UPDATE department_member
+        SET authority_id = #{authorityId,jdbcType=VARCHAR}
+        WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND user_id =#{userId,jdbcType=INTEGER}
+    </update>
 
 
-    <select id="getUserPermission" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+    <select id="getUserAuthority" resultType="com.volunteer.uapply.pojo.DepartmentMember">
         SELECT department_id,department_name,user_id,authority_id
         FROM department_member
         WHERE user_id =#{userId,jdbcType=INTEGER}
     </select>
+
+    <select id="getDepartmentMember" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+       SELECT department_id,department_name,user_id,authority_id
+        FROM department_member
+        WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND authority_id = #{authorityId,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

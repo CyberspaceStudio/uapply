@@ -17,20 +17,31 @@
 
     <update id="updateUserMessage">
     UPDATE user_message
-    SET user_name = #{userName,jdbcType =VARCHAR},user_sex=#{userSex,jdbcType=VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR}
+    SET user_name = #{userName,jdbcType =VARCHAR},user_sex=#{userSex,jdbcType=VARCHAR},user_tel=#{userTel,jdbcType=VARCHAR},userQQ_num=#{userQQNum,jdbcType=VARCHAR},
+    user_college= #{userCollege,jdbcType =VARCHAR},user_profession =#{userProfession,jdbcType =VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
     </update>
 
 
     <select id="getUserByOpenid" resultType="com.volunteer.uapply.pojo.User">
-        SELECT  user_id,openid,user_name,user_tel,userQQ_num.user_sex
+        SELECT  user_id,openid,user_name,user_tel,userQQ_num,user_sex,user_college,user_profession
         FROM user_message
         where openid = #{openid,jdbcType=VARCHAR}
     </select>
     <select id="getUserByUserId" resultType="com.volunteer.uapply.pojo.User">
-         SELECT  user_id,openid,user_name,user_tel,userQQ_num
+         SELECT  user_id,openid,user_name,user_tel,userQQ_num,user_college,user_profession
         FROM user_message
         where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="getUsersByUserId" resultType="com.volunteer.uapply.pojo.User">
+        SELECT user_id,openid,user_sex,user_name,user_tel,userQQ_num,user_college,user_profession
+        FROM user_message
+        WHERE user_id IN
+        <foreach collection="array" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item}
+        </foreach>
+
     </select>
 
 </mapper>

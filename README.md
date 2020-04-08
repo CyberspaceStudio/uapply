@@ -18,6 +18,9 @@
 
 * user_sex
 
+* user_college
+
+* user_profession
 ### department(部门详细信息表)
 
 * department_id(部门id，插入其他信息时自动生成)

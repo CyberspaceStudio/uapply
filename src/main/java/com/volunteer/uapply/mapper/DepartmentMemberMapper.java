@@ -1,5 +1,6 @@
 package com.volunteer.uapply.mapper;
 
+import com.github.pagehelper.Page;
 import com.volunteer.uapply.pojo.DepartmentMember;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface DepartmentMemberMapper {
      * @param userId
      * @return
      */
-    List<DepartmentMember> getUserPermission(Integer userId);
+    List<DepartmentMember> getUserAuthority(Integer userId);
 
 
     /**
@@ -32,4 +33,24 @@ public interface DepartmentMemberMapper {
      * @return
      */
     int insertDepartmentMember(Integer departmentId, String departmentName, Integer userId, Integer authorityId);
+
+    /**
+     * 查询部门相应权限的所有成员
+     *
+     * @param departmentId
+     * @param authorityId
+     * @return
+     */
+    List<DepartmentMember> getDepartmentMember(Integer departmentId, Integer authorityId);
+
+    /**
+     * 更新用户再在相应部门的权限
+     *
+     * @param departmentId
+     * @param authorityId
+     * @param userId
+     * @return
+     */
+    int updateUserAuthority(Integer departmentId, Integer authorityId, Integer userId);
+
 }

@@ -33,4 +33,14 @@ public interface DepartmentMapper {
      * @return
      */
     int insertDepartmentInterviewDetail(Department department);
+
+
+    /**
+     * 根据部门Id获取部门详细信息
+     *
+     * @param departmentId
+     * @return
+     */
+    Department getDepartmentByDepartmentId(Integer departmentId);
+
 }

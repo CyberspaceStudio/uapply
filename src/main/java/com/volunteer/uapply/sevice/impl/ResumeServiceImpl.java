@@ -43,7 +43,7 @@ public class ResumeServiceImpl implements ResumeService {
         User user = userMessageMapper.getUserByUserId(resume.getUserId());
         //如果用户的名称为空，说明数据库中没有此用户的基本信息
         if (user.getUserName() == null) {
-            if (userMessageMapper.updateUserMessage(resume.getUserId(), resume.getUserSex(), resume.getUserName(), resume.getUserTel(), resume.getUserQQNum()) < 0) {
+            if (userMessageMapper.updateUserMessage(resume.getUserId(), resume.getUserSex(), resume.getUserName(), resume.getUserTel(), resume.getUserQQNum(), resume.getUserCollege(), resume.getUserProfession()) < 0) {
                 return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }
         }

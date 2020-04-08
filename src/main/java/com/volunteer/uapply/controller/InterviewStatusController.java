@@ -97,11 +97,12 @@ public class InterviewStatusController {
      *
      * @param userId
      * @param departmentName
+     * @param departmentId
      * @param organizationId
      * @return
      */
     @PostMapping("/enroll")
-    public UniversalResponseBody EnrollMember(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    public UniversalResponseBody EnrollMember(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
+        return interviewStatusService.enrollMembers(userId, departmentId, departmentName, organizationId);
     }
 }

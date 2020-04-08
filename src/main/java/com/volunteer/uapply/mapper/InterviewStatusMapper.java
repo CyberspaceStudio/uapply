@@ -13,7 +13,6 @@ public interface InterviewStatusMapper {
 
     /**
      * 初始化面试状态
-     *
      * @param interviewStatus
      * @return
      */
@@ -26,4 +25,15 @@ public interface InterviewStatusMapper {
      * @return
      */
     List<InterviewStatus> getInterviewStatusByUserId(Integer userId);
+
+
+    /**
+     * 更改复试状态
+     *
+     * @param userId
+     * @param organizationId
+     * @param retestStatus
+     * @return
+     */
+    int updateRetestStatus(Integer userId, Integer organizationId, String retestStatus);
 }
