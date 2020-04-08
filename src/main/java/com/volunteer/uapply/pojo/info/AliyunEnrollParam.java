@@ -19,12 +19,17 @@ public class AliyunEnrollParam {
 
 
     /**
-     * 部门Id
+     * 部门
      */
-    private Integer departmentId;
+    private String departmentName;
+
+
     /**
-     * 别问为什么这样命名，问就是审核不通过
-     * QQ群号
+     * 组织
+     */
+    private String organizationName;
+    /**
+     * QQ群号别问为什么这样命名，问就是审核不通过
      */
     private String secret;
 }

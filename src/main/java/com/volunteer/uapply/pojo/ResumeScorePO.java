@@ -23,7 +23,7 @@ public class ResumeScorePO {
      */
     private String departmentName;
 
-    //产品说还没有定好，参数名称就先这么写吧,居然有6个参数
+    //产品说还没有定好，参数名称就先这么写吧,居然有5个参数
     /**
      * 参数1的分数
      */

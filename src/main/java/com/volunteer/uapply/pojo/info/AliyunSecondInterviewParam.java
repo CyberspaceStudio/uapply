@@ -16,9 +16,9 @@ public class AliyunSecondInterviewParam {
     private Integer[] userId;
 
     /**
-     * 部门ID
+     * 部门
      */
-    private Integer departmentId;
+    private String departmentName;
 
     /**
      * 时间

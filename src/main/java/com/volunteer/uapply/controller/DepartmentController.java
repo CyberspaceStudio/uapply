@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 部门
@@ -77,7 +78,19 @@ public class DepartmentController {
 
 
     /**
+     * 获取部门面试官
+     *
+     * @param departmentId
+     * @return
+     */
+    @GetMapping("/interviewer")
+    public UniversalResponseBody<List<Integer>> getInterviewers(Integer departmentId) {
+        return departmentService.getAllInterviewers(departmentId);
+    }
+
+    /**
      * 分页查询部员数据
+     *
      * @param departmentId
      * @param pageNum
      * @param pageSize

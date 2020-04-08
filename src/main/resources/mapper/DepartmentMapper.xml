@@ -12,8 +12,8 @@
     <insert id="insertDepartmentInterviewDetail">
     UPDATE department
     SET
-    interview_rounds = #{interviewRounds,jdbcType=VARCHAR},parma1_name = #{parma1Name,jdbcType=VARCHAR},parma2_name = #{parma2Name,jdbcType=VARCHAR},
-    parma3_name = #{parma3Name,jdbcType=VARCHAR},parma4_name = #{parma4Name,jdbcType=VARCHAR},parma5_name = #{parma5Name,jdbcType=VARCHAR},
+    interview_rounds = #{interviewRounds,jdbcType=VARCHAR},param1_name = #{param1Name,jdbcType=VARCHAR},param2_name = #{parma2Name,jdbcType=VARCHAR},
+    param3_name = #{param3Name,jdbcType=VARCHAR},param4_name = #{param4Name,jdbcType=VARCHAR},param5_name = #{param5Name,jdbcType=VARCHAR},
     WHERE department_id = #{departmentId,jdbcType=INTEGER}
     </insert>
 
@@ -25,7 +25,7 @@
         WHERE department_account = #{departmentAccount,jdbcType=VARCHAR}
     </select>
     <select id="getDepartmentByDepartmentId" resultType="com.volunteer.uapply.pojo.Department">
-         SELECT
+        SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
         param1_name,param2_name,param3_name,param4_name,param5_name
         FROM department

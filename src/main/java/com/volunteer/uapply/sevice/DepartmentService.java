@@ -2,11 +2,13 @@ package com.volunteer.uapply.sevice;
 
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.pojo.Department;
+import com.volunteer.uapply.pojo.DepartmentMember;
 import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.pojo.info.TokenPO;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author 郭树耸
@@ -51,8 +53,18 @@ public interface DepartmentService {
      */
     UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId);
 
+
     /**
-     * 获取部门成员
+     * 获取部门全部面试官
+     *
+     * @param departmentId
+     * @return
+     */
+    UniversalResponseBody<List<Integer>> getAllInterviewers(Integer departmentId);
+
+
+    /**
+     * 分页获取部门成员
      *
      * @param departmentId
      * @param pageNum

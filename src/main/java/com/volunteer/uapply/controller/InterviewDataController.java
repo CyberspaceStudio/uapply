@@ -45,7 +45,6 @@ public class InterviewDataController {
 
     /**
      * 未二面
-     *
      * @param departmentName
      * @return
      */
@@ -56,7 +55,6 @@ public class InterviewDataController {
 
     /**
      * 已经二面
-     *
      * @param departmentName
      * @return
      */
