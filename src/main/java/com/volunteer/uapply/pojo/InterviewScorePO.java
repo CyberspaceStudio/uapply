@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2020/2/4 12:00
  */
 @Data
-public class ResumeScorePO {
+public class InterviewScorePO {
 
     /**
      * 用户id
@@ -19,7 +19,12 @@ public class ResumeScorePO {
 
 
     /**
-     * 部门id
+     * 组织id
+     */
+    private Integer organizationId;
+
+    /**
+     * 部门
      */
     private String departmentName;
 

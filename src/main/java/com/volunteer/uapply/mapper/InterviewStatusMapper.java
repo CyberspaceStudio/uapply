@@ -19,13 +19,22 @@ public interface InterviewStatusMapper {
     int insertInterviewStatus(InterviewStatus interviewStatus);
 
     /**
-     * 根据userId查找用户状态
+     * 根据userId查找用户全部面试状态
      *
      * @param userId
      * @return
      */
     List<InterviewStatus> getInterviewStatusByUserId(Integer userId);
 
+
+    /**
+     * 获取用户相应部门的面试状态
+     *
+     * @param userId
+     * @param organizationId
+     * @return
+     */
+    InterviewStatus getInterviewStatusById(Integer userId, Integer organizationId);
 
     /**
      * 更改复试状态
@@ -36,4 +45,24 @@ public interface InterviewStatusMapper {
      * @return
      */
     int updateRetestStatus(Integer userId, Integer organizationId, String retestStatus);
+
+    /**
+     * 修改一面状态
+     *
+     * @param userId
+     * @param organizationId
+     * @param firstStatus
+     * @return
+     */
+    int updateFirstInterviewStatus(Integer userId, Integer organizationId, String firstStatus);
+
+    /**
+     * 修改二面状态
+     *
+     * @param userId
+     * @param organizationId
+     * @param secondStatus
+     * @return
+     */
+    int updateSecondInterviewStatus(Integer userId, Integer organizationId, String secondStatus);
 }

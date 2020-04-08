@@ -8,9 +8,21 @@
         VALUES
         (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{organizationName,jdbcType=VARCHAR},#{firstChoice,jdbcType=VARCHAR},#{secondChoice,jdbcType=VARCHAR})
     </insert>
+
     <update id="updateRetestStatus">
         UPDATE  interview_status SET
         retest_status = #{retestStatus,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateFirstInterviewStatus">
+        UPDATE  interview_status SET
+        first_status = #{firstStatus,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </update>
+    <update id="updateSecondInterviewStatus">
+        UPDATE  interview_status SET
+        second_status = #{secondStatus,jdbcType=VARCHAR}
         WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
     </update>
 
@@ -18,5 +30,11 @@
        SELECT user_id,organization_id,organization_name,first_choice,first_status,second_choice,second_status,retest_choice,retest_status
        FROM interview_status
        WHERE user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getInterviewStatusById" resultType="com.volunteer.uapply.pojo.InterviewStatus">
+        SELECT user_id,organization_id,organization_name,first_choice,first_status,second_choice,second_status,retest_choice,retest_status
+       FROM interview_status
+       WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
     </select>
 </mapper>

@@ -16,4 +16,14 @@ public interface ResumeMapper {
      * @return
      */
     int InsertResume(Resume resume);
+
+
+    /**
+     * 获取用户简历
+     *
+     * @param organizationId
+     * @param userTel
+     * @return
+     */
+    Resume getResumeByUserTel(Integer organizationId, String userTel);
 }

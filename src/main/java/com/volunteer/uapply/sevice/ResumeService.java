@@ -1,7 +1,11 @@
 package com.volunteer.uapply.sevice;
 
+import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.pojo.Resume;
+import com.volunteer.uapply.pojo.InterviewScorePO;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
+
+import java.util.List;
 
 /**
  * 简历
@@ -21,4 +25,32 @@ public interface ResumeService {
      * @return
      */
     UniversalResponseBody apply(Resume resume, String firstChoice, String secondChoice);
+
+
+    /**
+     * 获取用户简历
+     *
+     * @param organizationId
+     * @param userTel
+     * @return
+     */
+    UniversalResponseBody<Resume> viewResume(Integer organizationId, String userTel);
+
+
+    /**
+     * 简历打分
+     *
+     * @param interviewScorePO
+     * @return
+     */
+    UniversalResponseBody scoreResume(InterviewScorePO interviewScorePO);
+
+    /**
+     * 获取此用户该组织下的全部简历评价
+     *
+     * @param userId
+     * @param organizationId
+     * @return
+     */
+    UniversalResponseBody<List<InterviewScorePO>> getAllResumeScores(Integer userId, Integer organizationId);
 }

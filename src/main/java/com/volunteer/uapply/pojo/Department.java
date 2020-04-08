@@ -22,6 +22,16 @@ public class Department {
      */
     private String departmentName;
 
+
+    /**
+     * 组织id
+     */
+    private Integer organizationId;
+
+    /**
+     * 组织名称
+     */
+    private String organizationName;
     /**
      * 部门PC登录账号
      */

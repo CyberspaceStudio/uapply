@@ -1,8 +1,11 @@
 package com.volunteer.uapply.controller;
 
 
+import com.baomidou.mybatisplus.extension.api.R;
+import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.Resume;
+import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,59 +27,70 @@ public class InterviewDataController {
     /**
      * 未一面
      *
+     * @param pageSize
+     * @param pageNum
      * @param departmentName
      * @return
      */
     @GetMapping("/unfisrt")
-    public UniversalResponseBody<List<Resume>> UnFirstInterview(String departmentName) {
+    public UniversalResponseBody<PageInfo<Resume>> UnFirstInterview(String departmentName, Integer pageNum, Integer pageSize) {
         return null;
     }
 
     /**
      * 已经一面
      *
+     * @param pageSize
+     * @param pageNum
      * @param departmentName
      * @return
      */
     @GetMapping("/fisrted")
-    public UniversalResponseBody<List<Resume>> FirstedInterview(String departmentName) {
+    public UniversalResponseBody<PageInfo<Resume>> FirstedInterview(String departmentName, Integer pageNum, Integer pageSize) {
         return null;
     }
 
     /**
      * 未二面
+     *
+     * @param pageSize
+     * @param pageNum
      * @param departmentName
      * @return
      */
     @GetMapping("/unsecond")
-    public UniversalResponseBody<List<Resume>> UnSecondInterview(String departmentName) {
+    public UniversalResponseBody<PageInfo<Resume>> UnSecondInterview(String departmentName, Integer pageNum, Integer pageSize) {
         return null;
     }
 
     /**
      * 已经二面
+     *
+     * @param pageSize
+     * @param pageNum
      * @param departmentName
      * @return
      */
     @GetMapping("/seconded")
-    public UniversalResponseBody<List<Resume>> SecondedInterview(String departmentName) {
+    public UniversalResponseBody<PageInfo<Resume>> SecondedInterview(String departmentName, Integer pageNum, Integer pageSize) {
         return null;
     }
 
     /**
      * 部门淘汰名单
      *
+     * @param pageSize
+     * @param pageNum
      * @param departmentName
      * @return
      */
     @GetMapping("/eliminationList")
-    public UniversalResponseBody<List<Resume>> getEliminationList(String departmentName) {
+    public UniversalResponseBody<PageInfo<Resume>> getEliminationList(String departmentName, Integer pageNum, Integer pageSize) {
         return null;
     }
 
     /**
      * 部门报名人数以及男女人数
-     *
      * @param departmentName
      * @return
      */

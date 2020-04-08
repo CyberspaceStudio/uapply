@@ -1,13 +1,15 @@
 package com.volunteer.uapply.controller;
 
+import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.pojo.Resume;
-import com.volunteer.uapply.pojo.ResumeScorePO;
+import com.volunteer.uapply.pojo.InterviewScorePO;
 import com.volunteer.uapply.sevice.ResumeService;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -43,23 +45,34 @@ public class ResumeController {
      * 查看简历
      *
      * @param organizationId
-     * @param departmentName
      * @param userTel
      * @return
      */
     @GetMapping("/view")
-    public UniversalResponseBody<Resume> ViewResume(Integer organizationId, String departmentName, String userTel) {
-        return null;
+    public UniversalResponseBody<Resume> viewResume(Integer organizationId, String userTel) {
+        return resumeService.viewResume(organizationId, userTel);
     }
 
     /**
      * 简历打分
      *
-     * @param resumeScorePO
+     * @param interviewScorePO
      * @return
      */
     @PostMapping("/score")
-    public UniversalResponseBody ResumeScore(ResumeScorePO resumeScorePO) {
-        return null;
+    public UniversalResponseBody resumeScore(InterviewScorePO interviewScorePO) {
+        return resumeService.scoreResume(interviewScorePO);
+    }
+
+    /**
+     * 获取简历评价详情
+     *
+     * @param userId
+     * @param organizationId
+     * @return
+     */
+    @GetMapping("/scores")
+    public UniversalResponseBody<List<InterviewScorePO>> getAllResumeScores(Integer userId, Integer organizationId) {
+        return resumeService.getAllResumeScores(userId, organizationId);
     }
 }
