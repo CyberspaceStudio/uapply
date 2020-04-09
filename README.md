@@ -131,16 +131,16 @@
 
 ### interview_data
 
-* departmentId
+* department_id
 
-* departmentName 部门名称
+* department_name 部门名称
 
-* manCounts 性别为男的报名人数
+* man_counts 性别为男的报名人数
 
-* womanCounts 性别为女的报名人数
+* woman_counts 性别为女的报名人数
 
-* crossCounts 跨部人数
+* cross_counts 跨部人数
 
-* applyCounts 总报名人数
+* apply_counts 总报名人数
 
 * interviewCounts 已经面试人数

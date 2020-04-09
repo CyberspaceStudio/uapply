@@ -3,13 +3,16 @@ package com.volunteer.uapply.controller;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.github.pagehelper.PageInfo;
+import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.Resume;
 import com.volunteer.uapply.pojo.User;
+import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,6 +26,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/interview/data")
 public class InterviewDataController {
+
+
+    @Resource
+    private InterviewDataMapper interviewDataMapper;
 
     /**
      * 未一面
@@ -78,7 +85,6 @@ public class InterviewDataController {
 
     /**
      * 部门淘汰名单
-     *
      * @param pageSize
      * @param pageNum
      * @param departmentName
@@ -90,13 +96,18 @@ public class InterviewDataController {
     }
 
     /**
-     * 部门报名人数以及男女人数
+     * 获取部门面试数据
+     *
      * @param departmentName
      * @return
      */
     @GetMapping("/applyCount")
     public UniversalResponseBody<InterviewData> ApplyAndSexCount(String departmentName) {
-        return null;
+        InterviewData interviewData = interviewDataMapper.getDepartInterviewData(departmentName);
+        if (interviewData == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
+        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewData);
     }
 
 
@@ -104,23 +115,15 @@ public class InterviewDataController {
      * 整个组织的报名人数
      *
      * @param organizationId
-     * @param departmentName
      * @return
      */
     @GetMapping("/applyCounts")
-    public UniversalResponseBody<List<InterviewData>> AllCounts(Integer organizationId, String departmentName) {
-        return null;
+    public UniversalResponseBody<List<InterviewData>> AllCounts(Integer organizationId) {
+        List<InterviewData> interviewDataList = interviewDataMapper.getOrganInterviewData(organizationId);
+        if (interviewDataList.isEmpty()) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
+        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewDataList);
     }
 
-    /**
-     * 整个组织一面以及没有一面的人数
-     *
-     * @param organizationId
-     * @param departmentName
-     * @return
-     */
-    @GetMapping("/firstInterviewData")
-    public UniversalResponseBody<List<InterviewData>> CountDetail(Integer organizationId, String departmentName) {
-        return null;
-    }
 }

@@ -77,7 +77,6 @@ public class DepartmentController {
 
     /**
      * 获取部门面试官
-     *
      * @param departmentId
      * @return
      */

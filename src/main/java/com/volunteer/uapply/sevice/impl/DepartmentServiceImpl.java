@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.mapper.DepartmentMapper;
 import com.volunteer.uapply.mapper.DepartmentMemberMapper;
+import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.mapper.UserMessageMapper;
 import com.volunteer.uapply.pojo.Department;
 import com.volunteer.uapply.pojo.DepartmentMember;
@@ -44,6 +45,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentMemberMapper departmentMemberMapper;
     @Resource
     private UserMessageMapper userMessageMapper;
+    @Resource
+    private InterviewDataMapper interviewDataMapper;
 
     @Override
     public UniversalResponseBody<TokenPO<Department>> departmentLogin(String departmentAccount, String departmentPwd) {
@@ -67,6 +70,8 @@ public class DepartmentServiceImpl implements DepartmentService {
             return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getMsg());
         }
         if (departmentMapper.insertDepartment(department) > 0) {
+            //初始化部门面试及报名数据
+            interviewDataMapper.initDepartInterviewData(department.getDepartmentId(), department.getDepartmentName(), department.getOrganizationId());
             return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
         } else {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
@@ -93,7 +98,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         for (Integer temp :
                 userId) {
-            //查询此部门中是否已有此不远
+            //查询此部门中是否已有此部员
             List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(temp);
             Integer flag = 0;
             for (DepartmentMember departmentMember :
@@ -130,7 +135,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (pageInfo.getTotal() != 0) {
             return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
         } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
     }
 
