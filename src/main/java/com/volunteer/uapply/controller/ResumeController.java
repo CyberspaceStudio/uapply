@@ -29,7 +29,6 @@ public class ResumeController {
 
     /**
      * 报名
-     *
      * @param resume
      * @param firstChoice
      * @param secondChoice
@@ -55,7 +54,6 @@ public class ResumeController {
 
     /**
      * 简历打分
-     *
      * @param interviewScorePO
      * @return
      */
@@ -70,6 +68,7 @@ public class ResumeController {
      * @param userId
      * @param organizationId
      * @return
+     * @apiNote 获取用户在某组织的全部简历评价
      */
     @GetMapping("/scores")
     public UniversalResponseBody<List<InterviewScorePO>> getAllResumeScores(Integer userId, Integer organizationId) {

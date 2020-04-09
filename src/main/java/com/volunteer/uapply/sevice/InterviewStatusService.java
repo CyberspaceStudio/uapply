@@ -34,4 +34,14 @@ public interface InterviewStatusService {
      * @return
      */
     UniversalResponseBody enrollMembers(Integer[] userId, Integer departmentId, String departmentName, Integer organizationId);
+
+    /**
+     * 二面签到
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody retestCheck(Integer userId, Integer organizationId, String departmentName);
 }

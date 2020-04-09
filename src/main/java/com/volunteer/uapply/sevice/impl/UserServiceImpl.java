@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         //查部门成员数据库中
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(userId);
         if (departmentMemberList == null) {
-            return new UniversalResponseBody<List<DepartmentMember>>(ResponseResultEnum.NORMAL_USER.getCode(), ResponseResultEnum.NORMAL_USER.getMsg());
+            return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
         } else {
             return new UniversalResponseBody<List<DepartmentMember>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), departmentMemberList);
         }

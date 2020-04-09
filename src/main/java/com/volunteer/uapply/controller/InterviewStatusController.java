@@ -50,7 +50,7 @@ public class InterviewStatusController {
      * @return
      */
     @PostMapping("/first/pass")
-    public UniversalResponseBody FirstIntervuewPass(Integer userId, String departmentName, Integer organizationId) {
+    public UniversalResponseBody FirstInterviewPass(Integer userId, String departmentName, Integer organizationId) {
         return null;
     }
 
@@ -63,20 +63,20 @@ public class InterviewStatusController {
      */
     @PostMapping("/first/eliminate")
     public UniversalResponseBody FirstInterviewEliminate(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+        return interviewStatusService.retestCheck(userId, organizationId, departmentName);
     }
 
     /**
-     * 二面通过
+     * 二面签到
      *
      * @param userId
      * @param departmentName
      * @param organizationId
      * @return
      */
-    @PostMapping("/retest/pass")
-    public UniversalResponseBody RetestPass(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    @PostMapping("/second/check")
+    public UniversalResponseBody RetestCheck(Integer userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.retestCheck(userId, organizationId, departmentName);
     }
 
     /**
@@ -94,7 +94,6 @@ public class InterviewStatusController {
 
     /**
      * 录取为部员
-     *
      * @param userId
      * @param departmentName
      * @param departmentId

@@ -42,9 +42,10 @@ public interface InterviewStatusMapper {
      * @param userId
      * @param organizationId
      * @param retestStatus
+     * @param departmentName
      * @return
      */
-    int updateRetestStatus(Integer userId, Integer organizationId, String retestStatus);
+    int updateRetestStatus(Integer userId, Integer organizationId, String departmentName, String retestStatus);
 
     /**
      * 修改一面状态

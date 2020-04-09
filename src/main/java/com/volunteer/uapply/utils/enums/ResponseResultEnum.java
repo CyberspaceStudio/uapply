@@ -26,11 +26,16 @@ public enum ResponseResultEnum {
     USER_NO_TOKEN(2001, "用户token为空"),
     USER_HAVE_EXIST(2000, "用户登录成功,非首次登录"),
     USER_NO_PERMISSION(2003, "用户权限不足"),
-    NORMAL_USER(2004, "普通用户"),
+
     /**
      * 报名错误
      */
-    USER_HAVE_APPLY(3000, "用户已经报名");
+    USER_HAVE_APPLY(3000, "用户已经报名"),
+
+    /**
+     * 部门错误
+     */
+    DEPARTMENT_HAVE_EXIST(4000, "部门账号已经被占用");
 
     /**
      * 返回结果代码

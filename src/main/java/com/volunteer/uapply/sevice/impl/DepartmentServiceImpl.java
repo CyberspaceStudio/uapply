@@ -62,6 +62,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody<Department> departmentRegister(Department department) {
+        Department department1 = departmentMapper.getDepartmentByAccount(department.getDepartmentAccount());
+        if (department1 != null) {
+            return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getMsg());
+        }
         if (departmentMapper.insertDepartment(department) > 0) {
             return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
         } else {
