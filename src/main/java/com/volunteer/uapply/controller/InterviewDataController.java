@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
+import com.volunteer.uapply.pojo.InterviewScorePO;
 import com.volunteer.uapply.pojo.Resume;
 import com.volunteer.uapply.pojo.User;
+import com.volunteer.uapply.sevice.InterviewDataService;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,9 +30,9 @@ import java.util.List;
 @RequestMapping("/interview/data")
 public class InterviewDataController {
 
-
     @Resource
-    private InterviewDataMapper interviewDataMapper;
+    @Qualifier("interviewDataServiceImpl")
+    private InterviewDataService interviewDataService;
 
     /**
      * 未一面
@@ -37,11 +40,12 @@ public class InterviewDataController {
      * @param pageSize
      * @param pageNum
      * @param departmentName
+     * @param organizationId
      * @return
      */
-    @GetMapping("/unfisrt")
-    public UniversalResponseBody<PageInfo<Resume>> UnFirstInterview(String departmentName, Integer pageNum, Integer pageSize) {
-        return null;
+    @GetMapping("/unfirst")
+    public UniversalResponseBody<PageInfo<Resume>> UnFirstInterview(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
+        return interviewDataService.unFirstInterview(organizationId, departmentName, pageNum, pageSize);
     }
 
     /**
@@ -50,11 +54,12 @@ public class InterviewDataController {
      * @param pageSize
      * @param pageNum
      * @param departmentName
+     * @param organizationId
      * @return
      */
-    @GetMapping("/fisrted")
-    public UniversalResponseBody<PageInfo<Resume>> FirstedInterview(String departmentName, Integer pageNum, Integer pageSize) {
-        return null;
+    @GetMapping("/firsted")
+    public UniversalResponseBody<PageInfo<InterviewScorePO>> FirstedInterview(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
+        return interviewDataService.firstInterviewEd(organizationId, departmentName, pageNum, pageSize);
     }
 
     /**
@@ -63,11 +68,12 @@ public class InterviewDataController {
      * @param pageSize
      * @param pageNum
      * @param departmentName
+     * @param organizationId
      * @return
      */
-    @GetMapping("/unsecond")
-    public UniversalResponseBody<PageInfo<Resume>> UnSecondInterview(String departmentName, Integer pageNum, Integer pageSize) {
-        return null;
+    @GetMapping("/unretest")
+    public UniversalResponseBody<PageInfo<Resume>> unRetest(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
+        return interviewDataService.unRetest(organizationId, departmentName, pageNum, pageSize);
     }
 
     /**
@@ -76,23 +82,26 @@ public class InterviewDataController {
      * @param pageSize
      * @param pageNum
      * @param departmentName
+     * @param organizationId
      * @return
      */
-    @GetMapping("/seconded")
-    public UniversalResponseBody<PageInfo<Resume>> SecondedInterview(String departmentName, Integer pageNum, Integer pageSize) {
-        return null;
+    @GetMapping("/retested")
+    public UniversalResponseBody<PageInfo<InterviewScorePO>> retested(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
+        return interviewDataService.Retested(organizationId, departmentName, pageNum, pageSize);
     }
 
     /**
      * 部门淘汰名单
+     *
      * @param pageSize
      * @param pageNum
      * @param departmentName
+     * @param organizationId
      * @return
      */
     @GetMapping("/eliminationList")
-    public UniversalResponseBody<PageInfo<Resume>> getEliminationList(String departmentName, Integer pageNum, Integer pageSize) {
-        return null;
+    public UniversalResponseBody<PageInfo<InterviewScorePO>> getEliminationList(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
+        return interviewDataService.getEliminationList(organizationId, departmentName, pageNum, pageSize);
     }
 
     /**
@@ -101,29 +110,22 @@ public class InterviewDataController {
      * @param departmentName
      * @return
      */
-    @GetMapping("/applyCount")
-    public UniversalResponseBody<InterviewData> ApplyAndSexCount(String departmentName) {
-        InterviewData interviewData = interviewDataMapper.getDepartInterviewData(departmentName);
-        if (interviewData == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        }
-        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewData);
+    @GetMapping("/department")
+    public UniversalResponseBody<InterviewData> departmentInterDate(String departmentName) {
+        return interviewDataService.departmentInterDate(departmentName);
     }
 
 
     /**
-     * 整个组织的报名人数
+     * 整个组织的面试数据
      *
      * @param organizationId
      * @return
+     * @apiNote 获取整个组织下面所有部门的面试数据
      */
-    @GetMapping("/applyCounts")
-    public UniversalResponseBody<List<InterviewData>> AllCounts(Integer organizationId) {
-        List<InterviewData> interviewDataList = interviewDataMapper.getOrganInterviewData(organizationId);
-        if (interviewDataList.isEmpty()) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        }
-        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewDataList);
+    @GetMapping("/organization")
+    public UniversalResponseBody<List<InterviewData>> organizationCounts(Integer organizationId) {
+        return interviewDataService.organizationCounts(organizationId);
     }
 
 }

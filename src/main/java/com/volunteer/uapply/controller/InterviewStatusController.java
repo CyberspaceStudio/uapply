@@ -32,7 +32,6 @@ public class InterviewStatusController {
 
     /**
      * 获取面试状态
-     *
      * @param userId
      * @return
      */
@@ -50,20 +49,21 @@ public class InterviewStatusController {
      * @return
      */
     @PostMapping("/first/pass")
-    public UniversalResponseBody FirstInterviewPass(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    public UniversalResponseBody FirstInterviewPass(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.FirstInterviewPass(userId, organizationId, departmentName);
     }
 
     /**
      * 一面淘汰
+     *
      * @param userId
      * @param departmentName
      * @param organizationId
      * @return
      */
     @PostMapping("/first/eliminate")
-    public UniversalResponseBody FirstInterviewEliminate(Integer userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.retestCheck(userId, organizationId, departmentName);
+    public UniversalResponseBody FirstInterviewEliminate(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.FirstInterviewEliminate(userId, organizationId, departmentName);
     }
 
     /**
@@ -88,8 +88,8 @@ public class InterviewStatusController {
      * @return
      */
     @PostMapping("/retest/eliminate")
-    public UniversalResponseBody RetestEliminate(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    public UniversalResponseBody RetestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.RetestEliminate(userId, organizationId, departmentName);
     }
 
     /**

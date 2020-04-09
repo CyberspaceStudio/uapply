@@ -34,15 +34,15 @@
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
-    <select id="getUsersByUserId" resultType="com.volunteer.uapply.pojo.User">
-        SELECT user_id,openid,user_sex,user_name,user_tel,userQQ_num,user_college,user_profession
-        FROM user_message
-        WHERE user_id IN
-        <foreach collection="array" item="item" index="index"
-                 separator="," open="(" close=")">
-            #{item}
-        </foreach>
+        <select id="getUsersByUserId" resultType="com.volunteer.uapply.pojo.User">
+            SELECT user_id,openid,user_sex,user_name,user_tel,userQQ_num,user_college,user_profession
+            FROM user_message
+            WHERE user_id IN
+            <foreach collection="array" item="item" index="index"
+                     separator="," open="(" close=")">
+                #{item}
+            </foreach>
 
-    </select>
+        </select>
 
 </mapper>

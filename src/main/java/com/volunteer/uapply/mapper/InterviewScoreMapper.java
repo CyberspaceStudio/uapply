@@ -1,6 +1,8 @@
 package com.volunteer.uapply.mapper;
 
+import com.github.pagehelper.Page;
 import com.volunteer.uapply.pojo.InterviewScorePO;
+import com.volunteer.uapply.pojo.Resume;
 
 import java.util.List;
 
@@ -30,4 +32,13 @@ public interface InterviewScoreMapper {
      * @return
      */
     List<InterviewScorePO> getAllScoreById(Integer userId, Integer organizationId);
+
+    /**
+     * 查询id在该组织下的所有面试简历
+     *
+     * @param userId
+     * @param organizationId
+     * @return
+     */
+    Page<InterviewScorePO> getInterviewScoresByUserId(List<Integer> userId, Integer organizationId);
 }

@@ -66,4 +66,25 @@ public interface InterviewStatusMapper {
      * @return
      */
     int updateSecondInterviewStatus(Integer userId, Integer organizationId, String secondStatus);
+
+
+    /**
+     * 获取整个部门中对应一面面试状态的成员Id
+     *
+     * @param organizationId
+     * @param departmentName
+     * @param status
+     * @return
+     */
+    List<Integer> getUserIdsByFirstStatus(Integer organizationId, String departmentName, String status);
+
+    /**
+     * 获取整个部门中二面对应状态的成员Id
+     *
+     * @param organizationId
+     * @param departmentName
+     * @param status
+     * @return
+     */
+    List<Integer> getUserIdByRetestStatus(Integer organizationId, String departmentName, String status);
 }
