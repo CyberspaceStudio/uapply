@@ -1,9 +1,6 @@
 package com.volunteer.uapply.sevice.impl;
 
-import com.volunteer.uapply.mapper.InterviewScoreMapper;
-import com.volunteer.uapply.mapper.InterviewStatusMapper;
-import com.volunteer.uapply.mapper.ResumeMapper;
-import com.volunteer.uapply.mapper.UserMessageMapper;
+import com.volunteer.uapply.mapper.*;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.pojo.Resume;
 import com.volunteer.uapply.pojo.InterviewScorePO;
@@ -35,9 +32,22 @@ public class ResumeServiceImpl implements ResumeService {
     private UserMessageMapper userMessageMapper;
     @Resource
     private InterviewScoreMapper interviewScoreMapper;
+    @Resource
+    private InterviewDataMapper interviewDataMapper;
+
+    private static final String man = "男";
+    private static final String woman = "女";
+    private static final String emptyString = "";
 
     @Override
     public UniversalResponseBody apply(Resume resume, String firstChoice, String secondChoice) {
+        //如果用户的二志愿为空
+        if (secondChoice == null) {
+            secondChoice = emptyString;
+        } else {
+            interviewDataMapper.plusCrossCounts(firstChoice);
+            interviewDataMapper.plusCrossCounts(secondChoice);
+        }
         Resume resume1 = resumeMapper.getResumeByUserTel(resume.getOrganizationId(), resume.getUserTel());
         if (resume1 != null) {
             return new UniversalResponseBody(ResponseResultEnum.USER_HAVE_APPLY.getCode(), ResponseResultEnum.USER_HAVE_APPLY.getMsg());
@@ -60,6 +70,15 @@ public class ResumeServiceImpl implements ResumeService {
                 return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }
         }
+        //根据性别，修改相应部门的面试数据
+        if (resume.getUserSex().equals(man)) {
+            interviewDataMapper.plusManCounts(firstChoice);
+            interviewDataMapper.plusManCounts(secondChoice);
+        } else if (resume.getUserSex().equals(woman)) {
+            interviewDataMapper.plusWomanCounts(firstChoice);
+            interviewDataMapper.plusWomanCounts(secondChoice);
+        }
+
         return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 
@@ -79,6 +98,8 @@ public class ResumeServiceImpl implements ResumeService {
         if (interviewScoreMapper.insertInterviewScore(interviewScorePO) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
+        //增加部门面试数据中的已经面试人数
+        interviewDataMapper.plusInterviewCounts(interviewScorePO.getDepartmentName());
         InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId());
         //如果是一面部门
         if (interviewStatus.getFirstChoice().equals(interviewScorePO.getDepartmentName())) {

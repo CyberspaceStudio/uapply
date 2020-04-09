@@ -1,5 +1,7 @@
 package com.volunteer.uapply.pojo;
 
+import lombok.Data;
+
 /**
  * 部门报名人数
  *
@@ -7,6 +9,7 @@ package com.volunteer.uapply.pojo;
  * @version 1.0
  * @date 2020/4/5 14:47
  */
+@Data
 public class InterviewData {
 
     /**
@@ -17,7 +20,7 @@ public class InterviewData {
     /**
      * 部门名称
      */
-    private Integer departmentName;
+    private String departmentName;
 
     /**
      * 男

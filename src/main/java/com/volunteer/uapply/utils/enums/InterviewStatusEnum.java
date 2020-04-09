@@ -10,7 +10,7 @@ package com.volunteer.uapply.utils.enums;
 public enum InterviewStatusEnum {
 
     NO_INTERVIEW(0, "未面试"),
-    INTERVIEWED(1, "已经面试"),
+    INTERVIEWED(1, "已面试"),
     INTERVIEW_ELIMINATE(2, "淘汰"),
     INTERVIEW_PASS(3, "通过");
 

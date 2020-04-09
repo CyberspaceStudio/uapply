@@ -32,7 +32,6 @@ public class InterviewStatusController {
 
     /**
      * 获取面试状态
-     *
      * @param userId
      * @return
      */
@@ -50,33 +49,34 @@ public class InterviewStatusController {
      * @return
      */
     @PostMapping("/first/pass")
-    public UniversalResponseBody FirstIntervuewPass(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    public UniversalResponseBody FirstInterviewPass(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.FirstInterviewPass(userId, organizationId, departmentName);
     }
 
     /**
      * 一面淘汰
-     * @param userId
-     * @param departmentName
-     * @param organizationId
-     * @return
-     */
-    @PostMapping("/first/eliminate")
-    public UniversalResponseBody FirstInterviewEliminate(Integer userId, String departmentName, Integer organizationId) {
-        return null;
-    }
-
-    /**
-     * 二面通过
      *
      * @param userId
      * @param departmentName
      * @param organizationId
      * @return
      */
-    @PostMapping("/retest/pass")
-    public UniversalResponseBody RetestPass(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    @PostMapping("/first/eliminate")
+    public UniversalResponseBody FirstInterviewEliminate(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.FirstInterviewEliminate(userId, organizationId, departmentName);
+    }
+
+    /**
+     * 二面签到
+     *
+     * @param userId
+     * @param departmentName
+     * @param organizationId
+     * @return
+     */
+    @PostMapping("/second/check")
+    public UniversalResponseBody RetestCheck(Integer userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.retestCheck(userId, organizationId, departmentName);
     }
 
     /**
@@ -88,13 +88,12 @@ public class InterviewStatusController {
      * @return
      */
     @PostMapping("/retest/eliminate")
-    public UniversalResponseBody RetestEliminate(Integer userId, String departmentName, Integer organizationId) {
-        return null;
+    public UniversalResponseBody RetestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.RetestEliminate(userId, organizationId, departmentName);
     }
 
     /**
      * 录取为部员
-     *
      * @param userId
      * @param departmentName
      * @param departmentId

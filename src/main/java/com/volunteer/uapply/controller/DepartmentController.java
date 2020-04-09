@@ -45,7 +45,6 @@ public class DepartmentController {
 
     /**
      * 部门激活
-     *
      * @param department
      * @return
      */
@@ -66,7 +65,6 @@ public class DepartmentController {
 
     /**
      * 添加面试官
-     *
      * @param departmentId
      * @param userId
      * @return
@@ -79,7 +77,6 @@ public class DepartmentController {
 
     /**
      * 获取部门面试官
-     *
      * @param departmentId
      * @return
      */

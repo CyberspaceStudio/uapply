@@ -34,4 +34,45 @@ public interface InterviewStatusService {
      * @return
      */
     UniversalResponseBody enrollMembers(Integer[] userId, Integer departmentId, String departmentName, Integer organizationId);
+
+    /**
+     * 二面签到
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody retestCheck(Integer userId, Integer organizationId, String departmentName);
+
+    /**
+     * 一面通过
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody FirstInterviewPass(Integer[] userId, Integer organizationId, String departmentName);
+
+
+    /**
+     * 一面淘汰
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody FirstInterviewEliminate(Integer[] userId, Integer organizationId, String departmentName);
+
+    /**
+     * 二面淘汰
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody RetestEliminate(Integer[] userId, Integer organizationId, String departmentName);
 }

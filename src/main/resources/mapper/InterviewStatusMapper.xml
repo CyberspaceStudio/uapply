@@ -11,8 +11,8 @@
 
     <update id="updateRetestStatus">
         UPDATE  interview_status SET
-        retest_status = #{retestStatus,jdbcType=VARCHAR}
-        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+        retest_status = #{retestStatus,jdbcType=VARCHAR},retest_choice = #{departmentName,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizati  onId,jdbcType=INTEGER}
     </update>
 
     <update id="updateFirstInterviewStatus">
@@ -37,4 +37,15 @@
        FROM interview_status
        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
     </select>
+    <select id="getUserIdsByFirstStatus" resultType="java.lang.Integer">
+    SELECT user_id FROM interview_status where organization_id = #{organizationId,jdbcType=INTEGER}
+    AND ((first_choice = #{departmentName,jdbcType=VARCHAR} AND first_status = #{status,jdbcType=VARCHAR} )
+    OR (second_choice =#{departmentName,jdbcType=VARCHAR} AND second_status = #{status,jdbcType=VARCHAR}));
+   </select>
+    <select id="getUserIdByRetestStatus" resultType="java.lang.Integer">
+        SELECT user_id FROM interview_status
+        where organization_id = #{organizationId,jdbcType=INTEGER}
+        AND retest_choice = #{status,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

@@ -14,4 +14,18 @@
         FROM resume
         WHERE organization_id = #{organizationId,jdbcType=INTEGER} AND user_tel = #{userTel,jdbcType=VARCHAR}
     </select>
+
+
+    <select id="getResumesByUserId" resultType="com.volunteer.uapply.pojo.Resume">
+        SELECT
+        user_id,user_name,organization_id,organization_name,user_sex,userStu_num,user_college,user_profession,user_tel,userQQ_num,user_hobby,user_introduction
+        FROM resume
+        WHERE organization_id = #{organizationId,jdbcType=INTEGER}
+        AND user_id IN
+        <foreach collection="userId" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item}
+        </foreach>
+
+    </select>
 </mapper>
