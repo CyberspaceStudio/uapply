@@ -35,7 +35,8 @@ public enum ResponseResultEnum {
     /**
      * 部门错误
      */
-    DEPARTMENT_HAVE_EXIST(4000, "部门账号已经被占用");
+    DEPARTMENT_ACCOUNT_HAVE_EXIST(4000, "部门账号已经被占用"),
+    DEPARTMENT_NAME_HAVE_EXIST(4001, "部门名称已经被占用");
 
     /**
      * 返回结果代码

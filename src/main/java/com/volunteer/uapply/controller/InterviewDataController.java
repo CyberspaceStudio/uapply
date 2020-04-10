@@ -3,6 +3,7 @@ package com.volunteer.uapply.controller;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.github.pagehelper.PageInfo;
+import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.InterviewScorePO;
@@ -43,6 +44,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/unfirst")
     public UniversalResponseBody<PageInfo<Resume>> UnFirstInterview(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.unFirstInterview(organizationId, departmentName, pageNum, pageSize);
@@ -57,6 +59,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/firsted")
     public UniversalResponseBody<PageInfo<InterviewScorePO>> FirstedInterview(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.firstInterviewEd(organizationId, departmentName, pageNum, pageSize);
@@ -71,6 +74,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/unretest")
     public UniversalResponseBody<PageInfo<Resume>> unRetest(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.unRetest(organizationId, departmentName, pageNum, pageSize);
@@ -85,6 +89,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/retested")
     public UniversalResponseBody<PageInfo<InterviewScorePO>> retested(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.Retested(organizationId, departmentName, pageNum, pageSize);
@@ -99,6 +104,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/eliminationList")
     public UniversalResponseBody<PageInfo<InterviewScorePO>> getEliminationList(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.getEliminationList(organizationId, departmentName, pageNum, pageSize);
@@ -110,6 +116,7 @@ public class InterviewDataController {
      * @param departmentName
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/department")
     public UniversalResponseBody<InterviewData> departmentInterDate(String departmentName) {
         return interviewDataService.departmentInterDate(departmentName);
@@ -123,6 +130,7 @@ public class InterviewDataController {
      * @return
      * @apiNote 获取整个组织下面所有部门的面试数据
      */
+    @DepartmentLogin
     @GetMapping("/organization")
     public UniversalResponseBody<List<InterviewData>> organizationCounts(Integer organizationId) {
         return interviewDataService.organizationCounts(organizationId);

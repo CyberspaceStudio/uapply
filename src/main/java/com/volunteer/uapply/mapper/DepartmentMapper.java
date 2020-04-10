@@ -18,6 +18,14 @@ public interface DepartmentMapper {
     Department getDepartmentByAccount(String departmentAccount);
 
     /**
+     * 根据部门名称查询部门
+     *
+     * @param departmentName
+     * @return
+     */
+    Department getDepartmentByName(String departmentName);
+
+    /**
      * 插入部门
      *
      * @param department

@@ -1,6 +1,7 @@
 package com.volunteer.uapply.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.annotation.PassToken;
 import com.volunteer.uapply.pojo.*;
 import com.volunteer.uapply.pojo.info.TokenPO;
@@ -48,6 +49,7 @@ public class DepartmentController {
      * @param department
      * @return
      */
+    @PassToken
     @PostMapping("/register")
     public UniversalResponseBody<Department> departmentRegister(Department department) {
         return departmentService.departmentRegister(department);
@@ -58,6 +60,7 @@ public class DepartmentController {
      * @param department
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/detail")
     public UniversalResponseBody<Department> changeDepartmentDetail(Department department) {
         return departmentService.departmentInterviewDetail(department);
@@ -69,6 +72,7 @@ public class DepartmentController {
      * @param userId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/interviewer")
     public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
         return departmentService.insertInterviewer(departmentId, userId);
@@ -80,6 +84,7 @@ public class DepartmentController {
      * @param departmentId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/interviewer")
     public UniversalResponseBody<List<Integer>> getInterviewers(Integer departmentId) {
         return departmentService.getAllInterviewers(departmentId);
@@ -93,6 +98,7 @@ public class DepartmentController {
      * @param pageSize
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/members")
     public UniversalResponseBody<PageInfo<User>> FindMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
         return departmentService.getMembers(departmentId, pageNum, pageSize);
@@ -104,6 +110,7 @@ public class DepartmentController {
      * @param departmentId
      * @param response
      */
+    @DepartmentLogin
     @GetMapping("/export")
     public void exportMessages(Integer departmentId, HttpServletResponse response) {
         departmentService.getAllMembersToExcel(departmentId, response);

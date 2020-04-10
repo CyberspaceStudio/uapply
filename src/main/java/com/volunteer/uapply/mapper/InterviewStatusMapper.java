@@ -57,6 +57,7 @@ public interface InterviewStatusMapper {
      */
     int updateFirstInterviewStatus(Integer userId, Integer organizationId, String firstStatus);
 
+
     /**
      * 修改二面状态
      *

@@ -1,6 +1,7 @@
 package com.volunteer.uapply.controller;
 
 import com.aliyuncs.exceptions.ClientException;
+import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.pojo.info.AliyunEnrollParam;
 import com.volunteer.uapply.pojo.info.AliyunFisrtInterviewParam;
 import com.volunteer.uapply.pojo.info.AliyunResponseInfo;
@@ -37,6 +38,7 @@ public class MessagesController {
      * @throws ClientException
      * @apiNote 只有短信发送失败时，才会返回短信发送接口的返回结果，成功只返回code和msg
      */
+    @DepartmentLogin
     @PostMapping("/interview/first")
     public UniversalResponseBody SendFirstInterviewMessage(AliyunFisrtInterviewParam aliyunInterviewParamInfo) throws ClientException {
         return messageService.sendFirstInterviewMessage(aliyunInterviewParamInfo);
@@ -49,6 +51,7 @@ public class MessagesController {
      * @return
      * @apiNote 只有短信发送失败时，才会返回短信发送接口的返回结果，成功只返回code和msg
      */
+    @DepartmentLogin
     @PostMapping("/interview/second")
     public UniversalResponseBody<AliyunResponseInfo> SendSecondInterviewMessage(AliyunSecondInterviewParam aliyunSecondMsgParamInfo) throws ClientException {
         return messageService.sendSecondInterviewMessage(aliyunSecondMsgParamInfo);
@@ -61,6 +64,7 @@ public class MessagesController {
      * @return
      * @throws ClientException
      */
+    @DepartmentLogin
     @PostMapping("/enroll")
     public UniversalResponseBody SendFirstInterviewMessage(AliyunEnrollParam aliyunEnrollParamInfo) throws ClientException {
         return messageService.sendEnrollInterviewMessage(aliyunEnrollParamInfo);

@@ -24,5 +24,10 @@
         FROM department_member
         WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND authority_id = #{authorityId,jdbcType=VARCHAR}
     </select>
+    <select id="getUserDepartmentAuthority" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+         SELECT department_id,department_name,user_id,authority_id
+        FROM department_member
+        WHERE user_id =#{userId,jdbcType=INTEGER} AND department_id =#{departmentId,jdbcType=VARCHAR}
+    </select>
 
 </mapper>
