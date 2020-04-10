@@ -75,4 +75,26 @@ public interface InterviewStatusService {
      * @return
      */
     UniversalResponseBody RetestEliminate(Integer[] userId, Integer organizationId, String departmentName);
+
+
+    /**
+     * 取消录取该部员
+     *
+     * @param userId
+     * @param departmentName
+     * @param departmentId
+     * @param organizationId
+     * @return
+     */
+    UniversalResponseBody cancelEnroll(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId);
+
+    /**
+     * 取消二面状态
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    UniversalResponseBody cancelRetest(Integer[] userId, Integer organizationId, String departmentName);
 }

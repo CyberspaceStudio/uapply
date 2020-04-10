@@ -62,4 +62,12 @@ public interface DepartmentMemberMapper {
      */
     int updateUserAuthority(Integer departmentId, Integer authorityId, Integer userId);
 
+    /**
+     * 删除部门成员
+     *
+     * @param departmentId
+     * @param userId
+     * @return
+     */
+    int deleteDepartmentMember(Integer departmentId, Integer userId);
 }

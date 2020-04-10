@@ -44,7 +44,6 @@ public class InterviewStatusController {
 
     /**
      * 一面通过
-     *
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -72,7 +71,6 @@ public class InterviewStatusController {
 
     /**
      * 二面签到
-     *
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -99,7 +97,24 @@ public class InterviewStatusController {
     }
 
     /**
+     * 二面未面试
+     *
+     * @param userId
+     * @param departmentName
+     * @param organizationId
+     * @return
+     * @apiNote 将成员的二面状态设置未面试
+     */
+    @DepartmentLogin
+    @PostMapping("/retest/cancel")
+    public UniversalResponseBody cancelRetest(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.cancelRetest(userId, organizationId, departmentName);
+    }
+
+
+    /**
      * 录取为部员
+     *
      * @param userId
      * @param departmentName
      * @param departmentId
@@ -108,7 +123,24 @@ public class InterviewStatusController {
      */
     @DepartmentLogin
     @PostMapping("/enroll")
-    public UniversalResponseBody EnrollMember(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
+    public UniversalResponseBody enrollMember(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
         return interviewStatusService.enrollMembers(userId, departmentId, departmentName, organizationId);
+    }
+
+
+    /**
+     * 取消录取为部员
+     *
+     * @param userId
+     * @param departmentName
+     * @param departmentId
+     * @param organizationId
+     * @return
+     * @apiNote 将此成员从部员名单移动至淘汰名单
+     */
+    @DepartmentLogin
+    @PostMapping("/cancel/enroll")
+    public UniversalResponseBody cancelEnroll(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
+        return interviewStatusService.cancelEnroll(userId, departmentName, departmentId, organizationId);
     }
 }
