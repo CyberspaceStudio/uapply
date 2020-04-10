@@ -55,9 +55,9 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
     public UniversalResponseBody retestCheck(Integer userId, Integer organizationId, String departmentName) {
         InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(userId, organizationId);
         //一志愿为该部门，且一面通过
-        if (interviewStatus.getFirstChoice().equals(departmentName) && interviewStatus.getFirstStatus().equals(InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus())) {
+        if (interviewStatus.getFirstChoice().equals(departmentName)) {
             interviewStatusMapper.updateRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
-        } else if (interviewStatus.getSecondChoice().equals(departmentName) && interviewStatus.getSecondStatus().equals(InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus())) {
+        } else if (interviewStatus.getSecondChoice().equals(departmentName)) {
             //二志愿为该部门，且一面通过
             interviewStatusMapper.updateRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
         } else {
@@ -107,12 +107,39 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
         for (Integer temp :
                 userId) {
             InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(temp, organizationId);
-            //一志愿为该部门，且一面通过
-            if (interviewStatus.getFirstChoice().equals(departmentName)) {
+            //一志愿为该部门
+            if (interviewStatus.getRetestChoice().equals(departmentName)) {
                 interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
-            } else if (interviewStatus.getSecondChoice().equals(departmentName)) {
-                //二志愿为该部门，且一面通过
-                interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
+            } else {
+                return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            }
+
+        }
+        return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody cancelEnroll(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
+
+        for (Integer temp :
+                userId) {
+            //将复试状态改为淘汰
+            interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
+            //删除该成员在department_member中的数据
+            departmentMemberMapper.deleteDepartmentMember(departmentId, temp);
+        }
+        return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
+
+
+    @Override
+    public UniversalResponseBody cancelRetest(Integer[] userId, Integer organizationId, String departmentName) {
+        for (Integer temp :
+                userId) {
+            InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(temp, organizationId);
+            //一志愿为该部门
+            if (interviewStatus.getRetestChoice().equals(departmentName)) {
+                interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
             } else {
                 return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
             }
