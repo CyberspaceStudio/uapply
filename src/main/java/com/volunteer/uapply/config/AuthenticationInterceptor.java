@@ -2,9 +2,12 @@ package com.volunteer.uapply.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.annotation.PassToken;
 import com.volunteer.uapply.annotation.UserLogin;
+import com.volunteer.uapply.mapper.DepartmentMapper;
 import com.volunteer.uapply.mapper.UserMessageMapper;
+import com.volunteer.uapply.pojo.Department;
 import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.ResponseException;
@@ -27,6 +30,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Resource
     private UserMessageMapper userMessageMapper;
+    @Resource
+    private DepartmentMapper departmentMapper;
+
 
     public AuthenticationInterceptor() {
     }
@@ -65,6 +71,30 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 }
                 User user = userMessageMapper.getUserByUserId(userId);
                 if (user == null) {
+                    //用户不存在
+                    throw new ResponseException("用户不存在", ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
+                } else {
+                    return true;
+                }
+            }
+        }
+        //检查有没有部门登录的注解
+        if (method.isAnnotationPresent(DepartmentLogin.class)) {
+            DepartmentLogin departmentLogin = method.getAnnotation(DepartmentLogin.class);
+            if (departmentLogin.required()) {
+                // 执行认证
+                if (token == null) {
+                    throw new ResponseException("token为空", ResponseResultEnum.USER_NO_TOKEN.getCode(), ResponseResultEnum.USER_NO_TOKEN.getMsg());
+                }
+                // 获取 token 中的userId
+                Integer departmentId = null;
+                try {
+                    departmentId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+                } catch (JWTDecodeException j) {
+                    throw new RuntimeException("401");
+                }
+                Department department = departmentMapper.getDepartmentByDepartmentId(departmentId);
+                if (department == null) {
                     //用户不存在
                     throw new ResponseException("用户不存在", ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
                 } else {

@@ -24,6 +24,15 @@ public interface DepartmentMemberMapper {
 
 
     /**
+     * 查询用户在某部门的权限
+     *
+     * @param userId
+     * @param departmentId
+     * @return
+     */
+    DepartmentMember getUserDepartmentAuthority(Integer userId, Integer departmentId);
+
+    /**
      * 批量插入部门成员
      *
      * @param departmentId   部门ID
@@ -34,9 +43,9 @@ public interface DepartmentMemberMapper {
      */
     int insertDepartmentMember(Integer departmentId, String departmentName, Integer userId, Integer authorityId);
 
+
     /**
      * 查询部门相应权限的所有成员
-     *
      * @param departmentId
      * @param authorityId
      * @return

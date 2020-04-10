@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 需要部门登录
+ * 需要部门登录的操作
  *
  * @author 郭树耸
  * @version 1.0

@@ -1,5 +1,6 @@
 package com.volunteer.uapply.controller;
 
+import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.sevice.InterviewStatusService;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
@@ -35,6 +36,7 @@ public class InterviewStatusController {
      * @param userId
      * @return
      */
+    @DepartmentLogin
     @GetMapping("/getstatus")
     public UniversalResponseBody<List<InterviewStatus>> getInterviewStatus(Integer userId) {
         return interviewStatusService.getInterviewStatus(userId);
@@ -48,6 +50,7 @@ public class InterviewStatusController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/first/pass")
     public UniversalResponseBody FirstInterviewPass(Integer[] userId, String departmentName, Integer organizationId) {
         return interviewStatusService.FirstInterviewPass(userId, organizationId, departmentName);
@@ -61,6 +64,7 @@ public class InterviewStatusController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/first/eliminate")
     public UniversalResponseBody FirstInterviewEliminate(Integer[] userId, String departmentName, Integer organizationId) {
         return interviewStatusService.FirstInterviewEliminate(userId, organizationId, departmentName);
@@ -74,6 +78,7 @@ public class InterviewStatusController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/second/check")
     public UniversalResponseBody RetestCheck(Integer userId, String departmentName, Integer organizationId) {
         return interviewStatusService.retestCheck(userId, organizationId, departmentName);
@@ -87,6 +92,7 @@ public class InterviewStatusController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/retest/eliminate")
     public UniversalResponseBody RetestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
         return interviewStatusService.RetestEliminate(userId, organizationId, departmentName);
@@ -100,6 +106,7 @@ public class InterviewStatusController {
      * @param organizationId
      * @return
      */
+    @DepartmentLogin
     @PostMapping("/enroll")
     public UniversalResponseBody EnrollMember(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
         return interviewStatusService.enrollMembers(userId, departmentId, departmentName, organizationId);

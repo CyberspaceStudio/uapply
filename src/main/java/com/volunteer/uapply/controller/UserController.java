@@ -47,6 +47,7 @@ public class UserController {
      * @param userId
      * @return
      */
+    @PassToken
     @GetMapping("/profession")
     public UniversalResponseBody<List<DepartmentMember>> getUserProfession(Integer userId) {
         return userService.getUserPermission(userId);

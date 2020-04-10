@@ -55,7 +55,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (department == null) {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
         } else if (department.getDepartmentAccount().equals(departmentAccount) && department.getDepartmentPwd().equals(departmentPwd)) {
+            //生成token，并生成返回对象
             TokenPO<Department> tokenPO = new TokenPO<Department>(department, tokenutil.tokenByDepartmentId(department.getDepartmentId()));
+
             return new UniversalResponseBody<TokenPO<Department>>(ResponseResultEnum.USER_LOGIN_SUCCESS.getCode(), ResponseResultEnum.USER_LOGIN_SUCCESS.getMsg(), tokenPO);
         } else {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
@@ -65,9 +67,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody<Department> departmentRegister(Department department) {
+        //首先查看有没有相同账号的部门
         Department department1 = departmentMapper.getDepartmentByAccount(department.getDepartmentAccount());
         if (department1 != null) {
-            return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_HAVE_EXIST.getMsg());
+            return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getMsg());
+        }
+        //检查有没有相同名称的部门
+        Department department2 = departmentMapper.getDepartmentByName(department.getDepartmentName());
+        if (department1 != null) {
+            return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_NAME_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_NAME_HAVE_EXIST.getMsg());
         }
         if (departmentMapper.insertDepartment(department) > 0) {
             //初始化部门面试及报名数据
@@ -98,7 +106,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         for (Integer temp :
                 userId) {
-            //查询此部门中是否已有此部员
+            /*//查询此部门中是否已有此部员
             List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(temp);
             Integer flag = 0;
             for (DepartmentMember departmentMember :
@@ -115,8 +123,16 @@ public class DepartmentServiceImpl implements DepartmentService {
             //部门中没有此人
             if (flag.equals(0)) {
                 departmentMemberMapper.insertDepartmentMember(departmentId, department.getDepartmentName(), temp, AuthorityIdEnum.MINISTER.getAuthorityId());
+            }*/
+            //查询此部门中是否有此人
+            DepartmentMember departmentMember = departmentMemberMapper.getUserDepartmentAuthority(temp, departmentId);
+            if (departmentMember == null) {
+                departmentMemberMapper.insertDepartmentMember(departmentId, department.getDepartmentName(), temp, AuthorityIdEnum.MINISTER.getAuthorityId());
+            } else {
+                departmentMemberMapper.updateUserAuthority(departmentId, AuthorityIdEnum.MINISTER.getAuthorityId(), temp);
             }
         }
+
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 
