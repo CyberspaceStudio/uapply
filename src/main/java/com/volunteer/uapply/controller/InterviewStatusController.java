@@ -3,6 +3,7 @@ package com.volunteer.uapply.controller;
 import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.sevice.InterviewStatusService;
+import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,12 +53,11 @@ public class InterviewStatusController {
     @DepartmentLogin
     @PostMapping("/first/pass")
     public UniversalResponseBody FirstInterviewPass(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.FirstInterviewPass(userId, organizationId, departmentName);
+        return interviewStatusService.changeFirstInterviewStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
     }
 
     /**
      * 一面淘汰
-     *
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -66,20 +66,25 @@ public class InterviewStatusController {
     @DepartmentLogin
     @PostMapping("/first/eliminate")
     public UniversalResponseBody FirstInterviewEliminate(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.FirstInterviewEliminate(userId, organizationId, departmentName);
+        return interviewStatusService.changeFirstInterviewStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
     }
 
     /**
      * 二面签到
+     *
      * @param userId
      * @param departmentName
      * @param organizationId
      * @return
+     * @apiNote 将复试状态设置为已面试
      */
     @DepartmentLogin
-    @PostMapping("/second/check")
-    public UniversalResponseBody RetestCheck(Integer userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.retestCheck(userId, organizationId, departmentName);
+    @PostMapping("/retest/check")
+    public UniversalResponseBody retestCheck(Integer userId, String departmentName, Integer organizationId) {
+        //把userId转换为数组类型
+        Integer[] array = new Integer[1];
+        array[0] = userId;
+        return interviewStatusService.changeRetestStatus(array, organizationId, departmentName, InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
     }
 
     /**
@@ -92,13 +97,12 @@ public class InterviewStatusController {
      */
     @DepartmentLogin
     @PostMapping("/retest/eliminate")
-    public UniversalResponseBody RetestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.RetestEliminate(userId, organizationId, departmentName);
+    public UniversalResponseBody retestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
+        return interviewStatusService.changeRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
     }
 
     /**
      * 二面未面试
-     *
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -108,13 +112,12 @@ public class InterviewStatusController {
     @DepartmentLogin
     @PostMapping("/retest/cancel")
     public UniversalResponseBody cancelRetest(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.cancelRetest(userId, organizationId, departmentName);
+        return interviewStatusService.changeRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
     }
 
 
     /**
      * 录取为部员
-     *
      * @param userId
      * @param departmentName
      * @param departmentId
@@ -130,7 +133,6 @@ public class InterviewStatusController {
 
     /**
      * 取消录取为部员
-     *
      * @param userId
      * @param departmentName
      * @param departmentId

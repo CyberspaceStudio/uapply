@@ -36,48 +36,6 @@ public interface InterviewStatusService {
     UniversalResponseBody enrollMembers(Integer[] userId, Integer departmentId, String departmentName, Integer organizationId);
 
     /**
-     * 二面签到
-     *
-     * @param userId
-     * @param organizationId
-     * @param departmentName
-     * @return
-     */
-    UniversalResponseBody retestCheck(Integer userId, Integer organizationId, String departmentName);
-
-    /**
-     * 一面通过
-     *
-     * @param userId
-     * @param organizationId
-     * @param departmentName
-     * @return
-     */
-    UniversalResponseBody FirstInterviewPass(Integer[] userId, Integer organizationId, String departmentName);
-
-
-    /**
-     * 一面淘汰
-     *
-     * @param userId
-     * @param organizationId
-     * @param departmentName
-     * @return
-     */
-    UniversalResponseBody FirstInterviewEliminate(Integer[] userId, Integer organizationId, String departmentName);
-
-    /**
-     * 二面淘汰
-     *
-     * @param userId
-     * @param organizationId
-     * @param departmentName
-     * @return
-     */
-    UniversalResponseBody RetestEliminate(Integer[] userId, Integer organizationId, String departmentName);
-
-
-    /**
      * 取消录取该部员
      *
      * @param userId
@@ -88,13 +46,27 @@ public interface InterviewStatusService {
      */
     UniversalResponseBody cancelEnroll(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId);
 
+
     /**
-     * 取消二面状态
+     * 更改一面状态
      *
      * @param userId
      * @param organizationId
      * @param departmentName
+     * @param status
      * @return
      */
-    UniversalResponseBody cancelRetest(Integer[] userId, Integer organizationId, String departmentName);
+    UniversalResponseBody changeFirstInterviewStatus(Integer[] userId, Integer organizationId, String departmentName, String status);
+
+
+    /**
+     * 更改复试状态
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @param status
+     * @return
+     */
+    UniversalResponseBody changeRetestStatus(Integer[] userId, Integer organizationId, String departmentName, String status);
 }

@@ -2,6 +2,8 @@ package com.volunteer.uapply.mapper;
 
 import com.volunteer.uapply.pojo.Department;
 
+import java.util.List;
+
 /**
  * @author 郭树耸
  * @version 1.0
@@ -24,6 +26,15 @@ public interface DepartmentMapper {
      * @return
      */
     Department getDepartmentByName(String departmentName);
+
+
+    /**
+     * 根据部门id查询部门
+     *
+     * @param departmentId
+     * @return
+     */
+    Department getDepartmentById(Integer departmentId);
 
     /**
      * 插入部门
@@ -51,4 +62,12 @@ public interface DepartmentMapper {
      */
     Department getDepartmentByDepartmentId(Integer departmentId);
 
+
+    /**
+     * 根据组织Id获取组织下的全部部门
+     *
+     * @param organizationId
+     * @return
+     */
+    List<Department> getDepartmentsByOrganizationId(Integer organizationId);
 }

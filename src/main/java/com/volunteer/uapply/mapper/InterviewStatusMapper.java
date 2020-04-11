@@ -88,4 +88,6 @@ public interface InterviewStatusMapper {
      * @return
      */
     List<Integer> getUserIdByRetestStatus(Integer organizationId, String departmentName, String status);
+
+
 }
