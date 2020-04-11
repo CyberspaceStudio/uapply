@@ -78,7 +78,6 @@ public interface InterviewDataService {
      * @return
      */
     UniversalResponseBody<PageInfo<InterviewScorePO>> Retested(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize);
-
     /**
      * 获取整个部门全部的淘汰名单
      *

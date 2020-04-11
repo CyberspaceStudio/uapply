@@ -136,13 +136,15 @@ public class DepartmentServiceImpl implements DepartmentService {
                 departmentMemberMapper.updateUserAuthority(departmentId, AuthorityIdEnum.MINISTER.getAuthorityId(), temp);
             }
         }
-
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 
     @Override
     public UniversalResponseBody<PageInfo<User>> getMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.STAFF.getAuthorityId());
+        if (departmentMemberList.isEmpty()) {
+            return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
         Integer[] userId = new Integer[departmentMemberList.size()];
         int i = 0;
         for (DepartmentMember departmentMember :
@@ -151,12 +153,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<User> pageInfo = new PageInfo<User>(userMessageMapper.getUsersByUserId(userId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
 

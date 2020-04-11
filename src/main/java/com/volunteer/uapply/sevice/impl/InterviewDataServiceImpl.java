@@ -41,20 +41,13 @@ public class InterviewDataServiceImpl implements InterviewDataService {
     public UniversalResponseBody<PageInfo<Resume>> unFirstInterview(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         //先从面试状态数据库中根据未面试以及部门名称和组织ID查找出userId
         List<Integer> userIdList = interviewStatusMapper.getUserIdsByFirstStatus(organizationId, departmentName, InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
-        if (userIdList == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        if (userIdList.isEmpty()) {
+            return new UniversalResponseBody<PageInfo<Resume>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), null);
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<Resume> pageInfo = new PageInfo<Resume>(resumeMapper.getResumesByUserId(userIdList, organizationId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<Resume>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else if (pageInfo == null) {
-            //结果为空
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<Resume>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
+
     }
 
 
@@ -62,27 +55,20 @@ public class InterviewDataServiceImpl implements InterviewDataService {
     public UniversalResponseBody<PageInfo<InterviewScorePO>> firstInterviewEd(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         //先从面试状态数据库中根据未面试以及部门名称和组织ID查找出userId
         List<Integer> userIdList = interviewStatusMapper.getUserIdsByFirstStatus(organizationId, departmentName, InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
-        if (userIdList == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        if (userIdList.isEmpty()) {
+            //如果结果为空
+            return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), null);
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else if (pageInfo == null) {
-            //结果为空
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
     @Override
     public UniversalResponseBody<List<InterviewData>> organizationCounts(Integer organizationId) {
         List<InterviewData> interviewDataList = interviewDataMapper.getOrganInterviewData(organizationId);
         if (interviewDataList.isEmpty()) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            return new UniversalResponseBody<List<InterviewData>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), null);
         }
         return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), interviewDataList);
     }
@@ -100,40 +86,24 @@ public class InterviewDataServiceImpl implements InterviewDataService {
     public UniversalResponseBody<PageInfo<Resume>> unRetest(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         List<Integer> userIdList = interviewStatusMapper.getUserIdByRetestStatus(organizationId, departmentName, InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
         //如果无返回结果
-        if (userIdList == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        if (userIdList.isEmpty()) {
+            return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), null);
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<Resume> pageInfo = new PageInfo<Resume>(resumeMapper.getResumesByUserId(userIdList, organizationId));
-        //如果查询结果的总数不为0
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<Resume>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else if (pageInfo == null) {
-            //结果为空
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<Resume>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
     @Override
     public UniversalResponseBody<PageInfo<InterviewScorePO>> Retested(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         List<Integer> userIdList = interviewStatusMapper.getUserIdByRetestStatus(organizationId, departmentName, InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
         //如果无返回结果
-        if (userIdList == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        if (userIdList.isEmpty()) {
+            return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), null);
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else if (pageInfo == null) {
-            //结果为空
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
     @Override
@@ -141,19 +111,11 @@ public class InterviewDataServiceImpl implements InterviewDataService {
         List<Integer> userIdList = interviewStatusMapper.getUserIdByRetestStatus(organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
         //将两个集合拼接
         userIdList.addAll(interviewStatusMapper.getUserIdsByFirstStatus(organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus()));
-        if (userIdList == null) {
+        if (userIdList.isEmpty()) {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else if (pageInfo == null) {
-            //结果为空
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 }
