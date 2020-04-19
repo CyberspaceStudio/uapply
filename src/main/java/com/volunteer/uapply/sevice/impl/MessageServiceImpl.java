@@ -57,20 +57,23 @@ public class MessageServiceImpl implements MessageService {
     /**
      * 此处在方法里面写死，因为阿里云规范不让出现面试、群号
      */
-    private static String activity = "面试";
+    private static final String activity = "面试";
 
-    private static String Domain = "dysmsapi.aliyuncs.com";
+    private static final String Domain = "dysmsapi.aliyuncs.com";
 
-    private static String Version = "2017-05-25";
+    private static final String Version = "2017-05-25";
 
-    private static String Action = "SendSms";
+    private static final String Action = "SendSms";
 
+
+    private static final String SuccessCode = "OK";
 
     @Override
     public UniversalResponseBody<AliyunResponseInfo> sendFirstInterviewMessage(AliyunFisrtInterviewParam aliyunFisrtInterviewParam) throws ClientException {
         List<User> userList = userMessageMapper.getUsersByUserId(aliyunFisrtInterviewParam.getUserId());
         for (User user :
                 userList) {
+            log.info(user.toString());
             IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
             IAcsClient client = new DefaultAcsClient(profile);
             CommonRequest request = new CommonRequest();
@@ -90,9 +93,9 @@ public class MessageServiceImpl implements MessageService {
                     + "\"activity\":\"" + activity + "\","
                     + "}");
             CommonResponse commonResponse = client.getCommonResponse(request);
-            log.info(commonResponse.getData());
             AliyunResponseInfo aliyunResponseInfo = JSON.parseObject(commonResponse.getData(), AliyunResponseInfo.class);
-            if (aliyunResponseInfo.getCode() == "OK") {
+            if (aliyunResponseInfo.getCode().equals(SuccessCode)) {
+
             } else {
                 log.error(aliyunResponseInfo.toString() + "一面短信发送失败" + user.toString());
                 return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg(), aliyunResponseInfo);
@@ -121,13 +124,14 @@ public class MessageServiceImpl implements MessageService {
             request.putQueryParameter("TemplateParam", "{\"name\":\"" + user.getUserName() + "\","
                     + "\"timeSlot\":\"" + aliyunSecondInterviewParam.getTimeSlot() + "\","
                     + "\"department\":\"" + aliyunSecondInterviewParam.getDepartmentName() + "\","
+                    + "\"organizationName\":\"" + aliyunSecondInterviewParam.getOrganizationName() + "\","
                     + "\"telNo\":\"" + aliyunSecondInterviewParam.getTelNo() + "\","
                     + "\"place\":\"" + aliyunSecondInterviewParam.getPlace() + "\","
                     + "\"activity\":\"" + activity + "\","
                     + "}");
             CommonResponse commonResponse = client.getCommonResponse(request);
             AliyunResponseInfo aliyunResponseInfo = JSON.parseObject(commonResponse.getData(), AliyunResponseInfo.class);
-            if (aliyunResponseInfo.getCode() == "OK") {
+            if (aliyunResponseInfo.getCode().equals(SuccessCode)) {
             } else {
                 log.error(aliyunResponseInfo.toString() + "二面短信发送失败" + user.toString());
                 return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg(), aliyunResponseInfo);
@@ -138,7 +142,6 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public UniversalResponseBody<AliyunResponseInfo> sendEnrollInterviewMessage(AliyunEnrollParam aliyunEnrollParam) throws ClientException {
-
         IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         List<User> userList = userMessageMapper.getUsersByUserId(aliyunEnrollParam.getUserId());
         for (User user :
@@ -152,7 +155,7 @@ public class MessageServiceImpl implements MessageService {
             request.putQueryParameter("RegionId", "cn-hangzhou");
             request.putQueryParameter("PhoneNumbers", user.getUserTel());
             request.putQueryParameter("SignName", SignName);
-            request.putQueryParameter("TemplateCode", secondInterviewTemplateCode);
+            request.putQueryParameter("TemplateCode", enrollTemplateCode);
             request.putQueryParameter("TemplateParam", "{\"name\":\"" + user.getUserName() + "\","
                     + "\"organizationName\":\"" + aliyunEnrollParam.getOrganizationName() + "\","
                     + "\"department\":\"" + aliyunEnrollParam.getDepartmentName() + "\","
@@ -160,7 +163,7 @@ public class MessageServiceImpl implements MessageService {
                     + "}");
             CommonResponse commonResponse = client.getCommonResponse(request);
             AliyunResponseInfo aliyunResponseInfo = JSON.parseObject(commonResponse.getData(), AliyunResponseInfo.class);
-            if (aliyunResponseInfo.getCode() == "OK") {
+            if (aliyunResponseInfo.getCode().equals(SuccessCode)) {
             } else {
                 log.error(aliyunResponseInfo.toString() + "录取短信发送失败" + user.toString());
                 return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg(), aliyunResponseInfo);

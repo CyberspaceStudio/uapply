@@ -36,7 +36,14 @@ public enum ResponseResultEnum {
      * 部门错误
      */
     DEPARTMENT_ACCOUNT_HAVE_EXIST(4000, "部门账号已经被占用"),
-    DEPARTMENT_NAME_HAVE_EXIST(4001, "部门名称已经被占用");
+    DEPARTMENT_NAME_HAVE_EXIST(4001, "部门名称已经被占用"),
+
+    /**
+     * 服务器错误
+     */
+    SERVER_VISITS_EXCESSIVE(5000, "访问次数超出限制，请稍后再试"),
+    SERVER_BUSY(5001, "服务器繁忙，请稍后重试");
+
 
     /**
      * 返回结果代码

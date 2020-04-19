@@ -2,6 +2,7 @@ package com.volunteer.uapply.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.annotation.DepartmentLogin;
+import com.volunteer.uapply.annotation.LxRateLimit;
 import com.volunteer.uapply.annotation.PassToken;
 import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.*;
@@ -40,6 +41,7 @@ public class DepartmentController {
      */
     @PassToken
     @PostMapping("/login")
+    //@LxRateLimit(timeOut = 500,perSecond =1)
     public UniversalResponseBody<TokenPO<Department>> departmentLogin(String departmentAccount, String departmentPwd) {
         return departmentService.departmentLogin(departmentAccount, departmentPwd);
     }

@@ -101,6 +101,9 @@ public class ResumeServiceImpl implements ResumeService {
         //增加部门面试数据中的已经面试人数
         interviewDataMapper.plusInterviewCounts(interviewScorePO.getDepartmentName());
         InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId());
+        if (interviewStatus == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
         //匹配是第几志愿部门，并修改相应状态为已面试
         if (interviewStatus.getFirstChoice().equals(interviewScorePO.getDepartmentName())) {
             interviewStatusMapper.updateFirstInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
