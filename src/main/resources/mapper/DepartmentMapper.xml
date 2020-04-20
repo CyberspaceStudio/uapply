@@ -38,5 +38,19 @@
         FROM department
         WHERE department_name = #{departmentName,jdbcType=VARCHAR}
     </select>
+    <select id="getDepartmentsByOrganizationId" resultType="com.volunteer.uapply.pojo.Department">
+        SELECT
+        department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
+        param1_name,param2_name,param3_name,param4_name,param5_name
+        FROM department
+        WHERE organization_id = #{organizationId,jdbcType=INTEGER}
+    </select>
+    <select id="getDepartmentById" resultType="com.volunteer.uapply.pojo.Department">
+        SELECT
+        department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
+        param1_name,param2_name,param3_name,param4_name,param5_name
+        FROM department
+        WHERE department_id = #{departmentId,jdbcType=INTEGER}
+    </select>
 
 </mapper>

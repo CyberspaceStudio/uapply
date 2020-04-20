@@ -21,6 +21,11 @@ public class AliyunSecondInterviewParam {
     private String departmentName;
 
     /**
+     * 组织名称
+     */
+    private String organizationName;
+
+    /**
      * 时间
      */
     private String timeSlot;

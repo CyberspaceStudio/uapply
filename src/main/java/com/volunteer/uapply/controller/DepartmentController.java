@@ -2,7 +2,9 @@ package com.volunteer.uapply.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.annotation.DepartmentLogin;
+import com.volunteer.uapply.annotation.LxRateLimit;
 import com.volunteer.uapply.annotation.PassToken;
+import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.*;
 import com.volunteer.uapply.pojo.info.TokenPO;
 import com.volunteer.uapply.sevice.DepartmentService;
@@ -33,13 +35,13 @@ public class DepartmentController {
 
     /**
      * 部门PC端登录
-     *
      * @param departmentAccount
      * @param departmentPwd
      * @return
      */
     @PassToken
     @PostMapping("/login")
+    //@LxRateLimit(timeOut = 500,perSecond =1)
     public UniversalResponseBody<TokenPO<Department>> departmentLogin(String departmentAccount, String departmentPwd) {
         return departmentService.departmentLogin(departmentAccount, departmentPwd);
     }
@@ -55,8 +57,33 @@ public class DepartmentController {
         return departmentService.departmentRegister(department);
     }
 
+
+    /**
+     * 获取组织下的全部部门
+     *
+     * @param organizationId
+     * @return
+     */
+    @GetMapping("/organization")
+    public UniversalResponseBody<List<Department>> organizationDepartments(Integer organizationId) {
+        return departmentService.organizationDepartments(organizationId);
+    }
+
+
+    /**
+     * 获取该部门的信息
+     *
+     * @param departmentId
+     * @return
+     */
+    @GetMapping("/detail")
+    public UniversalResponseBody<Department> getDepartmentDetail(Integer departmentId) {
+        return departmentService.getDepartmentDetail(departmentId);
+    }
+
     /**
      * 增加部门面试信息
+     *
      * @param department
      * @return
      */
@@ -80,7 +107,7 @@ public class DepartmentController {
 
 
     /**
-     * 获取部门面试官
+     * 获取部门面试官Id
      * @param departmentId
      * @return
      */
@@ -92,7 +119,6 @@ public class DepartmentController {
 
     /**
      * 分页查询部员数据
-     *
      * @param departmentId
      * @param pageNum
      * @param pageSize
@@ -115,4 +141,7 @@ public class DepartmentController {
     public void exportMessages(Integer departmentId, HttpServletResponse response) {
         departmentService.getAllMembersToExcel(departmentId, response);
     }
+
+
+
 }

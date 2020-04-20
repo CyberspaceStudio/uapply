@@ -9,11 +9,11 @@ wx:
   url: https://api.weixin.qq.com/sns/jscode2session?appid=${wx.appid}&secret=${wx.secret}&grant_type=authorization_code&js_code=
 aliyun:
   firstInterviewTemplateCode: SMS_174022636
-  secondInterviewTemplateCode: SMS_183245782
+  secondInterviewTemplateCode: SMS_187751364
   enrollTemplateCode: SMS_187570347
   SignName: U报名
-  accessKeySecret:
-  accessKeyId:
+  accessKeySecret: VZEiKwqQnYtvK9up6FdUOolgeRdLbx
+  accessKeyId: LTAI4FtHHhFxRXNGn8EGCY4r
 
 spring:
   profiles:

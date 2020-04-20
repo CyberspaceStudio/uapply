@@ -36,6 +36,23 @@ public interface DepartmentService {
     UniversalResponseBody<Department> departmentRegister(Department department);
 
     /**
+     * 获取组织下的全部部门
+     *
+     * @param organizationId
+     * @return
+     */
+    UniversalResponseBody<List<Department>> organizationDepartments(Integer organizationId);
+
+
+    /**
+     * 获取该部门的信息
+     *
+     * @param departmentId
+     * @return
+     */
+    UniversalResponseBody<Department> getDepartmentDetail(Integer departmentId);
+
+    /**
      * 部门面试详细数据
      *
      * @param department

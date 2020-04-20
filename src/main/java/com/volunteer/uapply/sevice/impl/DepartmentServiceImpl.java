@@ -66,6 +66,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 
     @Override
+    public UniversalResponseBody<List<Department>> organizationDepartments(Integer organizationId) {
+        //获取组织下的全部部门
+        List<Department> departmentList = departmentMapper.getDepartmentsByOrganizationId(organizationId);
+        if (departmentList == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        } else {
+            return new UniversalResponseBody<List<Department>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), departmentList);
+        }
+    }
+
+
+    @Override
     public UniversalResponseBody<Department> departmentRegister(Department department) {
         //首先查看有没有相同账号的部门
         Department department1 = departmentMapper.getDepartmentByAccount(department.getDepartmentAccount());
@@ -96,6 +108,17 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
     }
 
+
+    @Override
+    public UniversalResponseBody<Department> getDepartmentDetail(Integer departmentId) {
+        Department department = departmentMapper.getDepartmentById(departmentId);
+        if (department == null) {
+            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        } else {
+            return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
+        }
+    }
+
     @Override
     public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
         //根据departmentId查找相应部门信息
@@ -106,25 +129,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         for (Integer temp :
                 userId) {
-            /*//查询此部门中是否已有此部员
-            List<DepartmentMember> departmentMemberList = departmentMemberMapper.getUserAuthority(temp);
-            Integer flag = 0;
-            for (DepartmentMember departmentMember :
-                    departmentMemberList) {
-                //若部门成员中已有此人
-                if (departmentMember.getDepartmentId().equals(departmentId)) {
-                    //更新用户权限
-                    departmentMemberMapper.updateUserAuthority(departmentId, AuthorityIdEnum.MINISTER.getAuthorityId(), temp);
-                    flag = 1;
-                    //部门中此人只能有一个，所以更新完后，跳出循环
-                    break;
-                }
-            }
-            //部门中没有此人
-            if (flag.equals(0)) {
-                departmentMemberMapper.insertDepartmentMember(departmentId, department.getDepartmentName(), temp, AuthorityIdEnum.MINISTER.getAuthorityId());
-            }*/
-            //查询此部门中是否有此人
             DepartmentMember departmentMember = departmentMemberMapper.getUserDepartmentAuthority(temp, departmentId);
             if (departmentMember == null) {
                 departmentMemberMapper.insertDepartmentMember(departmentId, department.getDepartmentName(), temp, AuthorityIdEnum.MINISTER.getAuthorityId());
@@ -132,13 +136,15 @@ public class DepartmentServiceImpl implements DepartmentService {
                 departmentMemberMapper.updateUserAuthority(departmentId, AuthorityIdEnum.MINISTER.getAuthorityId(), temp);
             }
         }
-
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 
     @Override
     public UniversalResponseBody<PageInfo<User>> getMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.STAFF.getAuthorityId());
+        if (departmentMemberList.isEmpty()) {
+            return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+        }
         Integer[] userId = new Integer[departmentMemberList.size()];
         int i = 0;
         for (DepartmentMember departmentMember :
@@ -147,12 +153,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<User> pageInfo = new PageInfo<User>(userMessageMapper.getUsersByUserId(userId));
-        //如果查询结果不为空
-        if (pageInfo.getTotal() != 0) {
-            return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
-        } else {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        }
+        return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
 

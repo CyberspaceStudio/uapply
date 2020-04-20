@@ -12,7 +12,7 @@
     <update id="updateRetestStatus">
         UPDATE  interview_status SET
         retest_status = #{retestStatus,jdbcType=VARCHAR},retest_choice = #{departmentName,jdbcType=VARCHAR}
-        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizati  onId,jdbcType=INTEGER}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
     </update>
 
     <update id="updateFirstInterviewStatus">
