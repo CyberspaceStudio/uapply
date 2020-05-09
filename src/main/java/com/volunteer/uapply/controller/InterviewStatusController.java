@@ -1,6 +1,7 @@
 package com.volunteer.uapply.controller;
 
 import com.volunteer.uapply.annotation.DepartmentLogin;
+import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.sevice.InterviewStatusService;
 import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
@@ -37,7 +38,7 @@ public class InterviewStatusController {
      * @param userId
      * @return
      */
-    @DepartmentLogin
+    @UserLogin
     @GetMapping("/getstatus")
     public UniversalResponseBody<List<InterviewStatus>> getInterviewStatus(Integer userId) {
         return interviewStatusService.getInterviewStatus(userId);
@@ -78,7 +79,7 @@ public class InterviewStatusController {
      * @return
      * @apiNote 将复试状态设置为已面试
      */
-    @DepartmentLogin
+    @UserLogin
     @PostMapping("/retest/check")
     public UniversalResponseBody retestCheck(Integer userId, String departmentName, Integer organizationId) {
         //把userId转换为数组类型

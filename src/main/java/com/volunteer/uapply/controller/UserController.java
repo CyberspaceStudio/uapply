@@ -1,6 +1,7 @@
 package com.volunteer.uapply.controller;
 
 import com.volunteer.uapply.annotation.PassToken;
+import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.DepartmentMember;
 import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.pojo.info.TokenPO;
@@ -47,7 +48,7 @@ public class UserController {
      * @param userId
      * @return
      */
-    @PassToken
+    @UserLogin
     @GetMapping("/profession")
     public UniversalResponseBody<List<DepartmentMember>> getUserProfession(Integer userId) {
         return userService.getUserPermission(userId);

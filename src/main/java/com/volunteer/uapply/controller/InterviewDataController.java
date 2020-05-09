@@ -4,6 +4,7 @@ package com.volunteer.uapply.controller;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.annotation.DepartmentLogin;
+import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.InterviewScorePO;
@@ -116,7 +117,7 @@ public class InterviewDataController {
      * @param departmentName
      * @return
      */
-    @DepartmentLogin
+    @UserLogin
     @GetMapping("/department")
     public UniversalResponseBody<InterviewData> departmentInterDate(String departmentName) {
         return interviewDataService.departmentInterDate(departmentName);
@@ -130,7 +131,7 @@ public class InterviewDataController {
      * @return
      * @apiNote 获取整个组织下面所有部门的面试数据
      */
-    @DepartmentLogin
+    @UserLogin
     @GetMapping("/organization")
     public UniversalResponseBody<List<InterviewData>> organizationCounts(Integer organizationId) {
         return interviewDataService.organizationCounts(organizationId);
