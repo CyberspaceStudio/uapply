@@ -37,7 +37,7 @@ public class InterviewDataController {
     private InterviewDataService interviewDataService;
 
     /**
-     * 未一面
+     * 部门未一面
      *
      * @param pageSize
      * @param pageNum
@@ -52,7 +52,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 已经一面
+     * 部门已经一面
      *
      * @param pageSize
      * @param pageNum
@@ -67,7 +67,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 未二面
+     * 部门未二面
      *
      * @param pageSize
      * @param pageNum
@@ -82,7 +82,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 已经二面
+     * 部门已经二面
      *
      * @param pageSize
      * @param pageNum
@@ -98,7 +98,6 @@ public class InterviewDataController {
 
     /**
      * 部门淘汰名单
-     *
      * @param pageSize
      * @param pageNum
      * @param departmentName
@@ -109,6 +108,20 @@ public class InterviewDataController {
     @GetMapping("/eliminationList")
     public UniversalResponseBody<PageInfo<InterviewScorePO>> getEliminationList(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.getEliminationList(organizationId, departmentName, pageNum, pageSize);
+    }
+
+    /**
+     * 组织淘汰名单
+     *
+     * @param organizationId
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @DepartmentLogin
+    @GetMapping("/organization/eliminationList")
+    public UniversalResponseBody<PageInfo<InterviewScorePO>> getOrganizationEliminationList(Integer organizationId, Integer pageNum, Integer pageSize) {
+        return interviewDataService.getOrganizationEliminationList(organizationId, pageNum, pageSize);
     }
 
     /**
@@ -126,7 +139,6 @@ public class InterviewDataController {
 
     /**
      * 整个组织的面试数据
-     *
      * @param organizationId
      * @return
      * @apiNote 获取整个组织下面所有部门的面试数据

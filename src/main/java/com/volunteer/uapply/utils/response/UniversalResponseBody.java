@@ -57,10 +57,10 @@ public class UniversalResponseBody<T> {
 
     @Override
     public String toString() {
-        return "UniversalResponseBody{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
+        return "{" +
+                "code:" + code +
+                "msg:" + msg +
+                "data:" + data +
                 '}';
     }
 }

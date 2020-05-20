@@ -57,7 +57,7 @@ public class ResumeServiceImpl implements ResumeService {
         if (resumeMapper.InsertResume(resume) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
-        //修改面试状态
+        //向面试状态数据库中插入一条新数据
         InterviewStatus interviewStatus = new InterviewStatus(resume.getUserId(), resume.getOrganizationId(), resume.getOrganizationName(), firstChoice, secondChoice);
         if (interviewStatusMapper.insertInterviewStatus(interviewStatus) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());

@@ -46,10 +46,12 @@ public class InterviewStatusController {
 
     /**
      * 一面通过
+     *
      * @param userId
      * @param departmentName
      * @param organizationId
      * @return
+     * @apiNote 将成员的一面状态设置为通过
      */
     @DepartmentLogin
     @PostMapping("/first/pass")
@@ -59,6 +61,7 @@ public class InterviewStatusController {
 
     /**
      * 一面淘汰
+     * @apiNote 将成员的一面状态设置为淘汰
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -72,7 +75,6 @@ public class InterviewStatusController {
 
     /**
      * 二面签到
-     *
      * @param userId
      * @param departmentName
      * @param organizationId
@@ -90,7 +92,7 @@ public class InterviewStatusController {
 
     /**
      * 二面淘汰
-     *
+     * @apiNote 将成员的二面状态设置为淘汰
      * @param userId
      * @param departmentName
      * @param organizationId

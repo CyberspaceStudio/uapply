@@ -60,7 +60,6 @@ public class DepartmentController {
 
     /**
      * 获取组织下的全部部门
-     *
      * @param organizationId
      * @return
      */

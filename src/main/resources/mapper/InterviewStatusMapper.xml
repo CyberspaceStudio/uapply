@@ -48,5 +48,10 @@
         where organization_id = #{organizationId,jdbcType=INTEGER}
         AND retest_choice = #{status,jdbcType=VARCHAR}
     </select>
+    <select id="getUserIdByOrganizationId" resultType="java.lang.Integer">
+        SELECT user_id FROM interview_status
+        where organization_id = #{organizationId,jdbcType=INTEGER}
+        AND (second_status = #{status,jdbcType=VARCHAR} OR first_status = #{status,jdbcType=VARCHAR} OR retest_choice = #{status,jdbcType=VARCHAR})
+    </select>
 
 </mapper>

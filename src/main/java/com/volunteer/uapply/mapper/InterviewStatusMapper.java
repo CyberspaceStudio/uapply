@@ -90,4 +90,12 @@ public interface InterviewStatusMapper {
     List<Integer> getUserIdByRetestStatus(Integer organizationId, String departmentName, String status);
 
 
+    /**
+     * 根据用户
+     *
+     * @param organizationId
+     * @param status
+     * @return
+     */
+    List<Integer> getUserIdByOrganizationId(Integer organizationId, String status);
 }

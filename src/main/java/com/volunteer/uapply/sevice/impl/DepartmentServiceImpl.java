@@ -1,6 +1,6 @@
 package com.volunteer.uapply.sevice.impl;
 
-import com.github.pagehelper.Page;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.mapper.DepartmentMapper;
@@ -14,6 +14,7 @@ import com.volunteer.uapply.pojo.info.TokenPO;
 import com.volunteer.uapply.sevice.DepartmentService;
 import com.volunteer.uapply.utils.ExcelUtil;
 import com.volunteer.uapply.utils.Object2Map;
+import com.volunteer.uapply.utils.RedisUtil;
 import com.volunteer.uapply.utils.Tokenutil;
 import com.volunteer.uapply.utils.enums.AuthorityIdEnum;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.net.http.HttpResponse;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +47,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     private UserMessageMapper userMessageMapper;
     @Resource
     private InterviewDataMapper interviewDataMapper;
+    @Resource
+    private RedisUtil redisUtil;
 
     @Override
     public UniversalResponseBody<TokenPO<Department>> departmentLogin(String departmentAccount, String departmentPwd) {
@@ -55,9 +57,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (department == null) {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
         } else if (department.getDepartmentAccount().equals(departmentAccount) && department.getDepartmentPwd().equals(departmentPwd)) {
+            //将查询结果放入Redis中,key-value: 部门Id-部门详细信息的JSON格式
+            redisUtil.getAndSet(String.valueOf(department.getDepartmentId()), JSON.toJSONString(department));
             //生成token，并生成返回对象
             TokenPO<Department> tokenPO = new TokenPO<Department>(department, tokenutil.tokenByDepartmentId(department.getDepartmentId()));
-
             return new UniversalResponseBody<TokenPO<Department>>(ResponseResultEnum.USER_LOGIN_SUCCESS.getCode(), ResponseResultEnum.USER_LOGIN_SUCCESS.getMsg(), tokenPO);
         } else {
             return new UniversalResponseBody(ResponseResultEnum.USER_LOGIN_ERROR.getCode(), ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
@@ -85,8 +88,8 @@ public class DepartmentServiceImpl implements DepartmentService {
             return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getMsg());
         }
         //检查有没有相同名称的部门
-        Department department2 = departmentMapper.getDepartmentByName(department.getDepartmentName());
-        if (department1 != null) {
+        Department department2 = departmentMapper.getDepartmentByNameAndId(department.getDepartmentName(), department.getOrganizationId());
+        if (department2 != null) {
             return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_NAME_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_NAME_HAVE_EXIST.getMsg());
         }
         if (departmentMapper.insertDepartment(department) > 0) {
@@ -101,7 +104,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody<Department> departmentInterviewDetail(Department department) {
+        //插入部门面试参数
         if (departmentMapper.insertDepartmentInterviewDetail(department) > 0) {
+            redisUtil.setValue(String.valueOf(department.getDepartmentId()), JSON.toJSONString(department));
             return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
         } else {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
@@ -111,21 +116,28 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public UniversalResponseBody<Department> getDepartmentDetail(Integer departmentId) {
-        Department department = departmentMapper.getDepartmentById(departmentId);
+        //获取部门详细信息
+        Department department = redisUtil.getValue(String.valueOf(departmentId));
         if (department == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
-        } else {
-            return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
+            department = departmentMapper.getDepartmentById(departmentId);
+            if (department == null) {
+                return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            }
+            redisUtil.setValue(String.valueOf(departmentId), JSON.toJSONString(department));
         }
+        return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), department);
     }
 
     @Override
     public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
-        //根据departmentId查找相应部门信息
-        Department department = departmentMapper.getDepartmentByDepartmentId(departmentId);
-        //departmentId无效
+        //获取部门详细信息
+        Department department = redisUtil.getValue(String.valueOf(departmentId));
         if (department == null) {
-            return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            department = departmentMapper.getDepartmentById(departmentId);
+            if (department == null) {
+                return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            }
+            redisUtil.setValue(String.valueOf(departmentId), JSON.toJSONString(department));
         }
         for (Integer temp :
                 userId) {
@@ -142,7 +154,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public UniversalResponseBody<PageInfo<User>> getMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.STAFF.getAuthorityId());
-        if (departmentMemberList.isEmpty()) {
+        if (departmentMemberList == null) {
             return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         Integer[] userId = new Integer[departmentMemberList.size()];
@@ -160,7 +172,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void getAllMembersToExcel(Integer departmentId, HttpServletResponse response) {
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.STAFF.getAuthorityId());
-        Department department = departmentMapper.getDepartmentByDepartmentId(departmentId);
+        //获取部门详细信息
+        Department department = redisUtil.getValue(String.valueOf(departmentId));
+        if (department == null) {
+            department = departmentMapper.getDepartmentById(departmentId);
+            if (department == null) {
+                return;
+            }
+            redisUtil.setValue(String.valueOf(departmentId), JSON.toJSONString(department));
+        }
         Integer[] userId = new Integer[departmentMemberList.size()];
         int i = 0;
         for (DepartmentMember departmentMember :
