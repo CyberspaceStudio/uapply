@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.volunteer.uapply.mapper.InterviewStatusMapper">
+
+
+    <insert id="insertInterviewStatus">
+        INSERT INTO interview_status(user_id,organization_id,organization_name,first_choice,second_choice)
+        VALUES
+        (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{organizationName,jdbcType=VARCHAR},#{firstChoice,jdbcType=VARCHAR},#{secondChoice,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateRetestStatus">
+        UPDATE  interview_status SET
+        retest_status = #{retestStatus,jdbcType=VARCHAR},retest_choice = #{departmentName,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateFirstInterviewStatus">
+        UPDATE  interview_status SET
+        first_status = #{firstStatus,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </update>
+    <update id="updateSecondInterviewStatus">
+        UPDATE  interview_status SET
+        second_status = #{secondStatus,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="getInterviewStatusByUserId" resultType="com.volunteer.uapply.pojo.InterviewStatus">
+       SELECT user_id,organization_id,organization_name,first_choice,first_status,second_choice,second_status,retest_choice,retest_status
+       FROM interview_status
+       WHERE user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getInterviewStatusById" resultType="com.volunteer.uapply.pojo.InterviewStatus">
+        SELECT user_id,organization_id,organization_name,first_choice,first_status,second_choice,second_status,retest_choice,retest_status
+       FROM interview_status
+       WHERE user_id = #{userId,jdbcType=INTEGER} AND organization_id = #{organizationId,jdbcType=INTEGER}
+    </select>
+    <select id="getUserIdsByFirstStatus" resultType="java.lang.Integer">
+    SELECT user_id FROM interview_status where organization_id = #{organizationId,jdbcType=INTEGER}
+    AND ((first_choice = #{departmentName,jdbcType=VARCHAR} AND first_status = #{status,jdbcType=VARCHAR} )
+    OR (second_choice =#{departmentName,jdbcType=VARCHAR} AND second_status = #{status,jdbcType=VARCHAR}));
+   </select>
+    <select id="getUserIdByRetestStatus" resultType="java.lang.Integer">
+        SELECT user_id FROM interview_status
+        where organization_id = #{organizationId,jdbcType=INTEGER}
+        AND retest_choice = #{status,jdbcType=VARCHAR}
+    </select>
+    <select id="getUserIdByOrganizationId" resultType="java.lang.Integer">
+        SELECT user_id FROM interview_status
+        where organization_id = #{organizationId,jdbcType=INTEGER}
+        AND (second_status = #{status,jdbcType=VARCHAR} OR first_status = #{status,jdbcType=VARCHAR} OR retest_choice = #{status,jdbcType=VARCHAR})
+    </select>
+
+</mapper>

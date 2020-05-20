@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.volunteer.uapply.mapper.DepartmentMemberMapper">
+    <insert id="insertDepartmentMember">
+        INSERT INTO department_member(department_id,department_name,user_id,authority_id)
+        VALUES
+        (#{departmentId,jdbcType=VARCHAR},#{departmentName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},#{authorityId,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateUserAuthority">
+        UPDATE department_member
+        SET authority_id = #{authorityId,jdbcType=VARCHAR}
+        WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND user_id =#{userId,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteDepartmentMember">
+        DELETE FROM department_member
+        WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND user_id =#{userId,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getUserAuthority" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+        SELECT department_id,department_name,user_id,authority_id
+        FROM department_member
+        WHERE user_id =#{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getDepartmentMember" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+       SELECT department_id,department_name,user_id,authority_id
+        FROM department_member
+        WHERE department_id =#{departmentId,jdbcType=VARCHAR} AND authority_id = #{authorityId,jdbcType=VARCHAR}
+    </select>
+    <select id="getUserDepartmentAuthority" resultType="com.volunteer.uapply.pojo.DepartmentMember">
+         SELECT department_id,department_name,user_id,authority_id
+        FROM department_member
+        WHERE user_id =#{userId,jdbcType=INTEGER} AND department_id =#{departmentId,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
