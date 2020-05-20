@@ -1,5 +1,7 @@
 package com.volunteer.uapply;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.exceptions.ClientException;
 import com.power.common.util.DateTimeUtil;
 import com.power.doc.builder.ApiDocBuilder;
@@ -9,39 +11,36 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiDataDictionary;
 import com.power.doc.model.ApiErrorCodeDictionary;
 import com.power.doc.model.ApiReqHeader;
+import com.volunteer.uapply.utils.RedisUtil;
 import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
 import com.volunteer.uapply.utils.enums.AuthorityIdEnum;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
+import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+
+import javax.annotation.Resource;
 
 @SpringBootTest
 class UapplyApplicationTests {
+
+    @Resource
+    RedisUtil redisUtil;
+
+    @Resource
+    StringRedisTemplate stringRedisTemplate;
 
     @Test
     void contextLoads() {
 
     }
 
-    //生成API-Markdown文件的测试类
     @Test
-    public void ApiBuild() {
-        ApiConfig config = new ApiConfig();
-        //当把AllInOne设置为true时，Smart-doc将会把所有接口生成到一个Markdown、HHTML或者AsciiDoc中
-        config.setAllInOne(true);
-        //Set the api document output path.
-        config.setOutPath("C:\\Users\\24605\\Desktop\\uapply");
-        config.setPackageFilters("com.volunteer.uapply.controller");
-        //1.7.9 优化了错误码处理，用于下面替代遍历枚举设置错误码
-        config.setErrorCodeDictionaries(
-                ApiErrorCodeDictionary.dict().setEnumClass(ResponseResultEnum.class)
-                        .setCodeField("code") //错误码值字段名
-                        .setDescField("msg")//错误码描述
-        );
-
-
-        //生成Markdown文件
-        ApiDocBuilder.buildApiDoc(config);
+    void RedisTest() {
+        UniversalResponseBody<Integer> universalResponseBody = new UniversalResponseBody<Integer>(0, "Success", 10);
+        redisUtil.setValue("2", JSON.toJSONString(universalResponseBody));
     }
 
     //生成API-H5文档

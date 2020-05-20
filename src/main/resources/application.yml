@@ -18,6 +18,11 @@ aliyun:
 spring:
   profiles:
     active: dev
+  redis:
+    database: 0
+    password: Gzsnb@666
+    host: 47.103.218.66
+
 
 ---
 spring:

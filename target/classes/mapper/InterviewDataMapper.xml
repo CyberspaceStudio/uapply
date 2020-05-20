@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.volunteer.uapply.mapper.InterviewDataMapper">
+
+
+    <insert id="initDepartInterviewData">
+        INSERT INTO interview_data(department_id,department_name,organization_id)
+        VALUES
+        (#{departmentId,jdbcType=INTEGER},#{departmentName,jdbcType=VARCHAR},#{organizationId,jdbcType=INTEGER})
+    </insert>
+    <update id="plusManCounts">
+        UPDATE interview_data
+        SET man_counts = man_counts+1,apply_counts = apply_counts+1
+        WHERE department_name = #{departmentName,jdbcType=VARCHAR}
+    </update>
+    <update id="plusWomanCounts">
+        UPDATE interview_data
+        SET woman_counts = woman_counts+1,apply_counts = apply_counts+1
+        WHERE department_name = #{departmentName,jdbcType=VARCHAR}
+    </update>
+    <update id="plusCrossCounts">
+        UPDATE interview_data
+        SET cross_counts = cross_counts+1
+        WHERE department_name = #{departmentName,jdbcType=VARCHAR}
+    </update>
+
+
+    <update id="plusInterviewCounts">
+        UPDATE interview_data
+        SET interview_counts = interview_counts+1
+        WHERE department_name = #{departmentName,jdbcType=VARCHAR}
+    </update>
+    <select id="getDepartInterviewData" resultType="com.volunteer.uapply.pojo.InterviewData">
+        SELECT department_id,department_name,organization_id,man_counts,woman_counts,apply_counts,cross_counts,interview_counts
+        FROM interview_data
+        WHERE department_name = #{departmentName,jdbcType=VARCHAR}
+    </select>
+    <select id="getOrganInterviewData" resultType="com.volunteer.uapply.pojo.InterviewData">
+        SELECT department_id,department_name,organization_id,man_counts,woman_counts,apply_counts,cross_counts,interview_counts
+        FROM interview_data
+        WHERE organization_id = #{organizationId,jdbcType=INTEGER}
+    </select>
+</mapper>

@@ -13,7 +13,6 @@ public interface DepartmentMapper {
 
     /**
      * 通过部门账号查找部门
-     *
      * @param departmentAccount
      * @return
      */
@@ -26,6 +25,15 @@ public interface DepartmentMapper {
      * @return
      */
     Department getDepartmentByName(String departmentName);
+
+    /**
+     * 根据部门名称和部门Id查找部门
+     *
+     * @param departmentName
+     * @param departmentId
+     * @return
+     */
+    Department getDepartmentByNameAndId(String departmentName, Integer departmentId);
 
 
     /**

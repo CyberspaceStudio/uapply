@@ -75,7 +75,7 @@ public class ResumeController {
      * @return
      * @apiNote 获取用户在某组织的全部简历评价
      */
-    @UserLogin
+    @DepartmentLogin
     @GetMapping("/scores")
     public UniversalResponseBody<List<InterviewScorePO>> getAllResumeScores(Integer userId, Integer organizationId) {
         return resumeService.getAllResumeScores(userId, organizationId);

@@ -23,6 +23,7 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\Department
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\DepartmentService.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\InterviewDataService.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\controller\UserController.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\annotation\LxRateLimit.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\ExcelUtil.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\controller\InterviewStatusController.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\impl\InterviewDataServiceImpl.java
@@ -44,6 +45,7 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\impl\Mes
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\InterviewStatusService.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\Resume.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\InterviewDataMapper.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\aspect\LxRateLimitAspect.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\Department.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\ResumeMapper.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\info\WxResponseInfo.java

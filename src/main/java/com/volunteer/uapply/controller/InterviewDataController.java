@@ -4,6 +4,7 @@ package com.volunteer.uapply.controller;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.github.pagehelper.PageInfo;
 import com.volunteer.uapply.annotation.DepartmentLogin;
+import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.InterviewScorePO;
@@ -36,7 +37,7 @@ public class InterviewDataController {
     private InterviewDataService interviewDataService;
 
     /**
-     * 未一面
+     * 部门未一面
      *
      * @param pageSize
      * @param pageNum
@@ -51,7 +52,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 已经一面
+     * 部门已经一面
      *
      * @param pageSize
      * @param pageNum
@@ -66,7 +67,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 未二面
+     * 部门未二面
      *
      * @param pageSize
      * @param pageNum
@@ -81,7 +82,7 @@ public class InterviewDataController {
     }
 
     /**
-     * 已经二面
+     * 部门已经二面
      *
      * @param pageSize
      * @param pageNum
@@ -97,7 +98,6 @@ public class InterviewDataController {
 
     /**
      * 部门淘汰名单
-     *
      * @param pageSize
      * @param pageNum
      * @param departmentName
@@ -111,12 +111,26 @@ public class InterviewDataController {
     }
 
     /**
+     * 组织淘汰名单
+     *
+     * @param organizationId
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @DepartmentLogin
+    @GetMapping("/organization/eliminationList")
+    public UniversalResponseBody<PageInfo<InterviewScorePO>> getOrganizationEliminationList(Integer organizationId, Integer pageNum, Integer pageSize) {
+        return interviewDataService.getOrganizationEliminationList(organizationId, pageNum, pageSize);
+    }
+
+    /**
      * 获取部门面试数据
      *
      * @param departmentName
      * @return
      */
-    @DepartmentLogin
+    @UserLogin
     @GetMapping("/department")
     public UniversalResponseBody<InterviewData> departmentInterDate(String departmentName) {
         return interviewDataService.departmentInterDate(departmentName);
@@ -125,12 +139,11 @@ public class InterviewDataController {
 
     /**
      * 整个组织的面试数据
-     *
      * @param organizationId
      * @return
      * @apiNote 获取整个组织下面所有部门的面试数据
      */
-    @DepartmentLogin
+    @UserLogin
     @GetMapping("/organization")
     public UniversalResponseBody<List<InterviewData>> organizationCounts(Integer organizationId) {
         return interviewDataService.organizationCounts(organizationId);
