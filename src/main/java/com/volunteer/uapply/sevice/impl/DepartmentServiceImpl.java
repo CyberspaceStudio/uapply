@@ -87,6 +87,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (department1 != null) {
             return new UniversalResponseBody(ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getCode(), ResponseResultEnum.DEPARTMENT_ACCOUNT_HAVE_EXIST.getMsg());
         }
+        log.info(String.valueOf(department.getOrganizationId()));
         //检查有没有相同名称的部门
         Department department2 = departmentMapper.getDepartmentByNameAndId(department.getDepartmentName(), department.getOrganizationId());
         if (department2 != null) {

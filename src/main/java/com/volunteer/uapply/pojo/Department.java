@@ -32,6 +32,7 @@ public class Department {
      * 组织名称
      */
     private String organizationName;
+
     /**
      * 部门PC登录账号
      */

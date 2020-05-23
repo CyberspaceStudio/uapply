@@ -30,10 +30,10 @@ public interface DepartmentMapper {
      * 根据部门名称和部门Id查找部门
      *
      * @param departmentName
-     * @param departmentId
+     * @param organizationId
      * @return
      */
-    Department getDepartmentByNameAndId(String departmentName, Integer departmentId);
+    Department getDepartmentByNameAndId(String departmentName, Integer organizationId);
 
 
     /**
