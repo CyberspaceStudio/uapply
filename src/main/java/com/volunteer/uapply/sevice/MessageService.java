@@ -42,4 +42,12 @@ public interface MessageService {
      * @return
      */
     UniversalResponseBody<AliyunResponseInfo> sendEnrollInterviewMessage(AliyunEnrollParam aliyunEnrollParam) throws ClientException;
+
+    /**
+     * 多线程并发发送录取短信
+     *
+     * @param aliyunEnrollParam
+     * @return
+     */
+    UniversalResponseBody<AliyunResponseInfo> currentSendEnrollInterviewMessage(AliyunEnrollParam aliyunEnrollParam) throws ClientException;
 }
