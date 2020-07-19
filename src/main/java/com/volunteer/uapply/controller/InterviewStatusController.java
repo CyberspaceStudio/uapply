@@ -3,6 +3,7 @@ package com.volunteer.uapply.controller;
 import com.volunteer.uapply.annotation.DepartmentLogin;
 import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.InterviewStatus;
+import com.volunteer.uapply.pojo.dto.IdArrayParam;
 import com.volunteer.uapply.sevice.InterviewStatusService;
 import com.volunteer.uapply.utils.enums.InterviewStatusEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
@@ -47,30 +48,27 @@ public class InterviewStatusController {
     /**
      * 一面通过
      *
-     * @param userId
-     * @param departmentName
-     * @param organizationId
+     * @param idArrayParam
      * @return
      * @apiNote 将成员的一面状态设置为通过
      */
     @DepartmentLogin
     @PostMapping("/first/pass")
-    public UniversalResponseBody FirstInterviewPass(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.changeFirstInterviewStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
+    public UniversalResponseBody FirstInterviewPass(IdArrayParam idArrayParam) {
+        return interviewStatusService.changeFirstInterviewStatus(idArrayParam.getUserId(), idArrayParam.getOrganizationId(), idArrayParam.getDepartmentName(), InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
     }
 
     /**
      * 一面淘汰
-     * @apiNote 将成员的一面状态设置为淘汰
-     * @param userId
-     * @param departmentName
-     * @param organizationId
+     *
+     * @param idArrayParam
      * @return
+     * @apiNote 将成员的一面状态设置为淘汰
      */
     @DepartmentLogin
     @PostMapping("/first/eliminate")
-    public UniversalResponseBody FirstInterviewEliminate(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.changeFirstInterviewStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
+    public UniversalResponseBody FirstInterviewEliminate(IdArrayParam idArrayParam) {
+        return interviewStatusService.changeFirstInterviewStatus(idArrayParam.getUserId(), idArrayParam.getOrganizationId(), idArrayParam.getDepartmentName(), InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
     }
 
     /**
@@ -92,60 +90,54 @@ public class InterviewStatusController {
 
     /**
      * 二面淘汰
-     * @apiNote 将成员的二面状态设置为淘汰
-     * @param userId
-     * @param departmentName
-     * @param organizationId
+     *
+     * @param idArrayParam
      * @return
+     * @apiNote 将成员的二面状态设置为淘汰
      */
     @DepartmentLogin
     @PostMapping("/retest/eliminate")
-    public UniversalResponseBody retestEliminate(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.changeRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
+    public UniversalResponseBody retestEliminate(IdArrayParam idArrayParam) {
+        return interviewStatusService.changeRetestStatus(idArrayParam.getUserId(), idArrayParam.getOrganizationId(), idArrayParam.getDepartmentName(), InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus());
     }
 
     /**
      * 二面未面试
-     * @param userId
-     * @param departmentName
-     * @param organizationId
+     *
+     * @param idArrayParam
      * @return
      * @apiNote 将成员的二面状态设置未面试
      */
     @DepartmentLogin
     @PostMapping("/retest/cancel")
-    public UniversalResponseBody cancelRetest(Integer[] userId, String departmentName, Integer organizationId) {
-        return interviewStatusService.changeRetestStatus(userId, organizationId, departmentName, InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
+    public UniversalResponseBody cancelRetest(IdArrayParam idArrayParam) {
+        return interviewStatusService.changeRetestStatus(idArrayParam.getUserId(), idArrayParam.getOrganizationId(), idArrayParam.getDepartmentName(), InterviewStatusEnum.NO_INTERVIEW.getInterviewStatus());
     }
 
 
     /**
      * 录取为部员
-     * @param userId
-     * @param departmentName
-     * @param departmentId
-     * @param organizationId
+     *
+     * @param idArrayParam
      * @return
      */
     @DepartmentLogin
     @PostMapping("/enroll")
-    public UniversalResponseBody enrollMember(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
-        return interviewStatusService.enrollMembers(userId, departmentId, departmentName, organizationId);
+    public UniversalResponseBody enrollMember(IdArrayParam idArrayParam) {
+        return interviewStatusService.enrollMembers(idArrayParam.getUserId(), idArrayParam.getDepartmentId(), idArrayParam.getDepartmentName(), idArrayParam.getOrganizationId());
     }
 
 
     /**
      * 取消录取为部员
-     * @param userId
-     * @param departmentName
-     * @param departmentId
-     * @param organizationId
+     *
+     * @param idArrayParam
      * @return
      * @apiNote 将此成员从部员名单移动至淘汰名单
      */
     @DepartmentLogin
     @PostMapping("/cancel/enroll")
-    public UniversalResponseBody cancelEnroll(Integer[] userId, String departmentName, Integer departmentId, Integer organizationId) {
-        return interviewStatusService.cancelEnroll(userId, departmentName, departmentId, organizationId);
+    public UniversalResponseBody cancelEnroll(IdArrayParam idArrayParam) {
+        return interviewStatusService.cancelEnroll(idArrayParam.getUserId(), idArrayParam.getDepartmentName(), idArrayParam.getDepartmentId(), idArrayParam.getOrganizationId());
     }
 }

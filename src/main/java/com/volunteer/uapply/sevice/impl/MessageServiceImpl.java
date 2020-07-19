@@ -184,8 +184,12 @@ public class MessageServiceImpl implements MessageService {
         for (User user :
                 userList) {
             executorService.execute(new SendEnrollMessageThead(user.getUserTel(), user.getUserName(), aliyunEnrollParam.getOrganizationName(), aliyunEnrollParam.getDepartmentName(), aliyunEnrollParam.getSecret()));
-            System.out.println();
         }
+        /* lambda表达式写法
+        userList.forEach(user -> {
+            executorService.execute(new SendEnrollMessageThead(user.getUserTel(), user.getUserName(), aliyunEnrollParam.getOrganizationName(), aliyunEnrollParam.getDepartmentName(), aliyunEnrollParam.getSecret()));
+            System.out.println();
+        });*/
         return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 }

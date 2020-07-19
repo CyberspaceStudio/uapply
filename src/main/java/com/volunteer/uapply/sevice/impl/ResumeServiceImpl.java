@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author 郭树耸
@@ -34,6 +37,9 @@ public class ResumeServiceImpl implements ResumeService {
     private InterviewScoreMapper interviewScoreMapper;
     @Resource
     private InterviewDataMapper interviewDataMapper;
+
+
+    private final Lock lock = new ReentrantLock();
 
     private static final String man = "男";
     private static final String woman = "女";
@@ -100,6 +106,20 @@ public class ResumeServiceImpl implements ResumeService {
         }
         //增加部门面试数据中的已经面试人数
         interviewDataMapper.plusInterviewCounts(interviewScorePO.getDepartmentName());
+       /*
+        try{
+            if (lock.tryLock(60, TimeUnit.MINUTES))
+            {
+                try{
+                    interviewDataMapper.plusInterviewCounts(interviewScorePO.getDepartmentName());
+                }finally {
+                    lock.unlock();
+                }
+            }
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
         InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId());
         if (interviewStatus == null) {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
@@ -108,7 +128,6 @@ public class ResumeServiceImpl implements ResumeService {
         if (interviewStatus.getFirstChoice().equals(interviewScorePO.getDepartmentName())) {
             interviewStatusMapper.updateFirstInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
         } else if (interviewStatus.getSecondChoice().equals(interviewScorePO.getDepartmentName())) {
-
             interviewStatusMapper.updateSecondInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
         } else {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());

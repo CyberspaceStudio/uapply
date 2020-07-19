@@ -6,6 +6,7 @@ import com.volunteer.uapply.annotation.LxRateLimit;
 import com.volunteer.uapply.annotation.PassToken;
 import com.volunteer.uapply.annotation.UserLogin;
 import com.volunteer.uapply.pojo.*;
+import com.volunteer.uapply.pojo.dto.IdArrayParam;
 import com.volunteer.uapply.pojo.info.TokenPO;
 import com.volunteer.uapply.sevice.DepartmentService;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
@@ -85,6 +86,7 @@ public class DepartmentController {
      *
      * @param department
      * @return
+     * @apiNote 此接口添加面试轮次和评价参数两项内容, 注意请提示用户一次性添加完成
      */
     @DepartmentLogin
     @PostMapping("/detail")
@@ -94,14 +96,14 @@ public class DepartmentController {
 
     /**
      * 添加面试官
-     * @param departmentId
-     * @param userId
+     *
+     * @param idArrayParam
      * @return
      */
     @DepartmentLogin
     @PostMapping("/interviewer")
-    public UniversalResponseBody insertInterviewer(Integer departmentId, Integer[] userId) {
-        return departmentService.insertInterviewer(departmentId, userId);
+    public UniversalResponseBody insertInterviewer(IdArrayParam idArrayParam) {
+        return departmentService.insertInterviewer(idArrayParam.getDepartmentId(), idArrayParam.getUserId());
     }
 
 
