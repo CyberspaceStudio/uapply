@@ -101,9 +101,6 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public UniversalResponseBody scoreResume(InterviewScorePO interviewScorePO) {
-        //获取学号
-        User user = userMessageMapper.getUserByUserId(interviewScorePO.getUserId());
-        interviewScorePO.setUserStuNum(user.getUserStuNum());
         if (interviewScoreMapper.insertInterviewScore(interviewScorePO) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
@@ -127,7 +124,6 @@ public class ResumeServiceImpl implements ResumeService {
         if (interviewStatus == null) {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
-        //匹配是第几志愿部门，并修改相应状态为已面试
         if (interviewStatus.getFirstChoice().equals(interviewScorePO.getDepartmentName())) {
             interviewStatusMapper.updateFirstInterviewStatus(interviewScorePO.getUserId(), interviewScorePO.getOrganizationId(), InterviewStatusEnum.INTERVIEWED.getInterviewStatus());
         } else if (interviewStatus.getSecondChoice().equals(interviewScorePO.getDepartmentName())) {

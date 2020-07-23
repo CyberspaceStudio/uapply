@@ -5,7 +5,7 @@
     <insert id="insertInterviewScore">
     INSERT INTO interview_score(user_id,organization_id,userStu_num,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name)
     VALUES
-    (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{departmentName,jdbcType=VARCHAR},#{userStuNum,jdbcType=VARCHAR},
+    (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{userStuNum,jdbcType=VARCHAR},#{departmentName,jdbcType=VARCHAR},
     #{param1Score,jdbcType=VARCHAR},#{param2Score,jdbcType=VARCHAR},#{param3Score,jdbcType=VARCHAR},#{param4Score,jdbcType=VARCHAR},#{param5Score,jdbcType=VARCHAR},
     #{detail,jdbcType=VARCHAR},#{overview,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR})
     </insert>
