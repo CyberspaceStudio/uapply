@@ -72,7 +72,7 @@ public class ResumeServiceImpl implements ResumeService {
         User user = userMessageMapper.getUserByUserId(resume.getUserId());
         //如果用户的名称为空，说明数据库中没有此用户的基本信息
         if (user.getUserName() == null) {
-            if (userMessageMapper.updateUserMessage(resume.getUserId(), resume.getUserSex(), resume.getUserName(), resume.getUserTel(), resume.getUserQQNum(), resume.getUserCollege(), resume.getUserProfession()) < 0) {
+            if (userMessageMapper.updateUserMessage(resume.getUserId(), resume.getUserSex(), resume.getUserStuNum(), resume.getUserName(), resume.getUserTel(), resume.getUserQQNum(), resume.getUserCollege(), resume.getUserProfession()) < 0) {
                 return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }
         }
@@ -101,6 +101,9 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public UniversalResponseBody scoreResume(InterviewScorePO interviewScorePO) {
+        //获取学号
+        User user = userMessageMapper.getUserByUserId(interviewScorePO.getUserId());
+        interviewScorePO.setUserStuNum(user.getUserStuNum());
         if (interviewScoreMapper.insertInterviewScore(interviewScorePO) < 0) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }

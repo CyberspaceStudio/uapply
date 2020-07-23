@@ -43,11 +43,13 @@
     AND ((first_choice = #{departmentName,jdbcType=VARCHAR} AND first_status = #{status,jdbcType=VARCHAR} )
     OR (second_choice =#{departmentName,jdbcType=VARCHAR} AND second_status = #{status,jdbcType=VARCHAR}));
    </select>
+
     <select id="getUserIdByRetestStatus" resultType="java.lang.Integer">
         SELECT user_id FROM interview_status
         where organization_id = #{organizationId,jdbcType=INTEGER}
-        AND retest_choice = #{status,jdbcType=VARCHAR}
+        AND retest_status = #{status,jdbcType=VARCHAR}
     </select>
+
     <select id="getUserIdByOrganizationId" resultType="java.lang.Integer">
         SELECT user_id FROM interview_status
         where organization_id = #{organizationId,jdbcType=INTEGER}

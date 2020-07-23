@@ -17,6 +17,11 @@ public class InterviewScorePO {
      */
     private Integer userId;
 
+    /**
+     * 用户学号
+     */
+    private String userStuNum;
+
 
     /**
      * 组织id

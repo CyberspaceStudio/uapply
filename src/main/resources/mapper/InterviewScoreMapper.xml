@@ -3,21 +3,21 @@
 <mapper namespace="com.volunteer.uapply.mapper.InterviewScoreMapper">
 
     <insert id="insertInterviewScore">
-    INSERT INTO interview_score(user_id,organization_id,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name)
+    INSERT INTO interview_score(user_id,organization_id,userStu_num,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name)
     VALUES
-    (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{departmentName,jdbcType=VARCHAR},
+    (#{userId,jdbcType=INTEGER},#{organizationId,jdbcType=INTEGER},#{departmentName,jdbcType=VARCHAR},#{userStuNum,jdbcType=VARCHAR},
     #{param1Score,jdbcType=VARCHAR},#{param2Score,jdbcType=VARCHAR},#{param3Score,jdbcType=VARCHAR},#{param4Score,jdbcType=VARCHAR},#{param5Score,jdbcType=VARCHAR},
     #{detail,jdbcType=VARCHAR},#{overview,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR})
     </insert>
     <select id="getAllScoreById" resultType="com.volunteer.uapply.pojo.InterviewScorePO">
-        SELECT user_id,organization_id,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name
+        SELECT user_id,organization_id,userStu_num,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name
         FROM interview_score
         WHERE user_id= #{userId,jdbcType=INTEGER} AND organization_id  = #{organizationId,jdbcType=INTEGER}
     </select>
 
     <select id="getInterviewScoresByUserId" resultType="com.volunteer.uapply.pojo.InterviewScorePO">
         SELECT
-        user_id,organization_id,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name
+        user_id,organization_id,userStu_num,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name
         FROM interview_score
         WHERE organization_id = #{organizationId,jdbcType=INTEGER}
         AND user_id IN

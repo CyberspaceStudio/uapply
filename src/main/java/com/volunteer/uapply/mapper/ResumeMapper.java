@@ -40,4 +40,5 @@ public interface ResumeMapper {
      * @return
      */
     Page<Resume> getResumesByUserId(List<Integer> userId, Integer organizationId);
+
 }

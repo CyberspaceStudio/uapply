@@ -35,35 +35,40 @@ public class User {
     @Excel(name = "姓名", orderNum = "1")
     private String userName;
 
+    /**
+     * 用户学号
+     */
+    @Excel(name = "学号", orderNum = "2")
+    private String userStuNum;
 
     /**
      * 用户性别
      */
-    @Excel(name = "姓名", orderNum = "2")
+    @Excel(name = "姓名", orderNum = "3")
     private String userSex;
 
     /**
      * 电话
      */
-    @Excel(name = "电话", orderNum = "3")
+    @Excel(name = "电话", orderNum = "4")
     private String userTel;
 
     /**
      * QQ
      */
-    @Excel(name = "QQ", orderNum = "4")
+    @Excel(name = "QQ", orderNum = "5")
     private String userQQNum;
 
     /**
      * 学院
      */
-    @Excel(name = "学院", orderNum = "5")
+    @Excel(name = "学院", orderNum = "6")
     private String userCollege;
 
     /**
      * 专业
      */
-    @Excel(name = "专业", orderNum = "6")
+    @Excel(name = "专业", orderNum = "7")
     private String userProfession;
 
     public User(Integer userId) {
