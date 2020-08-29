@@ -155,7 +155,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public UniversalResponseBody<PageInfo<User>> getMembers(Integer departmentId, Integer pageNum, Integer pageSize) {
         List<DepartmentMember> departmentMemberList = departmentMemberMapper.getDepartmentMember(departmentId, AuthorityIdEnum.STAFF.getAuthorityId());
-        if (departmentMemberList == null) {
+        if (departmentMemberList == null || departmentMemberList.isEmpty()) {
             return new UniversalResponseBody<PageInfo<User>>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         Integer[] userId = new Integer[departmentMemberList.size()];

@@ -98,4 +98,13 @@ public interface InterviewStatusMapper {
      * @return
      */
     List<Integer> getUserIdByOrganizationId(Integer organizationId, String status);
+
+    /**
+     * 获取二面已经面试的人员
+     *
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    List<Integer> getUnSecondInterview(Integer organizationId, String departmentName);
 }

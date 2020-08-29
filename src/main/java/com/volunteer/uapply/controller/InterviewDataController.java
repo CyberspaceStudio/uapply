@@ -9,9 +9,7 @@ import com.volunteer.uapply.mapper.InterviewDataMapper;
 import com.volunteer.uapply.pojo.InterviewData;
 import com.volunteer.uapply.pojo.InterviewScorePO;
 import com.volunteer.uapply.pojo.Resume;
-import com.volunteer.uapply.pojo.User;
 import com.volunteer.uapply.sevice.InterviewDataService;
-import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,7 +73,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
-    @DepartmentLogin
+    //@DepartmentLogin
     @GetMapping("/unretest")
     public UniversalResponseBody<PageInfo<Resume>> unRetest(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.unRetest(organizationId, departmentName, pageNum, pageSize);

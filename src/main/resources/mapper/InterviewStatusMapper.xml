@@ -56,4 +56,11 @@
         AND (second_status = #{status,jdbcType=VARCHAR} OR first_status = #{status,jdbcType=VARCHAR} OR retest_choice = #{status,jdbcType=VARCHAR})
     </select>
 
+    <select id="getUnSecondInterview" resultType="java.lang.Integer">
+        SELECT user_id FROM interview_status
+        where organization_id = #{organizationId,jdbcType=INTEGER}
+        AND ((first_choice = #{departmentName,jdbcType=VARCHAR} AND first_status = "通过")
+        OR (second_choice =#{departmentName,jdbcType=VARCHAR} AND second_status = "通过")) AND retest_status = "未面试"
+    </select>
+
 </mapper>
