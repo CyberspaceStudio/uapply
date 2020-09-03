@@ -137,7 +137,6 @@ public class DepartmentController {
      * @param departmentId
      * @param response
      */
-    @DepartmentLogin
     @GetMapping("/export")
     public void exportMessages(Integer departmentId, HttpServletResponse response) {
         departmentService.getAllMembersToExcel(departmentId, response);

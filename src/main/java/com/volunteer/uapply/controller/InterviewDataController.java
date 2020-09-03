@@ -73,7 +73,7 @@ public class InterviewDataController {
      * @param organizationId
      * @return
      */
-    //@DepartmentLogin
+    @DepartmentLogin
     @GetMapping("/unretest")
     public UniversalResponseBody<PageInfo<Resume>> unRetest(Integer organizationId, String departmentName, Integer pageNum, Integer pageSize) {
         return interviewDataService.unRetest(organizationId, departmentName, pageNum, pageSize);

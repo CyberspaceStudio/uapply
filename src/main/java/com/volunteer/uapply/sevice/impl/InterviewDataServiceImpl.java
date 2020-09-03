@@ -59,7 +59,7 @@ public class InterviewDataServiceImpl implements InterviewDataService {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         PageHelper.startPage(pageNum, pageSize);
-        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
+        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getDepartmentInterviewScore(userIdList, organizationId, departmentName));
         return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
@@ -104,7 +104,7 @@ public class InterviewDataServiceImpl implements InterviewDataService {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         PageHelper.startPage(pageNum, pageSize);
-        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
+        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getDepartmentInterviewScore(userIdList, organizationId, departmentName));
         return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
@@ -118,7 +118,7 @@ public class InterviewDataServiceImpl implements InterviewDataService {
             return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
         }
         PageHelper.startPage(pageNum, pageSize);
-        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getInterviewScoresByUserId(userIdList, organizationId));
+        PageInfo<InterviewScorePO> pageInfo = new PageInfo<InterviewScorePO>(interviewScoreMapper.getDepartmentInterviewScore(userIdList, organizationId, departmentName));
         return new UniversalResponseBody<PageInfo<InterviewScorePO>>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), pageInfo);
     }
 
