@@ -26,4 +26,16 @@
             #{item}
         </foreach>
     </select>
+    <select id="getDepartmentInterviewScore" resultType="com.volunteer.uapply.pojo.InterviewScorePO">
+        SELECT
+        user_id,organization_id,userStu_num,department_name,param1_score,param2_score,param3_score,param4_score,param5_score,detail,overview,user_name
+        FROM interview_score
+        WHERE organization_id = #{organizationId,jdbcType=INTEGER} AND department_name =
+        #{departmentName,jdbcType=VARCHAR}
+        AND user_id IN
+        <foreach collection="userId" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

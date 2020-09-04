@@ -90,6 +90,24 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
         for (Integer temp :
                 userId) {
             InterviewStatus interviewStatus = interviewStatusMapper.getInterviewStatusById(temp, organizationId);
+            /**
+             * 若是更改为二面为已经面试，则考虑两种情况
+             * 1.若是二面签到，则先检查是否已经签到，若已经签到，则返回
+             * 2.若是捞回二面已面试，则直接更改状态
+             * 所以只需要判断数据库中的二面部门是否为空，或者是否与参数中的部门是否相等，相等则修改
+             */
+            //若是更改为二面为已经面试
+            if (status.equals(InterviewStatusEnum.INTERVIEWED.getInterviewStatus()) && interviewStatus.getRetestChoice() != null) {
+                //参数中的部门不相等
+                if (!interviewStatus.getRetestChoice().equals(departmentName)) {
+                    System.out.println(interviewStatus.toString());
+                    return new UniversalResponseBody(ResponseResultEnum.USER_HAVE_SECOND_CHECKED.getCode(), ResponseResultEnum.USER_HAVE_SECOND_CHECKED.getMsg());
+                }
+                //部门相等 数据库中的二面部门为空
+                else {
+                }
+            } else {
+            }
             //一志愿为该部门
             if (interviewStatus.getFirstChoice().equals(departmentName)) {
                 interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, status);
@@ -99,6 +117,7 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
             } else {
                 return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
             }
+
         }
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
