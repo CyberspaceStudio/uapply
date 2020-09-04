@@ -12,8 +12,8 @@
     <insert id="insertDepartmentInterviewDetail">
     UPDATE department
     SET
-    interview_rounds = #{interviewRounds,jdbcType=VARCHAR},param1_name = #{param1Name,jdbcType=VARCHAR},param2_name = #{parma2Name,jdbcType=VARCHAR},
-    param3_name = #{param3Name,jdbcType=VARCHAR},param4_name = #{param4Name,jdbcType=VARCHAR},param5_name = #{param5Name,jdbcType=VARCHAR},
+    interview_rounds = #{interviewRounds,jdbcType=VARCHAR},param1_name = #{param1Name,jdbcType=VARCHAR},param2_name = #{param2Name,jdbcType=VARCHAR},
+    param3_name = #{param3Name,jdbcType=VARCHAR},param4_name = #{param4Name,jdbcType=VARCHAR},param5_name = #{param5Name,jdbcType=VARCHAR}
     WHERE department_id = #{departmentId,jdbcType=INTEGER}
     </insert>
 
@@ -24,6 +24,7 @@
         FROM department
         WHERE department_account = #{departmentAccount,jdbcType=VARCHAR}
     </select>
+
     <select id="getDepartmentByDepartmentId" resultType="com.volunteer.uapply.pojo.Department">
         SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
@@ -31,6 +32,7 @@
         FROM department
         WHERE department_id = #{departmentId,jdbcType=INTEGER}
     </select>
+
     <select id="getDepartmentByName" resultType="com.volunteer.uapply.pojo.Department">
         SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
@@ -38,6 +40,7 @@
         FROM department
         WHERE department_name = #{departmentName,jdbcType=VARCHAR}
     </select>
+
     <select id="getDepartmentsByOrganizationId" resultType="com.volunteer.uapply.pojo.Department">
         SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
@@ -45,6 +48,7 @@
         FROM department
         WHERE organization_id = #{organizationId,jdbcType=INTEGER}
     </select>
+
     <select id="getDepartmentById" resultType="com.volunteer.uapply.pojo.Department">
         SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,
@@ -52,6 +56,7 @@
         FROM department
         WHERE department_id = #{departmentId,jdbcType=INTEGER}
     </select>
+
     <select id="getDepartmentByNameAndId" resultType="com.volunteer.uapply.pojo.Department">
         SELECT
         department_id,department_name,organization_id,organization_name,department_account,department_pwd,interview_rounds,

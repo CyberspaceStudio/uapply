@@ -19,6 +19,7 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\enums\Res
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\info\AliyunEnrollParam.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\User.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\ResumeService.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\RedisUtil.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\DepartmentMember.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\DepartmentService.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\sevice\InterviewDataService.java
@@ -54,4 +55,7 @@ C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\InterviewS
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\aspect\LogAspect.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\enums\AuthorityIdEnum.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\mapper\DepartmentMapper.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\pojo\dto\IdArrayParam.java
 C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\UapplyApplication.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\MessageUtil.java
+C:\Users\24605\Desktop\uapply\src\main\java\com\volunteer\uapply\utils\Thread\SendEnrollMessageThead.java

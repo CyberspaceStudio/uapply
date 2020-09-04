@@ -41,4 +41,14 @@ public interface InterviewScoreMapper {
      * @return
      */
     Page<InterviewScorePO> getInterviewScoresByUserId(List<Integer> userId, Integer organizationId);
+
+    /**
+     * 查询id在部门下的面试简历
+     *
+     * @param userId
+     * @param organizationId
+     * @param departmentName
+     * @return
+     */
+    Page<InterviewScorePO> getDepartmentInterviewScore(List<Integer> userId, Integer organizationId, String departmentName);
 }

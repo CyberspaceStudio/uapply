@@ -31,6 +31,7 @@ public enum ResponseResultEnum {
      * 报名错误
      */
     USER_HAVE_APPLY(3000, "用户已经报名"),
+    USER_HAVE_SECOND_CHECKED(3001, "用户已经在其他部门二面签到"),
 
     /**
      * 部门错误

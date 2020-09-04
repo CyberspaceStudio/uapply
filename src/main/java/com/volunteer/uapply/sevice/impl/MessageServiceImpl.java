@@ -16,6 +16,7 @@ import com.volunteer.uapply.pojo.info.AliyunFisrtInterviewParam;
 import com.volunteer.uapply.pojo.info.AliyunResponseInfo;
 import com.volunteer.uapply.pojo.info.AliyunSecondInterviewParam;
 import com.volunteer.uapply.sevice.MessageService;
+import com.volunteer.uapply.utils.Thread.SendEnrollMessageThead;
 import com.volunteer.uapply.utils.enums.ResponseResultEnum;
 import com.volunteer.uapply.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 郭树耸
@@ -169,6 +174,22 @@ public class MessageServiceImpl implements MessageService {
                 return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg(), aliyunResponseInfo);
             }
         }
+        return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<AliyunResponseInfo> currentSendEnrollInterviewMessage(AliyunEnrollParam aliyunEnrollParam) throws ClientException {
+        ExecutorService executorService = new ThreadPoolExecutor(2, 4, 15, TimeUnit.MINUTES, new LinkedBlockingDeque<>(), new ThreadPoolExecutor.CallerRunsPolicy());
+        List<User> userList = userMessageMapper.getUsersByUserId(aliyunEnrollParam.getUserId());
+        for (User user :
+                userList) {
+            executorService.execute(new SendEnrollMessageThead(user.getUserTel(), user.getUserName(), aliyunEnrollParam.getOrganizationName(), aliyunEnrollParam.getDepartmentName(), aliyunEnrollParam.getSecret()));
+        }
+        /* lambda表达式写法
+        userList.forEach(user -> {
+            executorService.execute(new SendEnrollMessageThead(user.getUserTel(), user.getUserName(), aliyunEnrollParam.getOrganizationName(), aliyunEnrollParam.getDepartmentName(), aliyunEnrollParam.getSecret()));
+            System.out.println();
+        });*/
         return new UniversalResponseBody<AliyunResponseInfo>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
 }

@@ -45,7 +45,7 @@ public interface UserMessageMapper {
      * @param userProfession
      * @return
      */
-    int updateUserMessage(Integer userId, String userSex, String userName, String userTel, String userQQNum, String userCollege, String userProfession);
+    int updateUserMessage(Integer userId, String userSex, String userStuNum, String userName, String userTel, String userQQNum, String userCollege, String userProfession);
 
     /**
      * 批量获取用户信息
