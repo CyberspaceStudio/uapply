@@ -3,6 +3,7 @@ package com.volunteer.uapply.sevice.impl;
 import com.volunteer.uapply.mapper.DepartmentMemberMapper;
 import com.volunteer.uapply.mapper.InterviewStatusMapper;
 import com.volunteer.uapply.pojo.Department;
+import com.volunteer.uapply.pojo.DepartmentMember;
 import com.volunteer.uapply.pojo.InterviewStatus;
 import com.volunteer.uapply.sevice.InterviewStatusService;
 import com.volunteer.uapply.utils.enums.AuthorityIdEnum;
@@ -41,12 +42,37 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
 
     @Override
     public UniversalResponseBody enrollMembers(Integer[] userId, Integer departmentId, String departmentName, Integer organizationId) {
+        InterviewStatus interviewStatus;
+        DepartmentMember departmentMember;
         for (Integer temp :
                 userId) {
+            interviewStatus = interviewStatusMapper.getInterviewStatusById(temp, organizationId);
+            /**
+             * 有可能是从淘汰名单录取为成员，所以此处应当判断成员的该部门面试状态是否淘汰，若为淘汰则更新为通过
+             */
+            //一志愿为该部门
+            if (interviewStatus.getFirstChoice().equals(departmentName) && interviewStatus.getFirstStatus().equals(InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus())) {
+                interviewStatusMapper.updateFirstInterviewStatus(temp, organizationId, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
+            } else if (interviewStatus.getSecondChoice().equals(departmentName) && interviewStatus.getFirstStatus().equals(InterviewStatusEnum.INTERVIEW_ELIMINATE.getInterviewStatus())) {
+                //二志愿为该部门
+                interviewStatusMapper.updateSecondInterviewStatus(temp, organizationId, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
+            } else {
+                return new UniversalResponseBody(ResponseResultEnum.PARAM_IS_INVALID.getCode(), ResponseResultEnum.PARAM_IS_INVALID.getMsg());
+            }
+
             //将复试状态改为通过
             interviewStatusMapper.updateRetestStatus(temp, organizationId, departmentName, InterviewStatusEnum.INTERVIEW_PASS.getInterviewStatus());
-            //将此成员插入部门成员表中,其次在录取为部员之前，部门成员数据库中不应该存在该成员
-            departmentMemberMapper.insertDepartmentMember(departmentId, departmentName, temp, AuthorityIdEnum.STAFF.getAuthorityId());
+            /**
+             *判断之前已经存在于该部门中
+             */
+            departmentMember = departmentMemberMapper.getUserDepartmentAuthority(temp, departmentId);
+            //不存在
+            if (departmentMember == null) {
+                departmentMemberMapper.insertDepartmentMember(departmentId, departmentName, temp, AuthorityIdEnum.STAFF.getAuthorityId());
+            } else {
+                //否则更新权限
+                departmentMemberMapper.updateUserAuthority(departmentId, AuthorityIdEnum.STAFF.getAuthorityId(), temp);
+            }
         }
         return new UniversalResponseBody<Department>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
     }
@@ -96,8 +122,7 @@ public class InterviewStatusServiceImpl implements InterviewStatusService {
              * 2.若是捞回二面已面试，则直接更改状态
              * 所以只需要判断数据库中的二面部门是否为空，或者是否与参数中的部门是否相等，相等则修改
              */
-            //若是更改为二面为已经面试
-            if (status.equals(InterviewStatusEnum.INTERVIEWED.getInterviewStatus()) && interviewStatus.getRetestChoice() != null) {
+            if (interviewStatus.getRetestChoice() != null && status.equals(InterviewStatusEnum.INTERVIEWED.getInterviewStatus())) {
                 //参数中的部门不相等
                 if (!interviewStatus.getRetestChoice().equals(departmentName)) {
                     System.out.println(interviewStatus.toString());

@@ -47,7 +47,6 @@ public class InterviewStatusController {
 
     /**
      * 一面通过
-     *
      * @param idArrayParam
      * @return
      * @apiNote 将成员的一面状态设置为通过
@@ -60,7 +59,6 @@ public class InterviewStatusController {
 
     /**
      * 一面淘汰
-     *
      * @param idArrayParam
      * @return
      * @apiNote 将成员的一面状态设置为淘汰
@@ -79,7 +77,6 @@ public class InterviewStatusController {
      * @return
      * @apiNote 将复试状态设置为已面试
      */
-    @UserLogin
     @PostMapping("/retest/check")
     public UniversalResponseBody retestCheck(Integer userId, String departmentName, Integer organizationId) {
         //把userId转换为数组类型
