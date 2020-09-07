@@ -64,7 +64,6 @@ public interface DepartmentMemberMapper {
 
     /**
      * 删除部门成员
-     *
      * @param departmentId
      * @param userId
      * @return
