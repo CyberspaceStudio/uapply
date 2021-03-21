@@ -44,7 +44,7 @@ public class User {
     /**
      * 用户性别
      */
-    @Excel(name = "姓名", orderNum = "3")
+    @Excel(name = "性别", orderNum = "3")
     private String userSex;
 
     /**
