@@ -3,23 +3,24 @@
 <mapper namespace="com.volunteer.uapply.mapper.ResumeMapper">
 
     <insert id="InsertResume">
-        INSERT INTO resume(user_id,user_name,organization_id,organization_name,user_sex,userStu_num,user_college,user_profession,user_tel,userQQ_num,user_hobby,user_introduction)
+        INSERT INTO uapply.resume (user_id, user_name, organization_id, organization_name, user_sex, userStu_num, user_college, user_profession, user_tel, userQQ_num, user_hobby, user_introduction, question1, question2, question3, obey_adjustment)
         VALUES
         (#{userId,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{organizationId,jdbcType=INTEGER},#{organizationName,jdbcType=VARCHAR},
         #{userSex,jdbcType=VARCHAR},#{userStuNum,jdbcType=VARCHAR},#{userCollege,jdbcType=VARCHAR},#{userProfession,jdbcType=VARCHAR},
-        #{userTel,jdbcType=VARCHAR},#{userQQNum,jdbcType=VARCHAR},#{userHobby,jdbcType=VARCHAR},#{userIntroduction,jdbcType=VARCHAR})
+        #{userTel,jdbcType=VARCHAR},#{userQQNum,jdbcType=VARCHAR},#{userHobby,jdbcType=VARCHAR},#{userIntroduction,jdbcType=VARCHAR},
+         #{question1,jdbcType=INTEGER},#{question2,jdbcType=INTEGER},#{question3,jdbcType=INTEGER},#{obeyAdjustment,jdbcType=INTEGER})
     </insert>
     <select id="getResumeByUserTel" resultType="com.volunteer.uapply.pojo.Resume">
-        SELECT user_id,user_name,organization_id,organization_name,user_sex,userStu_num,user_college,user_profession,user_tel,userQQ_num,user_hobby,user_introduction
-        FROM resume
+        SELECT user_id, user_name, organization_id, organization_name, user_sex, userStu_num, user_college, user_profession, user_tel, userQQ_num, user_hobby, user_introduction, question1, question2, question3, obey_adjustment
+        FROM uapply.resume
         WHERE organization_id = #{organizationId,jdbcType=INTEGER} AND user_tel = #{userTel,jdbcType=VARCHAR}
     </select>
 
 
     <select id="getResumesByUserId" resultType="com.volunteer.uapply.pojo.Resume">
         SELECT
-        user_id,user_name,organization_id,organization_name,user_sex,userStu_num,user_college,user_profession,user_tel,userQQ_num,user_hobby,user_introduction
-        FROM resume
+        user_id, user_name, organization_id, organization_name, user_sex, userStu_num, user_college, user_profession, user_tel, userQQ_num, user_hobby, user_introduction, question1, question2, question3, obey_adjustment
+        FROM uapply.resume
         WHERE organization_id = #{organizationId,jdbcType=INTEGER}
         AND user_id IN
         <foreach collection="userId" item="item" index="index"

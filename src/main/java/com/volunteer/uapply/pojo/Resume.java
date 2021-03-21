@@ -73,26 +73,22 @@ public class Resume {
     private String userIntroduction;
 
     /**
-     * 家长是否同意
-     * @apiNote 1 代表同意，0 代表不同意
+     * 家长是否同意(1 代表同意，0 代表不同意)
      */
     private Integer question1;
 
     /**
-     * 是否知晓被录取后不得退出
-     * @apiNote 1 代表知晓，0 代表不知晓
+     * 是否知晓被录取后不得退出(1 代表知晓，0 代表不知晓)
      */
     private Integer question2;
 
     /**
-     * 是否服从支教队安排
-     * @apiNote 1 代表服从，0 代表不服从
+     * 是否服从支教队安排(1 代表服从，0 代表不服从)
      */
     private Integer question3;
 
     /**
-     * 是否服从调剂
-     * @apiNote 1 代表服从，0 代表不服从
+     * 是否服从调剂(1 代表服从，0 代表不服从)
      */
     private Integer obeyAdjustment;
 }

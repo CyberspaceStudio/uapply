@@ -60,7 +60,7 @@ public class ResumeServiceImpl implements ResumeService {
         }
 
         //简历插入失败
-        if (resumeMapper.InsertResume(resume) < 0) {
+        if (resumeMapper.InsertResume(resume) < 1) {
             return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
         //向面试状态数据库中插入一条新数据
